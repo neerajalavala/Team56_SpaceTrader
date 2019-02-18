@@ -102,7 +102,7 @@ public class CreatePlayerActivity extends AppCompatActivity {
         button.setText("Add");
         setTitle("Adding New Player");
 
-        nameField.setText("Input Player Name");
+        nameField.setHint("Input Player Name");
 
         viewModel = ViewModelProviders.of(this).get(CreatePlayerViewModel.class);
     }
@@ -122,7 +122,18 @@ public class CreatePlayerActivity extends AppCompatActivity {
 
         if (pilot + fighter + trader + engineer != 16) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("Must have 16 skill points!")
+            builder.setMessage("Exactly 16 skill points must be allocated. ")
+                    .setCancelable(false)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            //do things
+                        }
+                    });
+            AlertDialog alert = builder.create();
+            alert.show();
+        } else if (nameField.getText().toString().equals("")) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Player name cannot be empty. ")
                     .setCancelable(false)
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {

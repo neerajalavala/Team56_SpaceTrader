@@ -39,26 +39,6 @@ public class Player<GNAT> implements Serializable {
     /** type of ship */
     private ShipType Ship_type = ShipType.GNAT;
 
-
-    /**
-     * Lookup a major based on its code.  Returns the postion of that
-     * major in the array, would not have to do this for an enum
-     *
-     * @param code the major to find
-     *
-     * @return the index of the array that corresponds to the submitted major
-     */
-
-    public static int findStanding(String code) {
-        String[] standings = {"FR", "SO", "JR", "SR"};
-        int r = 0;
-        while (r < standings.length) {
-            if (code.equals(standings[r])) return r;
-            ++r;
-        }
-        return 0;
-    }
-
     public Player(String name, Integer pilot, Integer fighter, Integer trader, Integer engineer, Difficulty diff) {
         this.ID = count;
         this.Name = name;
