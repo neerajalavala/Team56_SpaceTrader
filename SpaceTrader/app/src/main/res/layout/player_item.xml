@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="8dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="8dp">
+
+    <RelativeLayout
+        android:layout_width="405dp"
+        android:layout_height="200dp"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/player_name"
+            android:layout_width="168dp"
+            android:layout_height="32dp"
+            android:maxLines="1"
+            android:paddingEnd="8dp" />
+
+        <TextView
+            android:id="@+id/pilot_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="Pilot:" />
+
+        <TextView
+            android:id="@+id/pilot_points"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="50dp" />
+
+        <TextView
+            android:id="@+id/fighter_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="50dp"
+            android:text="Fighter:" />
+
+        <TextView
+            android:id="@+id/fighter_points"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="215dp"
+            android:layout_marginTop="50dp" />
+
+        <TextView
+            android:id="@+id/trader_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:text="Trader:" />
+
+        <TextView
+            android:id="@+id/trader_points"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="100dp" />
+
+        <TextView
+            android:id="@+id/engineer_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="100dp"
+            android:text="Engineer:" />
+
+        <TextView
+            android:id="@+id/engineer_points"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="230dp"
+            android:layout_marginTop="100dp" />
+
+        <TextView
+            android:id="@+id/diff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="170dp"
+            android:text="Difficulty:" />
+
+        <TextView
+            android:id="@+id/diff_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="240dp" />
+
+        <TextView
+            android:id="@+id/credit_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="150dp"
+            android:text="Credits:" />
+
+        <TextView
+            android:id="@+id/credit_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="150dp" />
+
+        <TextView
+            android:id="@+id/ship_type_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="150dp"
+            android:text="Ship Type:" />
+
+        <TextView
+            android:id="@+id/ship_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="225dp"
+            android:layout_marginTop="150dp" />
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>
