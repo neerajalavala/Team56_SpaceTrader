@@ -23,6 +23,14 @@
         <activity android:name="com.example.spacetrader.views.CreatePlayerActivity" />
 
         <activity
+            android:name="com.example.spacetrader.views.ViewPlanets"
+            android:parentActivityName="com.example.spacetrader.views.ViewUniverse" />
+
+        <activity
+            android:name="com.example.spacetrader.views.ViewUniverse"
+            android:parentActivityName="com.example.spacetrader.views.ViewPlayerActivity" />
+
+        <activity
             android:name="com.example.spacetrader.views.ViewPlayerActivity"
             android:parentActivityName="com.example.spacetrader.views.ViewAllPlayersActivity" />
 
