@@ -1,9 +1,12 @@
 package com.example.spacetrader.views;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Button;
 
 import java.util.List;
 
@@ -14,6 +17,9 @@ import com.example.spacetrader.entity.Player;
 public class ViewPlayerActivity extends AppCompatActivity {
 
     public static final String PLAYER_DATA = "PLAYER_DATA";
+
+    /** an int for the request code */
+    private static final int EDIT_REQUEST = 5;
 
     private Player player;
 
@@ -31,6 +37,8 @@ public class ViewPlayerActivity extends AppCompatActivity {
 
     private TextView credits;
     private TextView shipType;
+
+    private Button startButton;
 
 
     @Override
@@ -65,6 +73,7 @@ public class ViewPlayerActivity extends AppCompatActivity {
 
         for (Integer i = 0; i < players.size(); i++) {
             if (players.get(i).getID() == player.getID()) {
+
                 playerName.setText(players.get(i).getName());
                 difficulty.setText(players.get(i).getDiff().toString());
 
@@ -75,7 +84,18 @@ public class ViewPlayerActivity extends AppCompatActivity {
 
                 credits.setText(players.get(i).getCredits().toString());
                 shipType.setText(players.get(i).getShipType().toString());
+                break;
             }
         }
+
+        Button view_universe = findViewById(R.id.start_button);
+        view_universe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ViewPlayerActivity.this, ViewUniverse.class);
+                intent.putExtra(PLAYER_DATA, player.getGame());
+                startActivityForResult(intent, EDIT_REQUEST);
+            }
+        });
     }
 }

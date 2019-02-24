@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Player<GNAT> implements Serializable {
     /** counter for id */
-    private static Integer count = 1;
+    private static Integer player_ids = 1;
 
     /** a globally unique number for this object */
     private int ID;
@@ -39,8 +39,10 @@ public class Player<GNAT> implements Serializable {
     /** type of ship */
     private ShipType Ship_type = ShipType.GNAT;
 
+    private Universe game;
+
     public Player(String name, Integer pilot, Integer fighter, Integer trader, Integer engineer, Difficulty diff) {
-        this.ID = count;
+        this.ID = player_ids;
         this.Name = name;
 
         this.Pilot = pilot;
@@ -52,7 +54,9 @@ public class Player<GNAT> implements Serializable {
 
         this.Credits = startCredits;
 
-        count++;
+        this.game = new Universe(player_ids, diff);
+
+        player_ids++;
 
     }
 
@@ -138,10 +142,17 @@ public class Player<GNAT> implements Serializable {
     /** method for changing type of ship
      * @param type type of ship
      */
-     public void setShipType(ShipType type) {
+    public void setShipType(ShipType type) {
         this.Ship_type = type;
      }
 
+    public Universe getGame() {
+        return game;
+    }
+
+    public void setGame(Universe game) {
+        this.game = game;
+    }
 
     @Override
     public String toString() {
