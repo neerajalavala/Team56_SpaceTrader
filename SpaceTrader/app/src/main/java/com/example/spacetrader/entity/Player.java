@@ -2,7 +2,7 @@ package com.example.spacetrader.entity;
 
 import java.io.Serializable;
 
-public class Player<GNAT> implements Serializable {
+public class Player implements Serializable {
     /** counter for id */
     private static Integer player_ids = 1;
 
