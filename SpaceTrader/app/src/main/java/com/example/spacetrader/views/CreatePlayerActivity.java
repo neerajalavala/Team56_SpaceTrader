@@ -16,8 +16,8 @@ import android.widget.Spinner;
 
 import com.example.spacetrader.R;
 
-import com.example.spacetrader.entity.Difficulty;
-import com.example.spacetrader.entity.Player;
+import com.example.spacetrader.entity.gamelogic.Difficulty;
+import com.example.spacetrader.entity.gamelogic.Player;
 
 import com.example.spacetrader.viewmodels.CreatePlayerViewModel;
 

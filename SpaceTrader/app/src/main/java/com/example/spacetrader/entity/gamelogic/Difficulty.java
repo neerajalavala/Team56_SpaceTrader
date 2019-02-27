@@ -1,4 +1,4 @@
-package com.example.spacetrader.entity;
+package com.example.spacetrader.entity.gamelogic;
 
 public enum Difficulty {
     BEGINNER("Beginner"),

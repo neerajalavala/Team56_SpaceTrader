@@ -1,4 +1,6 @@
-package com.example.spacetrader.entity;
+package com.example.spacetrader.entity.gamelogic;
+
+import com.example.spacetrader.entity.Universe;
 
 import java.io.Serializable;
 

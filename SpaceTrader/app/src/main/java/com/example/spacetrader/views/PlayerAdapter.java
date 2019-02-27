@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.spacetrader.R;
-import com.example.spacetrader.entity.Player;
+import com.example.spacetrader.entity.gamelogic.Player;
 
 /**
  * Adapts the list of players in the model to be a list of graphical elements in view

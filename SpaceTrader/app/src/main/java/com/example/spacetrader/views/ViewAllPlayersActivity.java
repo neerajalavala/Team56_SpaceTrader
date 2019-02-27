@@ -9,7 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 import com.example.spacetrader.R;
-import com.example.spacetrader.entity.Player;
+import com.example.spacetrader.entity.gamelogic.Player;
 import com.example.spacetrader.viewmodels.PlayerListingViewModel;
 
 /**

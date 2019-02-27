@@ -4,7 +4,7 @@ import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.support.annotation.NonNull;
 
-import com.example.spacetrader.entity.Player;
+import com.example.spacetrader.entity.gamelogic.Player;
 import com.example.spacetrader.model.Model;
 import com.example.spacetrader.model.PlayerInteractor;
 

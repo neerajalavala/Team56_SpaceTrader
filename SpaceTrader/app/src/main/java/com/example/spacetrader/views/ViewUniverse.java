@@ -1,20 +1,15 @@
 package com.example.spacetrader.views;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-
 
 
 import com.example.spacetrader.R;
-import com.example.spacetrader.entity.Player;
 import com.example.spacetrader.entity.SolarSystem;
 import com.example.spacetrader.entity.Universe;
-import com.example.spacetrader.viewmodels.PlayerListingViewModel;
 
 public class ViewUniverse extends AppCompatActivity {
 

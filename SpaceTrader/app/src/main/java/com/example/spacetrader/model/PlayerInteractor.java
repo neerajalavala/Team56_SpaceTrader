@@ -4,7 +4,7 @@ import android.util.Log;
 
 import java.util.List;
 
-import com.example.spacetrader.entity.Player;
+import com.example.spacetrader.entity.gamelogic.Player;
 
 /**
  * Provide the operations associated with Player Entity

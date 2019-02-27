@@ -1,14 +1,14 @@
 package com.example.spacetrader.entity;
 
 public enum TechLevel {
-    PreAgriculture("Pre-agriculture"),
-    Agriculture("Agriculture"),
-    Medieval("Medieval"),
-    Renaissance("Renaissance"),
-    EarlyIndustrial("Early-Industrial"),
-    Industrial("Industrial"),
-    PostIndustrial("Post-Industrial"),
-    HiTech("Hi-Tech");
+    PREAGRICULTURE("Pre-agriculture"),
+    AGRICULTURE("Agriculture"),
+    MEDIEVAL("Medieval"),
+    RENAISSANCE("Renaissance"),
+    EARLYINDUSTRIAL("Early-Industrial"),
+    INDUSTRIAL("Industrial"),
+    POSTINDUSTRIAL("Post-Industrial"),
+    HITECH("Hi-Tech");
 
     private String name;
 
