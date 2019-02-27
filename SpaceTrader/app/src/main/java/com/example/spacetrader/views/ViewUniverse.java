@@ -8,8 +8,8 @@ import android.support.v7.widget.RecyclerView;
 
 
 import com.example.spacetrader.R;
-import com.example.spacetrader.entity.SolarSystem;
-import com.example.spacetrader.entity.Universe;
+import com.example.spacetrader.entity.world.SolarSystem;
+import com.example.spacetrader.entity.world.Universe;
 
 public class ViewUniverse extends AppCompatActivity {
 

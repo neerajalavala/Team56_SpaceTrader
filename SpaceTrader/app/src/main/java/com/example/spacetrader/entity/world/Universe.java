@@ -1,4 +1,4 @@
-package com.example.spacetrader.entity;
+package com.example.spacetrader.entity.world;
 
 import com.example.spacetrader.entity.gamelogic.Difficulty;
 

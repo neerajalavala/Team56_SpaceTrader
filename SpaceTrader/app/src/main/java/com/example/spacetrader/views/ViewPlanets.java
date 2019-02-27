@@ -1,16 +1,13 @@
 package com.example.spacetrader.views;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.example.spacetrader.R;
-import com.example.spacetrader.entity.Planet;
-import com.example.spacetrader.entity.Planet;
-import com.example.spacetrader.entity.SolarSystem;
-import com.example.spacetrader.entity.Universe;
+import com.example.spacetrader.entity.world.Planet;
+import com.example.spacetrader.entity.world.SolarSystem;
 
 public class ViewPlanets extends AppCompatActivity {
     public static final String PLAYER_DATA = "PLAYER_DATA";

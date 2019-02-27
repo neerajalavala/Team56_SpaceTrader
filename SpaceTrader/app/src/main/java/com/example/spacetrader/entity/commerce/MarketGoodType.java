@@ -1,6 +1,6 @@
 package com.example.spacetrader.entity.commerce;
 
-import com.example.spacetrader.entity.TechLevel;
+import com.example.spacetrader.entity.world.TechLevel;
 
 import java.io.Serializable;
 

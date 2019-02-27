@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.spacetrader.R;
-import com.example.spacetrader.entity.SolarSystem;
+import com.example.spacetrader.entity.world.SolarSystem;
 
 /**
      * Adapts the list of players in the model to be a list of graphical elements in view

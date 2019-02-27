@@ -1,6 +1,6 @@
 package com.example.spacetrader.entity.gamelogic;
 
-import com.example.spacetrader.entity.Universe;
+import com.example.spacetrader.entity.world.Universe;
 
 import java.io.Serializable;
 
