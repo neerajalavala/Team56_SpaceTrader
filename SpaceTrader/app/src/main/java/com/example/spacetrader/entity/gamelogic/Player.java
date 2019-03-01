@@ -1,5 +1,7 @@
 package com.example.spacetrader.entity.gamelogic;
 
+import com.example.spacetrader.entity.commerce.MarketGood;
+import com.example.spacetrader.entity.commerce.MarketGoodType;
 import com.example.spacetrader.entity.world.Universe;
 
 import java.io.Serializable;
@@ -40,6 +42,8 @@ public class Player implements Serializable {
 
     /** type of ship */
     private ShipType Ship_type = ShipType.GNAT;
+    private MarketGood[] cargoHold;
+    private int cargoCount;
 
     private Universe game;
 
@@ -60,6 +64,24 @@ public class Player implements Serializable {
 
         player_ids++;
 
+        newHold();
+    }
+
+    private void newHold() {
+        MarketGoodType[] types = MarketGoodType.values();
+        cargoHold = new MarketGood[types.length];
+        for (int i = 0; i < cargoHold.length; i++) {
+            cargoHold[i] = new MarketGood(types[i]);
+        }
+        cargoCount = 0;
+    }
+
+    public MarketGood[] getCargoHold() {
+        return cargoHold;
+    }
+
+    public boolean fullHold() {
+        return cargoCount == Ship_type.getCapacity();
     }
 
     public Integer getPilot() {

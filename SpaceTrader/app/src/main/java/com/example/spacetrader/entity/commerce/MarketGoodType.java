@@ -2,9 +2,7 @@ package com.example.spacetrader.entity.commerce;
 
 import com.example.spacetrader.entity.world.TechLevel;
 
-import java.io.Serializable;
-
-public enum MarketGoodType implements Serializable {
+public enum MarketGoodType {
     WATER("Water", 30, 4, 3, TechLevel.PREAGRICULTURE, TechLevel.PREAGRICULTURE, TechLevel.MEDIEVAL),
     FURS("Furs", 250, 10, 10, TechLevel.PREAGRICULTURE, TechLevel.PREAGRICULTURE, TechLevel.PREAGRICULTURE),
     FOOD("Food", 100, 5, 5, TechLevel.AGRICULTURE, TechLevel.PREAGRICULTURE, TechLevel.AGRICULTURE),
@@ -32,6 +30,14 @@ public enum MarketGoodType implements Serializable {
         this.minimumLevelToUse = mltu;
         this.techTopProduction = ttp;
         this.increasePerLevel = ipl;
+    }
+
+    public boolean canBuy(MarketGoodType good, TechLevel planetTech) {
+        return good.minimumLevelToProduce.index() >= planetTech.index();
+    }
+
+    public boolean canSell(MarketGoodType good, TechLevel planetTech) {
+        return good.minimumLevelToUse.index() >= planetTech.index();
     }
 
     public TechLevel getMinimumLevelToProduce() {
