@@ -14,7 +14,7 @@ public class MarketGood implements Serializable {
         this.techLevel = tL;
         if (!genQ) quantity = 0;
         else {
-            // generate quantities when???
+            // corey to provide quantity algorithm
         }
     }
 
@@ -24,6 +24,14 @@ public class MarketGood implements Serializable {
 
     public int getQuantity() {
         return quantity;
+    }
+
+    public void addQuantity(int q) {
+        quantity += q;
+    }
+
+    public void subQuantity(int q) {
+        quantity -= q;
     }
 
     public MarketGoodType getType() {
@@ -40,6 +48,6 @@ public class MarketGood implements Serializable {
 
     public int getPrice() {
         return 0;
-        // implement when corey has the pricing algorithm
+        // corey to provide pricing algorithm
     }
 }

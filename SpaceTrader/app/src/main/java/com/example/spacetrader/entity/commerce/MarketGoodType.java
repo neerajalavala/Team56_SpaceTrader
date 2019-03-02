@@ -20,7 +20,8 @@ public enum MarketGoodType {
     private TechLevel techTopProduction;
     private int increasePerLevel;
     private int basePrice;
-    private int variance; // percent value from 0 to 1
+    private int variance;
+
 
     private MarketGoodType(String name, int bP, int var, int ipl, TechLevel mltp, TechLevel mltu, TechLevel ttp) {
         this.name = name;

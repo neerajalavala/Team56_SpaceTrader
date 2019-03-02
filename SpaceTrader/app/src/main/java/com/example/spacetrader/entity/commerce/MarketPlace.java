@@ -17,7 +17,7 @@ public class MarketPlace implements Serializable {
         this.techLevel = techLevel;
         this.resources = resources;
 
-        // generate the marketplacegoods
+        // corey to provide generation algorithm
     }
 
     public List<MarketGood> getAllGoods() {
