@@ -13,11 +13,22 @@ public class MarketPlace implements Serializable {
     private TechLevel techLevel;
     private Resources resources;
 
+    private final MarketGoodType[] goodTypes = MarketGoodType.values();
+
     public MarketPlace(TechLevel techLevel, Resources resources) {
         this.techLevel = techLevel;
         this.resources = resources;
 
-        // corey to provide generation algorithm
+        for(int i = 0; i < goodTypes.length; i++){
+            if (goodTypes[i].canBuy(goodTypes[i], this.techLevel)) {
+                marketGoods.add(new MarketGood(goodTypes[i], true, this.techLevel, this.resources));
+            } else {
+                if (goodTypes[i].canSell(goodTypes[i], this.techLevel)) {
+                    marketGoods.add(new MarketGood(goodTypes[i], false, this.techLevel, this.resources));
+                }
+            }
+        }
+
     }
 
     public List<MarketGood> getAllGoods() {
