@@ -29,6 +29,8 @@ public class Planet implements Serializable {
 
         this.resources = Resources.values()[rType];
         this.techLevel = TechLevel.values()[tLev];
+
+        this.marketPlace = new MarketPlace(this.techLevel, this.resources);
     }
 
     public String getName() {
@@ -43,5 +45,7 @@ public class Planet implements Serializable {
         return techLevel;
     }
 
-
+    public MarketPlace getMarketPlace() {
+        return marketPlace;
+    }
 }
