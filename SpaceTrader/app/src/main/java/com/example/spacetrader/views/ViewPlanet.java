@@ -1,4 +1,4 @@
 package com.example.spacetrader.views;
 
-public class ViewSolarSystems {
+public class ViewPlanet {
 }
