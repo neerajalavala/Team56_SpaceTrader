@@ -3,7 +3,7 @@ package com.example.spacetrader.entity.world;
 import com.example.spacetrader.entity.gamelogic.Difficulty;
 
 import java.io.Serializable;
-import java.util.HashMap; // import the HashMap class
+import java.util.HashMap;
 
 public class Universe implements Serializable {
     /**

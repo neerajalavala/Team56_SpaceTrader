@@ -6,14 +6,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 
 import com.example.spacetrader.R;
 import com.example.spacetrader.entity.commerce.MarketGood;
 import com.example.spacetrader.entity.commerce.MarketPlace;
 import com.example.spacetrader.entity.gamelogic.CargoHold;
 import com.example.spacetrader.entity.gamelogic.Player;
-import com.example.spacetrader.entity.world.Planet;
 import com.example.spacetrader.viewmodels.PlayerListingViewModel;
 
 import java.util.List;

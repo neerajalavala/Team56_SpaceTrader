@@ -2,18 +2,17 @@ package com.example.spacetrader.views;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Button;
-
-import java.util.List;
+import android.widget.TextView;
 
 import com.example.spacetrader.R;
-import com.example.spacetrader.entity.commerce.MarketGood;
-import com.example.spacetrader.viewmodels.PlayerListingViewModel;
 import com.example.spacetrader.entity.gamelogic.Player;
+import com.example.spacetrader.viewmodels.PlayerListingViewModel;
+
+import java.util.List;
 
 public class ViewPlayerActivity extends AppCompatActivity {
 

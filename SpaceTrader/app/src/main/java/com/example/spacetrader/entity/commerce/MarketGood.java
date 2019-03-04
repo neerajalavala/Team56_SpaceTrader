@@ -1,6 +1,5 @@
 package com.example.spacetrader.entity.commerce;
 
-import com.example.spacetrader.R;
 import com.example.spacetrader.entity.world.Resources;
 import com.example.spacetrader.entity.world.TechLevel;
 

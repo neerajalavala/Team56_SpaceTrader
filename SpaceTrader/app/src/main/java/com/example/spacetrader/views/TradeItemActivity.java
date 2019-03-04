@@ -3,30 +3,24 @@ package com.example.spacetrader.views;
 import android.app.AlertDialog;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Button;
-
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
-
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.spacetrader.R;
 import com.example.spacetrader.entity.commerce.MarketGood;
-import com.example.spacetrader.entity.commerce.MarketPlace;
 import com.example.spacetrader.entity.gamelogic.CargoHold;
-import com.example.spacetrader.entity.gamelogic.Difficulty;
 import com.example.spacetrader.entity.gamelogic.Player;
 import com.example.spacetrader.entity.world.Resources;
 import com.example.spacetrader.entity.world.TechLevel;
 import com.example.spacetrader.viewmodels.PlayerListingViewModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class TradeItemActivity extends AppCompatActivity {
