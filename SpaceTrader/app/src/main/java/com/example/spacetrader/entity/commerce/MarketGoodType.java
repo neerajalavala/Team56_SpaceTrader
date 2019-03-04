@@ -44,12 +44,12 @@ public enum MarketGoodType {
         this.expensiveResource = er;
     }
 
-    public boolean canBuy(MarketGoodType good, TechLevel planetTech) {
-        return good.minimumLevelToProduce.index() >= planetTech.index();
+    public boolean canBuy(TechLevel planetTech) {
+        return this.minimumLevelToProduce.index() <= planetTech.index();
     }
 
-    public boolean canSell(MarketGoodType good, TechLevel planetTech) {
-        return good.minimumLevelToUse.index() >= planetTech.index();
+    public boolean canSell(TechLevel planetTech) {
+        return this.minimumLevelToUse.index() <= planetTech.index();
     }
 
     public TechLevel getMinimumLevelToProduce() {
@@ -77,11 +77,17 @@ public enum MarketGoodType {
     }
 
     public Resources getCheapResource(){
-        return cheapResource;
+        if (cheapResource != null) {
+            return cheapResource;
+        }
+        return Resources.NONE;
     }
 
     public Resources getExpensiveResource() {
-        return expensiveResource;
+        if (expensiveResource != null){
+            return expensiveResource;
+        }
+        return Resources.NONE;
     }
 
     public int index() {

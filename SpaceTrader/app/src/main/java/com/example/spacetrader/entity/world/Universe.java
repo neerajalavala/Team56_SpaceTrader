@@ -47,7 +47,7 @@ public class Universe implements Serializable {
         this.diff = diff;
 
         for (int i = 0; i < solarSystemNames.length; i++){
-            solarSystems[i] = new SolarSystem(count, solarSystemNames[i]);
+            solarSystems[i] = new SolarSystem(playerID, count, solarSystemNames[i]);
 
             /* Sets coordinates in the solar system to the id */
             setGrid(xlocs[i],ylocs[i], count);
@@ -82,6 +82,10 @@ public class Universe implements Serializable {
 
     public SolarSystem[] getSolarSystems(){
         return solarSystems;
+    }
+
+    public int getPlayerID(){
+        return playerID;
     }
 
 }

@@ -71,7 +71,7 @@ public class PlanetAdapter extends RecyclerView.Adapter<PlanetAdapter.PlanetView
 
         public PlanetViewHolder(@NonNull View itemView) {
             super(itemView);
-            PlanetName = itemView.findViewById(R.id.planet_name);
+            PlanetName = itemView.findViewById(R.id.planetName);
             Resources = itemView.findViewById(R.id.resources);
             TechLevel = itemView.findViewById(R.id.tech_level);
 

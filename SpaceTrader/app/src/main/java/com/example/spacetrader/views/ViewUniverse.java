@@ -49,6 +49,8 @@ public class ViewUniverse extends AppCompatActivity {
         // Setup the adapter for this recycler view
         adapter = new SolarSystemAdapter();
         recyclerView.setAdapter(adapter);
+
+        setTitle("Solar Systems");
     }
         @Override
         public void onResume(){

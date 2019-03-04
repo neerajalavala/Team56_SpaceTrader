@@ -9,14 +9,17 @@ public class Planet implements Serializable {
 
     private String name;
 
+    private final int playerID;
+
     private Resources resources;
 
     private TechLevel techLevel;
 
     private MarketPlace marketPlace;
 
-    public Planet(String name){
+    public Planet(int playerid, String name){
         this.name = name;
+        this.playerID = playerid;
 
         int tLev = new Random().nextInt(7);
         int rType = new Random().nextInt(34);
@@ -30,7 +33,7 @@ public class Planet implements Serializable {
         this.resources = Resources.values()[rType];
         this.techLevel = TechLevel.values()[tLev];
 
-        this.marketPlace = new MarketPlace(this.techLevel, this.resources);
+        this.marketPlace = new MarketPlace(this.techLevel, this.resources, playerID);
     }
 
     public String getName() {
@@ -47,5 +50,9 @@ public class Planet implements Serializable {
 
     public MarketPlace getMarketPlace() {
         return marketPlace;
+    }
+
+    public int getPlayerID() {
+        return playerID;
     }
 }

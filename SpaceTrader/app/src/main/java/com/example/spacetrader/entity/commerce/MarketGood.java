@@ -10,22 +10,27 @@ import java.util.Random;
 public class MarketGood implements Serializable {
     private int quantity;
 
+    private final int playerID;
+
     private MarketGoodType marketGoodType;
 
     private TechLevel techLevel;
     private Resources resources;
 
-    private final MarketGoodType[] goodTypes = MarketGoodType.values();
+    private int price_count;
+
+    private int price;
 
 
-    public MarketGood(MarketGoodType mGT, boolean genQ, TechLevel tL, Resources resources) {
+    public MarketGood(MarketGoodType mGT, boolean genQ, TechLevel tL, Resources resources, int id) {
         this.marketGoodType = mGT;
-
+        this.playerID = id;
         this.techLevel = tL;
         this.resources = resources;
 
+        /** quantity calculation */
         if (!genQ) {
-            quantity = 0;
+            this.quantity = 0;
         } else {
             int topTechLevMultiplier;
 
@@ -35,16 +40,52 @@ public class MarketGood implements Serializable {
                 topTechLevMultiplier = 1;
             }
 
-            quantity = (new Random().nextInt(7))
-                        * (10 * topTechLevMultiplier) * (
-                                (1 + techLevel.index())
-                                        - marketGoodType.getMinimumLevelToProduce().index()
-            );
+            this.quantity = (new Random().nextInt(7))
+                        * (topTechLevMultiplier)
+                            * ((1 + techLevel.index()) - marketGoodType.getMinimumLevelToProduce().index());
         }
+
+        /** start price calculation */
+
+        double cheapResMult = 1.0;
+        int expResMult = 1;
+
+        int varCoinFlip = -1;
+
+        if (new Random().nextInt() > 0) {
+            varCoinFlip = 1;
+        }
+
+        double variance = ((double) new Random().nextInt(marketGoodType.getVariance()) / 100.0);
+
+        if (marketGoodType.getCheapResource().index() == resources.index()) {
+            cheapResMult = 0.5;
+        } else if (marketGoodType.getExpensiveResource().index() == resources.index()) {
+            expResMult = 3;
+        }
+
+        int price_calc = ((int)(marketGoodType.getBasePrice() * cheapResMult * expResMult))
+                + (marketGoodType.getIncreasePerLevel() * (techLevel.index() - marketGoodType.getMinimumLevelToProduce().index()))
+                + (int)(varCoinFlip * variance * marketGoodType.getBasePrice());
+
+        if (price_calc <= 0) {
+            price_calc = marketGoodType.getBasePrice() / 2;
+        }
+        this.price = price_calc;
+        this.price_count = 1;
+
     }
 
-    public MarketGood(MarketGoodType mGT) {
-        this(mGT, false, null, null);
+    public MarketGood(MarketGoodType mGT, int id) {
+        this.marketGoodType = mGT;
+        this.quantity = 0;
+        this.techLevel = TechLevel.NONE;
+        this.resources = Resources.NONE;
+        this.price = mGT.getBasePrice();
+        this.price_count = 0;
+        this.playerID = id;
+
+
     }
 
     public int getQuantity() {
@@ -63,15 +104,25 @@ public class MarketGood implements Serializable {
         return marketGoodType;
     }
 
-    public boolean isBuyable() {
-        return marketGoodType.canBuy(marketGoodType, techLevel);
+    public TechLevel getTechLevel() {
+        return techLevel;
     }
+
+    public Resources getResources() {
+        return resources;
+    }
+
+    public int getPlayerID() {
+        return playerID;
+    }
+
+    public boolean isBuyable() { return marketGoodType.canBuy(techLevel); }
 
     public boolean isSellable() {
-        return marketGoodType.canSell(marketGoodType, techLevel);
+        return marketGoodType.canSell(techLevel);
     }
 
-    public int getPrice() {
+    public void setPrice() {
         double cheapResMult = 1.0;
         int expResMult = 1;
 
@@ -97,6 +148,15 @@ public class MarketGood implements Serializable {
             price = marketGoodType.getBasePrice() / 2;
         }
 
+        this.price = price;
+        this.price_count ++;
+    }
+
+    public int getPrice_count() {
+        return price_count;
+    }
+
+    public int getPrice() {
         return price;
     }
 }

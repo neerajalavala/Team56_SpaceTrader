@@ -61,7 +61,7 @@ public class Player implements Serializable {
 
         player_ids++;
 
-        cargoHold = new CargoHold(Ship_type.getCapacity());
+        cargoHold = new CargoHold(Ship_type.getCapacity(), this.ID);
     }
 
     public CargoHold getCargoHold() {

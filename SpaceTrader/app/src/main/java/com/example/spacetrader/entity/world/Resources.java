@@ -13,7 +13,8 @@ public enum Resources {
     WEIRDMUSHROOMS("Weird Mushrooms", 9),
     LOTSOFHERBS("Lots of Herbs", 10),
     ARTISTIC("Artistic", 11),
-    WARLIKE("Warlike", 12);
+    WARLIKE("Warlike", 12),
+    NONE("None", 13);
 
     private String name;
     private int index;
@@ -24,6 +25,9 @@ public enum Resources {
     }
 
     public int index() {
+        if (this == null) {
+            return -1;
+        }
         return index;
     }
 

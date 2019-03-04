@@ -9,10 +9,12 @@ import android.view.View;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.spacetrader.R;
 
@@ -34,6 +36,8 @@ public class CreatePlayerActivity extends AppCompatActivity {
      */
 
     private EditText nameField;
+
+    private TextView skill_pts;
 
     private Spinner pilot_spinner;
     private Spinner fighter_spinner;
@@ -72,6 +76,8 @@ public class CreatePlayerActivity extends AppCompatActivity {
          */
         nameField = findViewById(R.id.player_name_input);
 
+        skill_pts = findViewById(R.id.skill_pts_val);
+
         pilot_spinner = findViewById(R.id.pilot_spinner);
         fighter_spinner = findViewById(R.id.fighter_spinner);
         trader_spinner = findViewById(R.id.trader_spinner);
@@ -84,13 +90,38 @@ public class CreatePlayerActivity extends AppCompatActivity {
         /*
           Set up the adapter to display the allowable skill point ranges in the spinner
          */
-        ArrayAdapter<Integer> skill_pt_adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, skill_pt_range);
+        final ArrayAdapter<Integer> skill_pt_adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, skill_pt_range);
         skill_pt_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         pilot_spinner.setAdapter(skill_pt_adapter);
         fighter_spinner.setAdapter(skill_pt_adapter);
         trader_spinner.setAdapter(skill_pt_adapter);
         engineer_spinner.setAdapter(skill_pt_adapter);
+
+        Spinner[] spins = {pilot_spinner, fighter_spinner, trader_spinner, engineer_spinner};
+
+        for (Spinner spin : spins){
+            spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                    // your code here
+                    int pilot = (int) pilot_spinner.getSelectedItem();
+                    int fighter = (int) fighter_spinner.getSelectedItem();
+                    int trader = (int) trader_spinner.getSelectedItem();
+                    int engineer = (int) engineer_spinner.getSelectedItem();
+
+                    Integer pts_left = (Integer) (16 - pilot - fighter - trader - engineer);
+                    skill_pts.setText(pts_left.toString());
+
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parentView) {
+                    // your code here
+                }
+
+            });
+        }
 
         /* set difficulty spinner */
         difficulty_spinner.setAdapter(new ArrayAdapter<Difficulty>(this, android.R.layout.simple_spinner_item, Difficulty.values()));
