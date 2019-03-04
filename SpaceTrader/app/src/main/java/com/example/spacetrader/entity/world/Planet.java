@@ -48,4 +48,8 @@ public class Planet implements Serializable {
     public MarketPlace getMarketPlace() {
         return marketPlace;
     }
+
+    public String toString() {
+        return name + ", " + techLevel + ", " + resources + "; ";
+    }
 }

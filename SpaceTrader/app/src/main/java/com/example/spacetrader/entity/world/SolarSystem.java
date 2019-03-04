@@ -37,4 +37,12 @@ public class SolarSystem extends UniverseEntity{
         return EntityID;
     }
 
+    public String toString() {
+        String a = "";
+        for (Planet p : PlanetList) {
+            a += p.toString();
+        }
+        return a;
+    }
+
 }

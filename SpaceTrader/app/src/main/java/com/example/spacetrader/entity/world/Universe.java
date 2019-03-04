@@ -1,5 +1,7 @@
 package com.example.spacetrader.entity.world;
 
+import android.util.Log;
+
 import com.example.spacetrader.entity.gamelogic.Difficulty;
 
 import java.io.Serializable;
@@ -27,16 +29,16 @@ public class Universe implements Serializable {
      * id is mapped through hashmap to object and location
      */
 
-    private Integer[][] grid = new Integer[100][150];
+    private Integer[][] grid = new Integer[250][450];
 
     private Difficulty diff;
 
     private String[] solarSystemNames = {
-            "A","B","C","D"
+            "System A","System B","System C","System D","System E","System F","System G","System H","System I","System J"
     };
 
-    private int[] xlocs = {30,50,70,90};
-    private  int[] ylocs = {20,40,60,80};
+    private int[] xlocs = {30,50,70,90,110,130,150,170,190,210};
+    private  int[] ylocs = {20,40,60,80,100,120,140,160,180,200};
 
     private HashMap<Integer, UniverseEntity> entities  = new HashMap<Integer, UniverseEntity>();
 
@@ -58,7 +60,10 @@ public class Universe implements Serializable {
             /* increases count to make new id */
             count++;
         }
-
+        Log.d("M6_LOGCAT", "Player " + id + " Universe:");
+        for (int i = 0; i < solarSystems.length; i++) {
+            largeLog("M6_LOGCAT", "In System " + solarSystemNames[i] + " at location <" + xlocs[i] + ", " + ylocs[i] + ">: " + solarSystems[i].toString());
+        }
     }
 
     public Integer[][] getGrid(){
@@ -82,6 +87,15 @@ public class Universe implements Serializable {
 
     public SolarSystem[] getSolarSystems(){
         return solarSystems;
+    }
+
+    public static void largeLog(String tag, String content) {
+        if (content.length() > 4000) {
+            Log.d(tag, content.substring(0, 4000));
+            largeLog(tag, content.substring(4000));
+        } else {
+            Log.d(tag, content);
+        }
     }
 
 }
