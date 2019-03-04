@@ -173,6 +173,8 @@ public class TradeItemActivity extends AppCompatActivity {
             /* buying good from marketplace */
 
             if (trade_v > player.getCredits()) {
+                /* trade too expensive */
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setMessage("Not enough credits to buy")
                         .setCancelable(false)
@@ -183,7 +185,22 @@ public class TradeItemActivity extends AppCompatActivity {
                         });
                 AlertDialog alert = builder.create();
                 alert.show();
+            } else if(!hold.addGood(good, trade_q)) {
+                /* not enough space in hold */
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage("Not enough space in hold")
+                        .setCancelable(false)
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                //do things
+                            }
+                        });
+                AlertDialog alert = builder.create();
+                alert.show();
+
             } else {
+
                 hold.addGood(good, trade_q);
                 good.subQuantity(trade_q);
 
