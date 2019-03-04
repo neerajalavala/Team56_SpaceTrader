@@ -6,7 +6,7 @@ import android.support.annotation.NonNull;
 
 import java.util.List;
 
-import com.example.spacetrader.entity.Player;
+import com.example.spacetrader.entity.gamelogic.Player;
 import com.example.spacetrader.model.Model;
 import com.example.spacetrader.model.PlayerInteractor;
 

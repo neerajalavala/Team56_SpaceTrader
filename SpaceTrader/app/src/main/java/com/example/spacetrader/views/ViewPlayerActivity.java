@@ -12,7 +12,7 @@ import java.util.List;
 
 import com.example.spacetrader.R;
 import com.example.spacetrader.viewmodels.PlayerListingViewModel;
-import com.example.spacetrader.entity.Player;
+import com.example.spacetrader.entity.gamelogic.Player;
 
 public class ViewPlayerActivity extends AppCompatActivity {
 

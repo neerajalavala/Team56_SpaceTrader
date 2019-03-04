@@ -1,8 +1,8 @@
-package com.example.spacetrader.entity;
+package com.example.spacetrader.entity.world;
+
+import com.example.spacetrader.entity.gamelogic.Difficulty;
 
 import java.io.Serializable;
-import java.util.Dictionary;
-import java.util.Enumeration;
 import java.util.HashMap; // import the HashMap class
 
 public class Universe implements Serializable {

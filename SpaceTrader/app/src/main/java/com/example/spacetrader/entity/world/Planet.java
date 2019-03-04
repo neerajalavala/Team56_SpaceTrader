@@ -1,4 +1,6 @@
-package com.example.spacetrader.entity;
+package com.example.spacetrader.entity.world;
+
+import com.example.spacetrader.entity.commerce.MarketPlace;
 
 import java.io.Serializable;
 import java.util.Random;
@@ -10,6 +12,8 @@ public class Planet implements Serializable {
     private Resources resources;
 
     private TechLevel techLevel;
+
+    private MarketPlace marketPlace;
 
     public Planet(String name){
         this.name = name;
@@ -25,6 +29,8 @@ public class Planet implements Serializable {
 
         this.resources = Resources.values()[rType];
         this.techLevel = TechLevel.values()[tLev];
+
+        this.marketPlace = new MarketPlace(this.techLevel, this.resources);
     }
 
     public String getName() {
@@ -39,5 +45,7 @@ public class Planet implements Serializable {
         return techLevel;
     }
 
-
+    public MarketPlace getMarketPlace() {
+        return marketPlace;
+    }
 }

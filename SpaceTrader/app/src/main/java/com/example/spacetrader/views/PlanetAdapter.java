@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.spacetrader.R;
-import com.example.spacetrader.entity.Planet;
+import com.example.spacetrader.entity.world.Planet;
 
 import java.util.ArrayList;
 import java.util.List;
