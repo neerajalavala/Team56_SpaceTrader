@@ -5,20 +5,22 @@ import java.util.List;
 
 public class SolarSystem extends UniverseEntity{
 
+    private final int playerID;
     private final int EntityID;
 
     private String name;
 
     private List<Planet> PlanetList = new ArrayList<>();
 
-    public SolarSystem(int id, String name){
+    public SolarSystem(int playerID, int id, String name){
         super(id, name);
 
         for (int i =0; i < 3; i++) {
-            Planet plan = new Planet("Planet " + i);
+            Planet plan = new Planet(playerID, "Planet " + i);
             PlanetList.add(plan);
         }
 
+        this.playerID = playerID;
         this.EntityID = id;
         this.name = name;
 
@@ -44,5 +46,7 @@ public class SolarSystem extends UniverseEntity{
         }
         return a;
     }
+
+    public int getPlayerID() { return playerID; }
 
 }

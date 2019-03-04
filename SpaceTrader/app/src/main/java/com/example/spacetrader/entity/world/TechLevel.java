@@ -8,7 +8,8 @@ public enum TechLevel {
     EARLYINDUSTRIAL("Early-Industrial", 4),
     INDUSTRIAL("Industrial", 5),
     POSTINDUSTRIAL("Post-Industrial", 6),
-    HITECH("Hi-Tech", 7);
+    HITECH("Hi-Tech", 7),
+    NONE("NONE", 8);
 
     private String name;
     private int index;

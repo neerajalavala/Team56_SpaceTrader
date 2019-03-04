@@ -44,9 +44,6 @@ class Repository {
      */
     private void loadDummyData() {
         addPlayer(new Player("Bob", 4,4,4, 4, Difficulty.BEGINNER));
-        addPlayer(new Player("Jim", 5,3,2, 6, Difficulty.EASY));
-        addPlayer(new Player("Mary", 0,16,0, 0, Difficulty.IMPOSSIBLE));
-        addPlayer(new Player("Jane", 6,4,10, 0, Difficulty.HARD));
 
     }
 

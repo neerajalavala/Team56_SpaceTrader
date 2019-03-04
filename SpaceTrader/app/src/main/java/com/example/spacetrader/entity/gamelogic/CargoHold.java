@@ -2,20 +2,28 @@ package com.example.spacetrader.entity.gamelogic;
 
 import com.example.spacetrader.entity.commerce.MarketGood;
 import com.example.spacetrader.entity.commerce.MarketGoodType;
+import com.example.spacetrader.entity.world.TechLevel;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CargoHold implements Serializable {
-    private int count;
-    private int capacity;
-    private MarketGood[] hold;
+    private Integer count;
 
-    public CargoHold(int cap) {
+    private final int playerID;
+
+    private Integer capacity;
+
+    private ArrayList<MarketGood> hold = new ArrayList<>();
+
+    public CargoHold(int cap, int id) {
         MarketGoodType[] types = MarketGoodType.values();
-        hold = new MarketGood[types.length];
         this.capacity = cap;
-        for (int i = 0; i < hold.length; i++) {
-            hold[i] = new MarketGood(types[i]);
+        this.playerID = id;
+
+        for (int i = 0; i < types.length; i++) {
+            hold.add(new MarketGood(types[i], playerID));
         }
         count = 0;
     }
@@ -30,6 +38,7 @@ public class CargoHold implements Serializable {
                 break;
             }
         }
+        count += q;
         return true;
     }
 
@@ -40,13 +49,39 @@ public class CargoHold implements Serializable {
         for (MarketGood m : hold) {
             if (m.getType() == good.getType() && m.getQuantity() - q >= 0) {
                 m.subQuantity(q);
+                count -= q;
                 return true;
             }
         }
         return false;
     }
 
+    public List<MarketGood> getSellableGoods(TechLevel lev) {
+        List<MarketGood> sellList = new ArrayList<>();
+        for (MarketGood m : hold) {
+            if (m.getType().canSell(lev) && m.getQuantity() > 0){
+                if (m.getPrice_count() % 2 == 0) {
+                    m.setPrice();
+                }
+                sellList.add(m);
+            }
+        }
+        return sellList;
+    }
+
     public boolean isFull() {
-        return count > capacity;
+        return count >= capacity;
+    }
+
+    public int getPlayerID() {
+        return playerID;
+    }
+
+    public Integer getCapacity() {
+        return capacity;
+    }
+
+    public Integer getCount() {
+        return count;
     }
 }

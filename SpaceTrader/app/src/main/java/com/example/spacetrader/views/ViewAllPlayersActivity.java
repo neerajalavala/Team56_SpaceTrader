@@ -47,6 +47,8 @@ public class ViewAllPlayersActivity extends AppCompatActivity {
 
         Log.d("APP", viewModel.getPlayers().toString());
 
+        setTitle("Players");
+
     }
 
     @Override
