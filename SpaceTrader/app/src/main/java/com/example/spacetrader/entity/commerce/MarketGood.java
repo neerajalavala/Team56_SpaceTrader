@@ -20,26 +20,21 @@ public class MarketGood implements Serializable {
 
     public MarketGood(MarketGoodType mGT, boolean genQ, TechLevel tL, Resources resources) {
         this.marketGoodType = mGT;
-
         this.techLevel = tL;
         this.resources = resources;
-
-        if (!genQ) {
-            quantity = 0;
-        } else {
-            int topTechLevMultiplier;
-
-            if (this.marketGoodType.getTechTopProduction().index() == this.techLevel.index()){
-                topTechLevMultiplier = 5;
+        if (!genQ) quantity = 0;
+        else {
+            Random random = new Random();
+            int baseQ = random.nextInt(11) + 20;
+            int topProduction = marketGoodType.getTechTopProduction().index();
+            if (topProduction == techLevel.index()) {
+                quantity = (int)(baseQ * 1.5);
+                quantity += random.nextInt(3);
             } else {
-                topTechLevMultiplier = 1;
+                int ratio = 7 - Math.abs(techLevel.index() - topProduction);
+                quantity = (baseQ * ratio) / 7;
+                quantity += random.nextInt(3);
             }
-
-            quantity = (new Random().nextInt(7))
-                        * (10 * topTechLevMultiplier) * (
-                                (1 + techLevel.index())
-                                        - marketGoodType.getMinimumLevelToProduce().index()
-            );
         }
     }
 
@@ -72,6 +67,7 @@ public class MarketGood implements Serializable {
     }
 
     public int getPrice() {
+<<<<<<< Updated upstream
         double cheapResMult = 1.0;
         int expResMult = 1;
 
@@ -98,5 +94,19 @@ public class MarketGood implements Serializable {
         }
 
         return price;
+=======
+
+        // corey to provide pricing algorithm
+        Random random = new Random();
+        int basePrice = marketGoodType.getBasePrice();
+        int iPL = marketGoodType.getIncreasePerLevel();
+        int tL = techLevel.index();
+        int mLTP = marketGoodType.getMinimumLevelToProduce().index();
+        int vary = random.nextInt(marketGoodType.getVariance() + 1);
+        if (random.nextBoolean() == true) {
+            vary *= -1;
+        }
+        return basePrice + (iPL * (tL - mLTP)) + (basePrice * vary);
+>>>>>>> Stashed changes
     }
 }

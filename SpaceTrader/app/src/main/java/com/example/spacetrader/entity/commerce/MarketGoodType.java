@@ -91,4 +91,5 @@ public enum MarketGoodType {
     public String toString() {
         return this.name;
     }
+
 }
