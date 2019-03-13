@@ -23,8 +23,6 @@ public class SolarSystem extends UniverseEntity{
         this.playerID = playerID;
         this.EntityID = id;
         this.name = name;
-
-
     }
 
     public String getName() {
@@ -49,4 +47,7 @@ public class SolarSystem extends UniverseEntity{
 
     public int getPlayerID() { return playerID; }
 
+    public Planet getPlanet(int i) {
+        return PlanetList.get(i);
+    }
 }

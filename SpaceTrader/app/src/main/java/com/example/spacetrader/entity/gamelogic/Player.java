@@ -1,5 +1,6 @@
 package com.example.spacetrader.entity.gamelogic;
 
+import com.example.spacetrader.entity.world.Planet;
 import com.example.spacetrader.entity.world.Universe;
 
 import java.io.Serializable;
@@ -177,5 +178,9 @@ public class Player implements Serializable {
     @Override
     public String toString() {
         return this.getName();
+    }
+
+    public Planet getCurrentPlanet() {
+        return game.getCurrentPlayerPlanet();
     }
 }

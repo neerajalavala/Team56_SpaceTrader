@@ -1,7 +1,5 @@
 package com.example.spacetrader.entity.world;
 
-import android.util.Log;
-
 import com.example.spacetrader.entity.gamelogic.Difficulty;
 
 import java.io.Serializable;
@@ -44,6 +42,8 @@ public class Universe implements Serializable {
 
     private SolarSystem[] solarSystems = new SolarSystem[solarSystemNames.length];
 
+    private Planet currentPlayerPlanet;
+
     public Universe(int id, Difficulty diff){
         this.playerID = id;
         this.diff = diff;
@@ -60,10 +60,8 @@ public class Universe implements Serializable {
             /* increases count to make new id */
             count++;
         }
-        Log.d("M6_LOGCAT", "Player " + id + " Universe:");
-        for (int i = 0; i < solarSystems.length; i++) {
-            largeLog("M6_LOGCAT", "In System " + solarSystemNames[i] + " at location <" + xlocs[i] + ", " + ylocs[i] + ">: " + solarSystems[i].toString());
-        }
+
+        setCurrentPlayerPlanet(solarSystems[0], 0);
     }
 
     public Integer[][] getGrid(){
@@ -89,17 +87,21 @@ public class Universe implements Serializable {
         return solarSystems;
     }
 
-    public static void largeLog(String tag, String content) {
-        if (content.length() > 4000) {
-            Log.d(tag, content.substring(0, 4000));
-            largeLog(tag, content.substring(4000));
-        } else {
-            Log.d(tag, content);
-        }
-    }
-
     public int getPlayerID(){
         return playerID;
     }
 
+    /**
+     * sets the current planet to the ith planet of system s
+     *
+     * @param s the system to have the player be on
+     * @param i the index of the planet that the player is on
+     */
+    public void setCurrentPlayerPlanet(SolarSystem s, int i) {
+        this.currentPlayerPlanet = s.getPlanet(i);
+    }
+
+    public Planet getCurrentPlayerPlanet() {
+        return currentPlayerPlanet;
+    }
 }
