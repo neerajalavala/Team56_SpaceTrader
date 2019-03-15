@@ -28,10 +28,7 @@ public class CargoHold implements Serializable {
         count = 0;
     }
 
-    public boolean addGood(MarketGood good, int q) {
-        if (count + q > capacity) {
-            return false;
-        }
+    public void addGood(MarketGood good, int q) {
         for (MarketGood m : hold) {
             if (m.getType() == good.getType()) {
                 m.addQuantity(q);
@@ -39,21 +36,15 @@ public class CargoHold implements Serializable {
             }
         }
         count += q;
-        return true;
     }
 
-    public boolean subQuant(MarketGood good, int q) {
-        if (count - q < 0) {
-            return false;
-        }
+    public void subQuant(MarketGood good, int q) {
         for (MarketGood m : hold) {
             if (m.getType() == good.getType() && m.getQuantity() - q >= 0) {
                 m.subQuantity(q);
                 count -= q;
-                return true;
             }
         }
-        return false;
     }
 
     public List<MarketGood> getSellableGoods(TechLevel lev) {
@@ -83,5 +74,13 @@ public class CargoHold implements Serializable {
 
     public Integer getCount() {
         return count;
+    }
+
+    public boolean canAdd(int quant) {
+        return count + quant <= capacity;
+    }
+
+    public boolean canRemove(int quant) {
+        return count - quant >= 0;
     }
 }

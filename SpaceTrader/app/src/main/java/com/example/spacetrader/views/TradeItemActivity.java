@@ -83,8 +83,7 @@ public class TradeItemActivity extends AppCompatActivity {
         Integer price = (Integer)good.getPrice();
         Price.setText(price.toString());
 
-        Integer quan = (Integer)good.getQuantity();
-        Quantity.setText(quan.toString());
+        updateQuant();
 
         if (good.getTechLevel() == TechLevel.NONE && good.getResources() == Resources.NONE) {
             TradeButton.setText("Sell");
@@ -153,7 +152,7 @@ public class TradeItemActivity extends AppCompatActivity {
         if (TradeButton.getText().equals("Sell")) {
             /* selling good from cargo hold */
 
-            if (!hold.subQuant(good, trade_q)) {
+            if (!hold.canRemove(trade_q)) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setMessage("Cannot Sell more than you have")
                         .setCancelable(false)
@@ -166,6 +165,7 @@ public class TradeItemActivity extends AppCompatActivity {
                 alert.show();
             } else {
                 player.addCredits(trade_v);
+                hold.subQuant(good, trade_q);
                 finish();
             }
 
@@ -185,7 +185,7 @@ public class TradeItemActivity extends AppCompatActivity {
                         });
                 AlertDialog alert = builder.create();
                 alert.show();
-            } else if(!hold.addGood(good, trade_q)) {
+            } else if(!hold.canAdd(trade_q)) {
                 /* not enough space in hold */
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -203,12 +203,18 @@ public class TradeItemActivity extends AppCompatActivity {
 
                 hold.addGood(good, trade_q);
                 good.subQuantity(trade_q);
+                updateQuant();
 
                 player.subCredits(trade_v);
                 finish();
             }
         }
 
+    }
+
+    private void updateQuant() {
+        Integer quan = (Integer)good.getQuantity();
+        Quantity.setText(quan.toString());
     }
 
 }
