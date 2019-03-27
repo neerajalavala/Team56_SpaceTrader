@@ -43,6 +43,10 @@
             android:parentActivityName="com.example.spacetrader.views.ViewUniverse" />
 
         <activity
+            android:name="com.example.spacetrader.views.GameStartScreen"
+            android:parentActivityName="com.example.spacetrader.views.ViewPlayerActivity" />
+
+        <activity
             android:name="com.example.spacetrader.views.ViewUniverse"
             android:parentActivityName="com.example.spacetrader.views.ViewPlayerActivity" />
 

@@ -1,4 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_planet"
+        android:enabled="true"
+        android:icon="@drawable/place_icon"
+        android:title="@string/planet"
+        app:showAsAction="withText" />
+    <item
+        android:id="@+id/action_sell"
+        android:enabled="true"
+        android:icon="@drawable/sell_logo"
+        android:title="@string/sell"
+        app:showAsAction="withText" />
+    <item
+        android:id="@+id/action_buy"
+        android:enabled="true"
+        android:icon="@drawable/buy_logo"
+        android:title="@string/buy"
+        app:showAsAction="withText" />
 
+    <item
+        android:id="@+id/action_shipyard"
+        android:enabled="true"
+        android:icon="@drawable/ship_logo"
+        android:title="@string/ship"
+        app:showAsAction="withText" />
+
+    <item
+        android:id="@+id/action_map"
+        android:enabled="true"
+        android:icon="@drawable/map_logo"
+        android:title="@string/map"
+        app:showAsAction="withText" />
 </menu>

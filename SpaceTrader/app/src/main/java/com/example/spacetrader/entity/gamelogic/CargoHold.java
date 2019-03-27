@@ -34,6 +34,7 @@ public class CargoHold implements Serializable {
         }
         for (MarketGood m : hold) {
             if (m.getType() == good.getType()) {
+                System.out.println("adding " + q +  " " + m.getType().toString() + " to hold");
                 m.addQuantity(q);
                 break;
             }
@@ -56,8 +57,8 @@ public class CargoHold implements Serializable {
         return false;
     }
 
-    public List<MarketGood> getSellableGoods(TechLevel lev) {
-        List<MarketGood> sellList = new ArrayList<>();
+    public ArrayList<MarketGood> getSellableGoods(TechLevel lev) {
+        ArrayList<MarketGood> sellList = new ArrayList<>();
         for (MarketGood m : hold) {
             if (m.getType().canSell(lev) && m.getQuantity() > 0){
                 if (m.getPrice_count() % 2 == 0) {

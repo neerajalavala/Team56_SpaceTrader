@@ -8,17 +8,22 @@ public class SolarSystem extends UniverseEntity{
     private final int playerID;
     private final int EntityID;
 
+    private int[] location = new int[2];
+
     private String name;
 
     private List<Planet> PlanetList = new ArrayList<>();
 
-    public SolarSystem(int playerID, int id, String name){
+    public SolarSystem(int playerID, int id, String name, int xloc, int yloc){
         super(id, name);
 
         for (int i =0; i < 3; i++) {
-            Planet plan = new Planet(playerID, "Planet " + i);
+            Planet plan = new Planet(playerID, id + " Planet " + i, id);
             PlanetList.add(plan);
         }
+
+        this.location[0] = xloc;
+        this.location[1] = yloc;
 
         this.playerID = playerID;
         this.EntityID = id;
@@ -48,5 +53,13 @@ public class SolarSystem extends UniverseEntity{
     }
 
     public int getPlayerID() { return playerID; }
+
+    public int[] getLocation() {
+        return location;
+    }
+
+    public Planet getPlanet(int i) {
+        return PlanetList.get(i);
+    }
 
 }

@@ -44,12 +44,14 @@ public class Universe implements Serializable {
 
     private SolarSystem[] solarSystems = new SolarSystem[solarSystemNames.length];
 
+    private Planet currentPlayerPlanet;
+
     public Universe(int id, Difficulty diff){
         this.playerID = id;
         this.diff = diff;
 
         for (int i = 0; i < solarSystemNames.length; i++){
-            solarSystems[i] = new SolarSystem(playerID, count, solarSystemNames[i]);
+            solarSystems[i] = new SolarSystem(playerID, count, solarSystemNames[i], xlocs[i], ylocs[i]);
 
             /* Sets coordinates in the solar system to the id */
             setGrid(xlocs[i],ylocs[i], count);
@@ -64,6 +66,8 @@ public class Universe implements Serializable {
         for (int i = 0; i < solarSystems.length; i++) {
             largeLog("M6_LOGCAT", "In System " + solarSystemNames[i] + " at location <" + xlocs[i] + ", " + ylocs[i] + ">: " + solarSystems[i].toString());
         }
+
+        this.currentPlayerPlanet = solarSystems[0].getPlanet(0);
     }
 
     public Integer[][] getGrid(){
@@ -100,6 +104,20 @@ public class Universe implements Serializable {
 
     public int getPlayerID(){
         return playerID;
+    }
+
+    /**
+     * sets the current planet to the ith planet of system s
+     *
+     * @param s the system to have the player be on
+     * @param i the index of the planet that the player is on
+     */
+    public void setCurrentPlayerPlanet(SolarSystem s, int i) {
+        this.currentPlayerPlanet = s.getPlanet(i);
+    }
+
+    public Planet getCurrentPlayerPlanet() {
+        return currentPlayerPlanet;
     }
 
 }
