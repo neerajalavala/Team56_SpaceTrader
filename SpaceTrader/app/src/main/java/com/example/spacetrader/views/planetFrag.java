@@ -115,13 +115,18 @@ public class planetFrag extends Fragment {
         techLevel.setText(curr_planet.getTechLevel().toString());
         resources.setText(curr_planet.getResources().toString());
 
-        int player_fuel = 10;
+        int player_fuel = player.getFuel();
         int ship_health = 100;
 
-        fuel.setText(player_fuel + "/10");
+        fuel.setText(player_fuel + "/" + player.getShipMaxFuel());
         health.setText(ship_health + "/100");
 
-
+        refuelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                refuelShip();
+            }
+        });
     }
 
     @Override
@@ -140,5 +145,13 @@ public class planetFrag extends Fragment {
 
         super.onResume();
 
+    }
+
+    public void refuelShip() {
+        while (player.getCredits() - 50 >= 0 && player.getFuel() < player.getShipMaxFuel()) {
+            player.addFuel(1);
+            player.subCredits(50);
+        }
+        fuel.setText(player.getFuel() + "/" + player.getShipMaxFuel());
     }
 }

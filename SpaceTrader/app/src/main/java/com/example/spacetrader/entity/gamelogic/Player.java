@@ -40,8 +40,9 @@ public class Player implements Serializable {
     /** number of credits player has */
     private Integer Credits;
 
-    /** type of ship */
+    /**player ship information*/
     private ShipType Ship_type = ShipType.GNAT;
+    private int fuel = Ship_type.getMaxFuel();
     private CargoHold cargoHold;
 
     private Universe game;
@@ -191,5 +192,27 @@ public class Player implements Serializable {
 
     public void setCargoHold(CargoHold cargoHold) {
         this.cargoHold = cargoHold;
+    }
+
+    public int getFuel() {
+        return fuel;
+    }
+
+    public void addFuel(int q) {
+        if (q < 0 || fuel + q > Ship_type.getMaxFuel()) {
+            return;
+        }
+        fuel += q;
+    }
+
+    public void subFuel(int q) {
+        if (q < 0 || fuel - q < 0) {
+            return;
+        }
+        fuel -= q;
+    }
+
+    public int getShipMaxFuel() {
+        return Ship_type.getMaxFuel();
     }
 }

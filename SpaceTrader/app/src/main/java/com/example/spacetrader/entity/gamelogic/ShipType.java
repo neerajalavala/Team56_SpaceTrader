@@ -14,20 +14,20 @@ public enum ShipType {
 
     private String ship;
     private int capacity;
-    private Integer speed;
+    private int maxFuel;
 
-    private ShipType(String s, int c, Integer speed) {
+    private ShipType(String s, int c, int maxFuel) {
         this.ship = s;
         this.capacity = c;
-        this.speed =speed;
+        this.maxFuel = maxFuel;
     }
 
     public int getCapacity() {
         return capacity;
     }
 
-    public Integer getSpeed() {
-        return speed;
+    public Integer getMaxFuel() {
+        return maxFuel;
     }
 
     @Override

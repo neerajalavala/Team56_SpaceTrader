@@ -18,7 +18,7 @@ public class SolarSystem extends UniverseEntity{
         super(id, name);
 
         for (int i =0; i < 3; i++) {
-            Planet plan = new Planet(playerID, id + " Planet " + i, id);
+            Planet plan = new Planet(playerID, "Planet " + i, id);
             PlanetList.add(plan);
         }
 

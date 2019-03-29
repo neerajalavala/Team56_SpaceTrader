@@ -8,8 +8,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.LayoutInflater;
@@ -23,7 +21,6 @@ import android.widget.Button;
 
 import com.example.spacetrader.R;
 import com.example.spacetrader.entity.commerce.MarketPlace;
-import com.example.spacetrader.entity.gamelogic.Difficulty;
 import com.example.spacetrader.entity.gamelogic.Player;
 import com.example.spacetrader.entity.world.Planet;
 import com.example.spacetrader.entity.world.SolarSystem;
@@ -95,7 +92,7 @@ public class mapFrag extends Fragment {
 
         this.solar_systems = player.getGame().getSolarSystems();
 
-        this.speed = player.getShipType().getSpeed();
+        this.speed = player.getShipType().getMaxFuel();
 
         this.viewModel = ViewModelProviders.of(this).get(PlayerListingViewModel.class);
         this.players = viewModel.getPlayers();
@@ -120,9 +117,11 @@ public class mapFrag extends Fragment {
 
         travelButton= (Button) getView().findViewById(R.id.travel_button);
 
+        int curSysIndex = 0;
         for (int i = 0; i < solar_systems.length; i++) {
             if (solar_systems[i].getEntityID() == curr_planet.getSolar_id()) {
                 currentSystem = solar_systems[i];
+                curSysIndex = i;
             }
             this.systemNames.add(solar_systems[i].getName());
         }
@@ -131,6 +130,7 @@ public class mapFrag extends Fragment {
         systems_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         systemsSpinner.setAdapter(systems_adapter);
+        systemsSpinner.setSelection(curSysIndex);
 
         currentSystemName.setText(currentSystem.getName());
 
@@ -161,6 +161,9 @@ public class mapFrag extends Fragment {
                 final ArrayAdapter<String> planets_adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, planet_names);
                 planets_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 systemPlanetsSpinner.setAdapter(planets_adapter);
+                for (int i = 0; i < planet_names.length; i++) {
+                    if (player.getCurrentPlanet().getName().equals(planet_names[i])) systemPlanetsSpinner.setSelection(i);
+                }
 
                 if (currentSystem.getEntityID() == next_system_2.getEntityID()) {
 
@@ -235,7 +238,7 @@ public class mapFrag extends Fragment {
             @Override
             public void onClick(View view) {
                 Log.d("Edit", "Changing current planet");
-                int playerFuel = 10;
+                int playerFuel = player.getFuel();//10;
 
                 System.out.println("traveling");
 
@@ -265,6 +268,7 @@ public class mapFrag extends Fragment {
                     }
 
                     currentSystemName.setText(next_system_name);
+                    turns.setText("0");
 
                     String next_planet_name = (String) systemPlanetsSpinner.getSelectedItem();
                     List<Planet> planets = next_system.getPlanets();
@@ -281,7 +285,7 @@ public class mapFrag extends Fragment {
                         }
                     }
 
-
+                    player.subFuel(turn_num);
 
                     System.out.println(player.getCurrentPlanet().getName());
                 }
