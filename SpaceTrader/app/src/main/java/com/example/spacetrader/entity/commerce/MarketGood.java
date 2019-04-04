@@ -96,7 +96,7 @@ public class MarketGood implements Serializable {
     }
 
     public void subQuantity(int q) {
-        quantity -= q;
+        this.quantity -= q;
     }
 
     public MarketGoodType getType() {

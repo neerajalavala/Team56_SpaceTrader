@@ -6,7 +6,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import android.widget.TextView;
+import android.widget.Button;
 
 import com.example.spacetrader.R;
 import com.example.spacetrader.entity.commerce.MarketGood;
@@ -49,7 +51,7 @@ public class MarketGoodAdapter extends RecyclerView.Adapter<MarketGoodAdapter.Ma
         holder.Price.setText(price.toString());
 
         Integer quan = (Integer)MarketGood.getQuantity();
-        holder.Quantity.setText(quan.toString());
+        holder.Quantity_btn.setText(quan.toString());
 
 
     }
@@ -61,9 +63,6 @@ public class MarketGoodAdapter extends RecyclerView.Adapter<MarketGoodAdapter.Ma
 
     public void setMarketGoodList(List<MarketGood> MarketGoods) {
         MarketGoodList = MarketGoods;
-        for (int i = 0; i < MarketGoods.size(); i++){
-            System.out.println(MarketGoodList.get(i).getType().toString());
-        }
         notifyDataSetChanged();
     }
 
@@ -74,7 +73,8 @@ public class MarketGoodAdapter extends RecyclerView.Adapter<MarketGoodAdapter.Ma
     class MarketGoodViewHolder extends RecyclerView.ViewHolder {
         private TextView MarketGoodName;
         private TextView Price;
-        private TextView Quantity;
+        private Button Quantity_btn;
+        private Button Max_btn;
 
 
 
@@ -83,10 +83,10 @@ public class MarketGoodAdapter extends RecyclerView.Adapter<MarketGoodAdapter.Ma
             super(itemView);
             MarketGoodName = itemView.findViewById(R.id.item_val);
             Price = itemView.findViewById(R.id.price_val);
-            Quantity = itemView.findViewById(R.id.quantity_val);
+            Quantity_btn = itemView.findViewById(R.id.quan_button);
+            Max_btn = itemView.findViewById(R.id.max_button);
 
-
-            itemView.setOnClickListener(new View.OnClickListener() {
+            Quantity_btn.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View view) {
@@ -98,6 +98,32 @@ public class MarketGoodAdapter extends RecyclerView.Adapter<MarketGoodAdapter.Ma
                 }
             });
 
+            Max_btn.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+
+                    if (listener != null && position != RecyclerView.NO_POSITION) {
+                        MarketGood good = MarketGoodList.get(position);
+
+                    }
+                }
+            });
+
+/*
+            itemView.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+
+                    if (listener != null && position != RecyclerView.NO_POSITION) {
+                        listener.onMarketGoodClicked(MarketGoodList.get(position));
+                    }
+                }
+            });
+*/
         }
     }
 

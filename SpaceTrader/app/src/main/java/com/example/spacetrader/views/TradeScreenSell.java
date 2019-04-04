@@ -78,6 +78,7 @@ public class TradeScreenSell extends AppCompatActivity {
     public void onResume() {
         super.onResume();
         adapter.setMarketGoodList(hold.getSellableGoods(planet.getTechLevel()));
+
         setTitle("Hold: " + hold.getCount().toString() + "/" + hold.getCapacity().toString());
 
         adapter.setOnMarketGoodClickListener(new MarketGoodAdapter.OnMarketGoodClickListener(){

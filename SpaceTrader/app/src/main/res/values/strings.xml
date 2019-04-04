@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">Lab3NewComponents</string>
     <string name="action_settings">Settings</string>
+
+    <string name="buy">Buy</string>
+    <string name="sell">Sell</string>
+    <string name="planet">Planet</string>
+    <string name="ship">Ship</string>
+    <string name="map">Map</string>
 </resources>

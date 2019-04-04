@@ -13,8 +13,12 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import android.content.Intent;
+import android.app.Activity;
+
 import com.example.spacetrader.R;
 import com.example.spacetrader.entity.commerce.MarketGood;
+import com.example.spacetrader.entity.commerce.MarketPlace;
 import com.example.spacetrader.entity.gamelogic.CargoHold;
 import com.example.spacetrader.entity.gamelogic.Player;
 import com.example.spacetrader.entity.world.Resources;
@@ -34,6 +38,7 @@ public class TradeItemActivity extends AppCompatActivity {
     private TextView trade_total;
 
     private PlayerListingViewModel viewModel;
+    private List<Player> players;
 
     private Player player;
 
@@ -41,6 +46,7 @@ public class TradeItemActivity extends AppCompatActivity {
 
     private TextView MarketGoodName;
     private TextView Price;
+
     private TextView Quantity;
 
     private TextView hold_val;
@@ -48,9 +54,9 @@ public class TradeItemActivity extends AppCompatActivity {
 
     private Button TradeButton;
 
-
-
     private MarketGood good;
+
+    private MarketPlace mark;
 
 
     @Override
@@ -68,14 +74,22 @@ public class TradeItemActivity extends AppCompatActivity {
         trade_total = findViewById(R.id.total_val);
         MarketGoodName = findViewById(R.id.item_val);
         Price = findViewById(R.id.price_val);
-        Quantity = findViewById(R.id.quantity_val);
+        Quantity = findViewById(R.id.quan_num);
         TradeButton = findViewById((R.id.buy_sell_button));
         hold_val = findViewById(R.id.hold_val);
         creds = findViewById(R.id.credits_val);
 
 
         /* gets passed good */
-        good = (MarketGood) getIntent().getSerializableExtra(PLAYER_DATA);
+        good = (MarketGood) getIntent().getSerializableExtra("TRADE_GOOD");
+
+        player = (Player) getIntent().getSerializableExtra("PLAYER_DATA");
+
+        this.hold = player.getCargoHold();
+
+        /* setting player list for later use */
+        this.viewModel = ViewModelProviders.of(this).get(PlayerListingViewModel.class);
+        this.players = viewModel.getPlayers();
 
         /* setting texy box values */
         MarketGoodName.setText(good.getType().toString());
@@ -96,6 +110,7 @@ public class TradeItemActivity extends AppCompatActivity {
 
         int max_quan = good.getQuantity();
         Integer[] quan_vals = new Integer[max_quan];
+
         for (int i = 0; i < max_quan; i++) {
             quan_vals[i] = i + 1;
         }
@@ -107,17 +122,6 @@ public class TradeItemActivity extends AppCompatActivity {
         quantity_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         trade_quantity.setAdapter(quantity_adapter);
-
-        viewModel = ViewModelProviders.of(this).get(PlayerListingViewModel.class);
-
-        List<Player> players = viewModel.getPlayers();
-
-        for (int x = 0; x < players.size(); x++){
-            if (players.get(x).getID() == good.getPlayerID()){
-                this.player = players.get(x);
-                this.hold = player.getCargoHold();
-            }
-        }
 
         creds.setText(player.getCredits().toString());
         hold_val.setText(hold.getCount().toString() + "/" + hold.getCapacity().toString());
@@ -150,10 +154,17 @@ public class TradeItemActivity extends AppCompatActivity {
         Integer trade_q = (Integer) trade_quantity.getSelectedItem();
         Integer trade_v = trade_q * good.getPrice();
 
+        for (int x = 0; x < players.size(); x++){
+            if (players.get(x).getID() == player.getID()){
+                this.player = players.get(x);
+                this.hold = player.getCargoHold();
+            }
+        }
+
         if (TradeButton.getText().equals("Sell")) {
             /* selling good from cargo hold */
 
-            if (!hold.subQuant(good, trade_q)) {
+            if ((hold.getCount() - trade_q) < 0)  {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setMessage("Cannot Sell more than you have")
                         .setCancelable(false)
@@ -165,6 +176,7 @@ public class TradeItemActivity extends AppCompatActivity {
                 AlertDialog alert = builder.create();
                 alert.show();
             } else {
+                hold.subQuant(good, trade_q);
                 player.addCredits(trade_v);
                 finish();
             }
@@ -185,7 +197,7 @@ public class TradeItemActivity extends AppCompatActivity {
                         });
                 AlertDialog alert = builder.create();
                 alert.show();
-            } else if(!hold.addGood(good, trade_q)) {
+            } else if((hold.getCount() + trade_q) > hold.getCapacity())  {
                 /* not enough space in hold */
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -202,9 +214,19 @@ public class TradeItemActivity extends AppCompatActivity {
             } else {
 
                 hold.addGood(good, trade_q);
-                good.subQuantity(trade_q);
+
+                MarketPlace mark = player.getCurrentPlanet().getMarketPlace();
+
+                mark.updateGoodQuantity(good, trade_q);
+
+                Intent resultIntent = new Intent();
+
+                resultIntent.putExtra("UPDATED_MARKET", mark);
+                setResult(Activity.RESULT_OK, resultIntent);
 
                 player.subCredits(trade_v);
+
+                System.out.println(player.getCredits().toString());
                 finish();
             }
         }

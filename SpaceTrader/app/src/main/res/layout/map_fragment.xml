@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:barrierAllowsGoneWidgets="false"
+    tools:context="com.example.spacetrader.views.V">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/current_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="0dp"
+            android:text="Current System:"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/system_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="50dp"
+            android:text="System Name"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/target_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="100dp"
+            android:text="Target System:"
+            android:textSize="24sp" />
+
+        <Spinner
+            android:id="@+id/systems_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="140dp" />
+
+        <TextView
+            android:id="@+id/target_planet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="175dp"
+            android:text="Target Planet:"
+            android:textSize="24sp" />
+
+        <Spinner
+            android:id="@+id/planet_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="215dp" />
+
+        <TextView
+            android:id="@+id/distance_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="270dp"
+            android:text="Distance:"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/distance_val"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="310dp"
+            android:text="#"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/ship_spd_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="270dp"
+            android:text="Ship Speed:"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/speed_val"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="310dp"
+            android:text="#"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/turns_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="380dp"
+            android:text="Turns:"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/turns_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="380dp"
+            android:text="#"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/travel_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="470dp"
+            android:onClick="onTravelPressed"
+            android:text="Travel" />
+
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>

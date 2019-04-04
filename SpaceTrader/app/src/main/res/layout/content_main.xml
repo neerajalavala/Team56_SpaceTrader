@@ -23,16 +23,16 @@
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/view_players_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="View Players" />
-
-        <Button
             android:id="@+id/add_player_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Add Player" />
+            android:text="New Game" />
+
+        <Button
+            android:id="@+id/view_players_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Resume Game" />
 
     </LinearLayout>
 

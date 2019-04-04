@@ -37,8 +37,8 @@ public class MarketPlace implements Serializable {
         return marketGoods;
     }
 
-    public List<MarketGood> getBuyableGoods() {
-        List<MarketGood> buyList = new ArrayList<>();
+    public ArrayList<MarketGood> getBuyableGoods() {
+        ArrayList<MarketGood> buyList = new ArrayList<>();
         for (MarketGood m : marketGoods) {
             if (m.isBuyable() && m.getQuantity() != 0){
                 if (m.getPrice_count() % 2 == 0) {
@@ -63,6 +63,23 @@ public class MarketPlace implements Serializable {
             marketGood.setPrice();
         }
         return marketGood.getPrice();
+    }
+
+    public void updateGoodQuantity(MarketGood good, int quan) {
+        ArrayList<MarketGood> goods = this.marketGoods;
+
+        for (MarketGood m : goods) {
+            if (good.getType().equals(m.getType())) {
+                System.out.println("before " + m.getQuantity());
+
+                System.out.println("subtracting " + quan + " " + m.getType().toString());
+
+                m.subQuantity(quan);
+
+                System.out.println("after " + m.getQuantity());
+            };
+        }
+        this.marketGoods = goods;
     }
 
     public int getPlayerID() {

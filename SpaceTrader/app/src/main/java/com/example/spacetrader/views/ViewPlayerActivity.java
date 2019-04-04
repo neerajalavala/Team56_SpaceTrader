@@ -97,8 +97,8 @@ public class ViewPlayerActivity extends AppCompatActivity {
         view_universe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ViewPlayerActivity.this, ViewUniverse.class);
-                intent.putExtra(PLAYER_DATA, player.getGame());
+                Intent intent = new Intent(ViewPlayerActivity.this, GameStartScreen.class);
+                intent.putExtra(PLAYER_DATA, player);
                 startActivityForResult(intent, EDIT_REQUEST);
             }
         });

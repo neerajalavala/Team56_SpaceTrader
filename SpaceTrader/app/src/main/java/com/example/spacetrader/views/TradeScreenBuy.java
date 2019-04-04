@@ -14,6 +14,9 @@ import com.example.spacetrader.entity.gamelogic.CargoHold;
 import com.example.spacetrader.entity.gamelogic.Player;
 import com.example.spacetrader.viewmodels.PlayerListingViewModel;
 
+import android.app.Activity;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class TradeScreenBuy extends AppCompatActivity {
@@ -70,7 +73,23 @@ public class TradeScreenBuy extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        adapter.setMarketGoodList(market.getBuyableGoods());
+        ArrayList<MarketGood> goods = market.getBuyableGoods();
+
+        for (int i = 0; i < goods.size(); i++){
+            System.out.println("goods" + goods.get(i).getType().toString()
+                    + " Quan: " + goods.get(i).getQuantity() );
+        }
+
+        System.out.println();
+        System.out.println();
+
+        adapter.setMarketGoodList(goods);
+
+        RecyclerView recyclerView = findViewById(R.id.trade_list);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setAdapter(adapter);
+
         setTitle("Hold: " + hold.getCount().toString() + "/" + hold.getCapacity().toString()
                 + "  Credits: " + player.getCredits().toString());
 
@@ -78,9 +97,25 @@ public class TradeScreenBuy extends AppCompatActivity {
             @Override
             public void onMarketGoodClicked(MarketGood good) {
                 Intent intent = new Intent(TradeScreenBuy.this, TradeItemActivity.class);
+                intent.putExtra("MARKET_DATA", market);
                 intent.putExtra(PLAYER_DATA, good);
-                startActivityForResult(intent, EDIT_REQUEST);
+                startActivityForResult(intent, 55);
             }
         });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch(requestCode) {
+            case (55) : {
+                if (resultCode == Activity.RESULT_OK) {
+                    // TODO Extract the data returned from the child Activity.
+                    MarketPlace returnValue = (MarketPlace) data.getSerializableExtra("UPDATED_MARKET");
+                    this.market = returnValue;
+                }
+                break;
+            }
+        }
     }
 }
