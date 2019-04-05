@@ -4,7 +4,6 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -20,7 +19,7 @@ import com.example.spacetrader.entity.commerce.MarketPlace;
 import com.example.spacetrader.entity.gamelogic.CargoHold;
 import com.example.spacetrader.entity.gamelogic.Player;
 import com.example.spacetrader.entity.world.Planet;
-import com.example.spacetrader.viewmodels.PlayerListingViewModel;
+import com.example.spacetrader.viewmodels.GetPlayerViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +29,7 @@ public class buyFrag extends Fragment {
 
     private MarketPlace market;
 
-    private PlayerListingViewModel viewModel;
+    private GetPlayerViewModel viewModel;
 
     private Player player;
 
@@ -77,7 +76,7 @@ public class buyFrag extends Fragment {
 
         this.market = curr_planet.getMarketPlace();
 
-        this.viewModel = ViewModelProviders.of(this).get(PlayerListingViewModel.class);
+        this.viewModel = ViewModelProviders.of(this).get(GetPlayerViewModel.class);
         this.players = viewModel.getPlayers();
 
         adapter = new MarketGoodAdapter();

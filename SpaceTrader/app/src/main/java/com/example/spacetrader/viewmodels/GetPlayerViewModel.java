@@ -14,18 +14,18 @@ import com.example.spacetrader.model.PlayerInteractor;
  * View model supporting viewing a list of players either for a single course or
  * every player in the application.
  */
-public class PlayerListingViewModel extends AndroidViewModel {
+public class GetPlayerViewModel extends AndroidViewModel {
 
     private PlayerInteractor interactor;
 
-    public PlayerListingViewModel(@NonNull Application application) {
+    public GetPlayerViewModel(@NonNull Application application) {
         super(application);
         interactor = Model.getInstance().getPlayerInteractor();
     }
 
 
-    public List<Player> getPlayers() {
-        return interactor.getAllPlayers();
+    public Player getPlayers() {
+        return interactor.getPlayer();
     }
 
 }

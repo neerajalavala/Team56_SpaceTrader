@@ -24,7 +24,7 @@ import com.example.spacetrader.entity.commerce.MarketPlace;
 import com.example.spacetrader.entity.gamelogic.Player;
 import com.example.spacetrader.entity.world.Planet;
 import com.example.spacetrader.entity.world.SolarSystem;
-import com.example.spacetrader.viewmodels.PlayerListingViewModel;
+import com.example.spacetrader.viewmodels.GetPlayerViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +32,7 @@ import java.util.List;
 public class mapFrag extends Fragment {
     private FragmentActivity listener;
 
-    private PlayerListingViewModel viewModel;
+    private GetPlayerViewModel viewModel;
 
     private Player player;
 
@@ -94,8 +94,7 @@ public class mapFrag extends Fragment {
 
         this.speed = player.getShipType().getMaxFuel();
 
-        this.viewModel = ViewModelProviders.of(this).get(PlayerListingViewModel.class);
-        this.players = viewModel.getPlayers();
+        this.viewModel = ViewModelProviders.of(this).get(GetPlayerViewModel.class);
 
     }
 

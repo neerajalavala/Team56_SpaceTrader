@@ -1,9 +1,5 @@
 package com.example.spacetrader.model;
 
-import android.util.Log;
-
-import java.util.List;
-
 import com.example.spacetrader.entity.gamelogic.Player;
 
 /**
@@ -11,22 +7,15 @@ import com.example.spacetrader.entity.gamelogic.Player;
  */
 public class PlayerInteractor extends Interactor {
 
-    public PlayerInteractor(Repository repo) {
+    public PlayerInteractor(PlayerRepository repo) {
         super(repo);
     }
 
-    public List<Player> getAllPlayers() {
-        return getRepository().getAllPlayers();
+    public Player getPlayer() {
+        return getRepository().getPlayer();
     }
 
-    public void addPlayer (Player p) {
-        getRepository().addPlayer(p);
+    public void newPlayer (Player p) {
+        getRepository().newPlayer(p);
     }
-
-    public void updatePlayer(Player player) {
-        getRepository().updatePlayer(player);
-        Log.d("APP", "Interactor: updating player: " + player);
-    }
-
-
 }

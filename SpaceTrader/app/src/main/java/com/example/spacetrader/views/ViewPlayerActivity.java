@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.example.spacetrader.R;
 import com.example.spacetrader.entity.gamelogic.Player;
-import com.example.spacetrader.viewmodels.PlayerListingViewModel;
+import com.example.spacetrader.viewmodels.GetPlayerViewModel;
 
 import java.util.List;
 
@@ -23,7 +23,7 @@ public class ViewPlayerActivity extends AppCompatActivity {
 
     private Player player;
 
-    private PlayerListingViewModel  viewModel;
+    private GetPlayerViewModel viewModel;
 
     private List<Player> players;
 
@@ -69,7 +69,7 @@ public class ViewPlayerActivity extends AppCompatActivity {
 
         player = (Player) getIntent().getSerializableExtra(PLAYER_DATA);
 
-        viewModel = ViewModelProviders.of(this).get(PlayerListingViewModel.class);
+        viewModel = ViewModelProviders.of(this).get(GetPlayerViewModel.class);
 
         players = viewModel.getPlayers();
 
