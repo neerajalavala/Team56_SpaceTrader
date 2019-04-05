@@ -33,7 +33,7 @@ public class TradeItemActivity extends AppCompatActivity {
     /** an int for the request code */
     private static final int EDIT_REQUEST = 5;
 
-    private Spinner trade_quantity;
+    private Spinner trade_quantity; //
 
     private TextView trade_total;
 
