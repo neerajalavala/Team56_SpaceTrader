@@ -19,11 +19,7 @@ public class CreatePlayerViewModel  extends AndroidViewModel {
         interactor = Model.getInstance().getPlayerInteractor();
     }
 
-    public void updatePlayer(Player player) {
-        interactor.updatePlayer(player);
-    }
-
     public void addPlayer(Player player) {
-        interactor.addPlayer(player);
+        interactor.newPlayer(player);
     }
 }

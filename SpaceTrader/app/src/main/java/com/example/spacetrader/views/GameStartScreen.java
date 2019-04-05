@@ -1,28 +1,22 @@
 package com.example.spacetrader.views;
 
-import android.app.Activity;
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
 import com.example.spacetrader.R;
-import com.example.spacetrader.entity.commerce.MarketPlace;
 import com.example.spacetrader.entity.gamelogic.Player;
 import com.example.spacetrader.entity.world.Planet;
 import com.example.spacetrader.entity.world.SolarSystem;
 import com.example.spacetrader.entity.world.Universe;
-import com.example.spacetrader.viewmodels.PlayerListingViewModel;
+import com.example.spacetrader.viewmodels.GetPlayerViewModel;
 
 import android.view.MenuItem;
 import android.support.annotation.NonNull;
-import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.TextView;
 
 import java.util.List;
 
@@ -40,7 +34,7 @@ public class GameStartScreen extends AppCompatActivity {
 
     private Player player;
 
-    private PlayerListingViewModel viewModel;
+    private GetPlayerViewModel viewModel;
 
     private Universe game;
     private SolarSystem currentSystem;
@@ -64,7 +58,7 @@ public class GameStartScreen extends AppCompatActivity {
 
         this.player = (Player) getIntent().getSerializableExtra(PLAYER_DATA);
 
-        this.viewModel = ViewModelProviders.of(this).get(PlayerListingViewModel.class);
+        this.viewModel = ViewModelProviders.of(this).get(GetPlayerViewModel.class);
         this.players = viewModel.getPlayers();
 
         planetFrag pFrag = planetFrag.newInstance(player);

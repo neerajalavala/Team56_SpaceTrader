@@ -12,7 +12,7 @@ import com.example.spacetrader.entity.commerce.MarketGood;
 import com.example.spacetrader.entity.commerce.MarketPlace;
 import com.example.spacetrader.entity.gamelogic.CargoHold;
 import com.example.spacetrader.entity.gamelogic.Player;
-import com.example.spacetrader.viewmodels.PlayerListingViewModel;
+import com.example.spacetrader.viewmodels.GetPlayerViewModel;
 
 import android.app.Activity;
 
@@ -27,7 +27,7 @@ public class TradeScreenBuy extends AppCompatActivity {
 
     private MarketPlace market;
 
-    private PlayerListingViewModel viewModel;
+    private GetPlayerViewModel viewModel;
 
     private Player player;
 
@@ -55,7 +55,7 @@ public class TradeScreenBuy extends AppCompatActivity {
         adapter = new MarketGoodAdapter();
         recyclerView.setAdapter(adapter);
 
-        viewModel = ViewModelProviders.of(this).get(PlayerListingViewModel.class);
+        viewModel = ViewModelProviders.of(this).get(GetPlayerViewModel.class);
 
         List<Player> players = viewModel.getPlayers();
 

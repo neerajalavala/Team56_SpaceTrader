@@ -10,7 +10,7 @@ import android.util.Log;
 
 import com.example.spacetrader.R;
 import com.example.spacetrader.entity.gamelogic.Player;
-import com.example.spacetrader.viewmodels.PlayerListingViewModel;
+import com.example.spacetrader.viewmodels.GetPlayerViewModel;
 
 /**
  * This displays all students in the model, regardless of registration
@@ -22,7 +22,7 @@ public class ViewAllPlayersActivity extends AppCompatActivity {
     /** an int for the request code */
     private static final int EDIT_REQUEST = 5;
     /** our data model */
-    private PlayerListingViewModel  viewModel;
+    private GetPlayerViewModel viewModel;
     /** an adapter for the recycler view */
     private PlayerAdapter adapter;
 
@@ -43,7 +43,7 @@ public class ViewAllPlayersActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         //grab our view model instance
-        viewModel = ViewModelProviders.of(this).get(PlayerListingViewModel.class);
+        viewModel = ViewModelProviders.of(this).get(GetPlayerViewModel.class);
 
         Log.d("APP", viewModel.getPlayers().toString());
 

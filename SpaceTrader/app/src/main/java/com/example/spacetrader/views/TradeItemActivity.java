@@ -23,7 +23,7 @@ import com.example.spacetrader.entity.gamelogic.CargoHold;
 import com.example.spacetrader.entity.gamelogic.Player;
 import com.example.spacetrader.entity.world.Resources;
 import com.example.spacetrader.entity.world.TechLevel;
-import com.example.spacetrader.viewmodels.PlayerListingViewModel;
+import com.example.spacetrader.viewmodels.GetPlayerViewModel;
 
 import java.util.List;
 
@@ -37,7 +37,7 @@ public class TradeItemActivity extends AppCompatActivity {
 
     private TextView trade_total;
 
-    private PlayerListingViewModel viewModel;
+    private GetPlayerViewModel viewModel;
     private List<Player> players;
 
     private Player player;
@@ -88,7 +88,7 @@ public class TradeItemActivity extends AppCompatActivity {
         this.hold = player.getCargoHold();
 
         /* setting player list for later use */
-        this.viewModel = ViewModelProviders.of(this).get(PlayerListingViewModel.class);
+        this.viewModel = ViewModelProviders.of(this).get(GetPlayerViewModel.class);
         this.players = viewModel.getPlayers();
 
         /* setting texy box values */

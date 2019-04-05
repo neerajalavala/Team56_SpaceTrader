@@ -3,11 +3,8 @@ package com.example.spacetrader.views;
 import android.app.Activity;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
-import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -19,9 +16,8 @@ import com.example.spacetrader.R;
 import com.example.spacetrader.entity.gamelogic.Player;
 import com.example.spacetrader.entity.world.Planet;
 import com.example.spacetrader.entity.world.SolarSystem;
-import com.example.spacetrader.viewmodels.PlayerListingViewModel;
+import com.example.spacetrader.viewmodels.GetPlayerViewModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class planetFrag extends Fragment {
@@ -30,7 +26,7 @@ public class planetFrag extends Fragment {
 
     private FragmentActivity listener;
 
-    private PlayerListingViewModel viewModel;
+    private GetPlayerViewModel viewModel;
 
     private SolarSystem[] solar_systems;
 
@@ -80,7 +76,7 @@ public class planetFrag extends Fragment {
 
         System.out.println(curr_planet.getName());
 
-        this.viewModel = ViewModelProviders.of(this).get(PlayerListingViewModel.class);
+        this.viewModel = ViewModelProviders.of(this).get(GetPlayerViewModel.class);
         this.players = viewModel.getPlayers();
 
     }
