@@ -3,9 +3,11 @@ package com.example.spacetrader.entity.world;
 import android.util.Log;
 
 import com.example.spacetrader.entity.gamelogic.Difficulty;
+import com.example.spacetrader.entity.gamelogic.randomEvent;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.Random;
 
 public class Universe implements Serializable {
     /**
@@ -51,7 +53,7 @@ public class Universe implements Serializable {
         this.diff = diff;
 
         for (int i = 0; i < solarSystemNames.length; i++){
-            solarSystems[i] = new SolarSystem(playerID, count, solarSystemNames[i], xlocs[i], ylocs[i]);
+            solarSystems[i] = new SolarSystem(count, solarSystemNames[i], xlocs[i], ylocs[i]);
 
             /* Sets coordinates in the solar system to the id */
             setGrid(xlocs[i],ylocs[i], count);
@@ -102,10 +104,6 @@ public class Universe implements Serializable {
         }
     }
 
-    public int getPlayerID(){
-        return playerID;
-    }
-
     /**
      * sets the current planet to the ith planet of system s
      *
@@ -119,5 +117,23 @@ public class Universe implements Serializable {
     public Planet getCurrentPlayerPlanet() {
         return currentPlayerPlanet;
     }
+
+    public randomEvent getRandomEvent() {
+
+        Random rand = new Random();
+        int eventNum = rand.nextInt(11);
+
+        if (eventNum <= 5) {
+            return randomEvent.CREDITS;
+        } else if (eventNum > 5 && eventNum <= 7) {
+            return randomEvent.TRADER;
+        } else if (eventNum > 7 && eventNum <= 9) {
+            return randomEvent.PIRATE;
+        } else if (eventNum > 9) {
+            return randomEvent.COPS;
+        }
+        return randomEvent.COPS;
+    }
+
 
 }

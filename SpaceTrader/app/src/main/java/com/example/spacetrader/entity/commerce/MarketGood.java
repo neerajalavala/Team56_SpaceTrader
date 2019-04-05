@@ -9,8 +9,6 @@ import java.util.Random;
 public class MarketGood implements Serializable {
     private int quantity;
 
-    private final int playerID;
-
     private MarketGoodType marketGoodType;
 
     private TechLevel techLevel;
@@ -21,9 +19,8 @@ public class MarketGood implements Serializable {
     private int price;
 
 
-    public MarketGood(MarketGoodType mGT, boolean genQ, TechLevel tL, Resources resources, int id) {
+    public MarketGood(MarketGoodType mGT, boolean genQ, TechLevel tL, Resources resources) {
         this.marketGoodType = mGT;
-        this.playerID = id;
         this.techLevel = tL;
         this.resources = resources;
 
@@ -82,8 +79,6 @@ public class MarketGood implements Serializable {
         this.resources = Resources.NONE;
         this.price = mGT.getBasePrice();
         this.price_count = 0;
-        this.playerID = id;
-
 
     }
 
@@ -109,10 +104,6 @@ public class MarketGood implements Serializable {
 
     public Resources getResources() {
         return resources;
-    }
-
-    public int getPlayerID() {
-        return playerID;
     }
 
     public boolean isBuyable() { return marketGoodType.canBuy(techLevel); }

@@ -5,7 +5,6 @@ import java.util.List;
 
 public class SolarSystem extends UniverseEntity{
 
-    private final int playerID;
     private final int EntityID;
 
     private int[] location = new int[2];
@@ -14,18 +13,17 @@ public class SolarSystem extends UniverseEntity{
 
     private List<Planet> PlanetList = new ArrayList<>();
 
-    public SolarSystem(int playerID, int id, String name, int xloc, int yloc){
+    public SolarSystem(int id, String name, int xloc, int yloc){
         super(id, name);
 
         for (int i =0; i < 3; i++) {
-            Planet plan = new Planet(playerID, "Planet " + i, id);
+            Planet plan = new Planet( "Planet " + i, id);
             PlanetList.add(plan);
         }
 
         this.location[0] = xloc;
         this.location[1] = yloc;
 
-        this.playerID = playerID;
         this.EntityID = id;
         this.name = name;
 
@@ -51,8 +49,6 @@ public class SolarSystem extends UniverseEntity{
         }
         return a;
     }
-
-    public int getPlayerID() { return playerID; }
 
     public int[] getLocation() {
         return location;

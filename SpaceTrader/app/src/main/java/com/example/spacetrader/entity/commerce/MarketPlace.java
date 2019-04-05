@@ -13,21 +13,18 @@ public class MarketPlace implements Serializable {
     private TechLevel techLevel;
     private Resources resources;
 
-    private final int playerID;
-
     private final MarketGoodType[] goodTypes = MarketGoodType.values();
 
-    public MarketPlace(TechLevel techLevel, Resources resources, int id) {
+    public MarketPlace(TechLevel techLevel, Resources resources) {
         this.techLevel = techLevel;
         this.resources = resources;
-        this.playerID = id;
 
         for(int i = 0; i < goodTypes.length; i++){
             if (goodTypes[i].canBuy(this.techLevel)) {
-                marketGoods.add(new MarketGood(goodTypes[i], true, this.techLevel, this.resources, this.playerID));
+                marketGoods.add(new MarketGood(goodTypes[i], true, this.techLevel, this.resources));
             } else {
                 if (goodTypes[i].canSell(this.techLevel)) {
-                    marketGoods.add(new MarketGood(goodTypes[i], false, this.techLevel, this.resources, this.playerID));
+                    marketGoods.add(new MarketGood(goodTypes[i], false, this.techLevel, this.resources));
                 }
             }
         }
@@ -80,9 +77,5 @@ public class MarketPlace implements Serializable {
             };
         }
         this.marketGoods = goods;
-    }
-
-    public int getPlayerID() {
-        return playerID;
     }
 }

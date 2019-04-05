@@ -27,27 +27,7 @@
             android:parentActivityName="com.example.spacetrader.views.TradeScreenBuy" />
 
         <activity
-            android:name="com.example.spacetrader.views.TradeScreenSell"
-            android:parentActivityName="com.example.spacetrader.views.ViewPlanet" />
-
-        <activity
-            android:name="com.example.spacetrader.views.TradeScreenBuy"
-            android:parentActivityName="com.example.spacetrader.views.ViewPlanet" />
-
-        <activity
-            android:name="com.example.spacetrader.views.ViewPlanet"
-            android:parentActivityName="com.example.spacetrader.views.ViewPlanets" />
-
-        <activity
-            android:name="com.example.spacetrader.views.ViewPlanets"
-            android:parentActivityName="com.example.spacetrader.views.ViewUniverse" />
-
-        <activity
             android:name="com.example.spacetrader.views.GameStartScreen"
-            android:parentActivityName="com.example.spacetrader.views.ViewPlayerActivity" />
-
-        <activity
-            android:name="com.example.spacetrader.views.ViewUniverse"
             android:parentActivityName="com.example.spacetrader.views.ViewPlayerActivity" />
 
         <activity
