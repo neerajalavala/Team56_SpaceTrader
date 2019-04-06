@@ -1,0 +1,44 @@
+{
+  "project_info": {
+    "project_number": "463861168676",
+    "firebase_url": "https://spacetrader-8909b.firebaseio.com",
+    "project_id": "spacetrader-8909b",
+    "storage_bucket": "spacetrader-8909b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:463861168676:android:802fd827c5fa7a4a",
+        "android_client_info": {
+          "package_name": "com.example.spacetrader"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "463861168676-6j20m9cq6sjdqgastnpc8tr871dfeih1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.spacetrader",
+            "certificate_hash": "0b19ab5d8570834894fcf16ece5b464c3894847d"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-cwcEOPl6ShRHfWGrT687MoyH33pS__o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "463861168676-jjlg8qpko46c777ousrlsbe53qpfc2mi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -66,7 +66,17 @@ public class Player implements Serializable {
 
         cargoHold = new CargoHold(Ship_type.getCapacity(), this.ID);
     }
-
+/*
+    public static Player createPlayer(String name, Integer pilot, Integer fighter, Integer trader, Integer engineer, Difficulty diff) {
+        if ((pilot + fighter + trader + engineer != 16) || (pilot < 0 || fighter < 0 || trader < 0 || engineer < 0)) {
+            // throw new IllegalPointAllocationException
+        }
+        if (name.equals("") || name == null) {
+            // throw new InvalidNameException
+        }
+        return new Player(name, pilot, fighter, trader, engineer, diff);
+    }
+*/
     public CargoHold getCargoHold() {
         return cargoHold;
     }
