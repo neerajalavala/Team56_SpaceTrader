@@ -80,12 +80,14 @@ public class planetFrag extends Fragment {
 
     }
 
+    Context c;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
+        c = getActivity();
         return inflater.inflate(R.layout.planet_fragment, parent, false);
     }
 
-    final Context c = getContext();
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
