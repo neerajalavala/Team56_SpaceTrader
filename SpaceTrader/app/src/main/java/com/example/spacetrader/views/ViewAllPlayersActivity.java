@@ -56,9 +56,8 @@ public class ViewAllPlayersActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        ArrayList<Player> players= new ArrayList<>();
-        players.add(viewModel.getPlayer());
-        adapter.setPlayerList(players);
+
+        adapter.setPlayerList(viewModel.getPlayer());
 
         adapter.setOnPlayerClickListener(new PlayerAdapter.OnPlayerClickListener(){
             @Override

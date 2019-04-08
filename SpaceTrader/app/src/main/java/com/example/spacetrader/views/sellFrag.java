@@ -108,7 +108,6 @@ public class sellFrag extends Fragment {
         this.hold = player.getCargoHold();
         this.market = player.getCurrentPlanet().getMarketPlace();
 
-
         super.onResume();
 
         ArrayList<MarketGood> goods = hold.getSellableGoods(curr_planet.getTechLevel());

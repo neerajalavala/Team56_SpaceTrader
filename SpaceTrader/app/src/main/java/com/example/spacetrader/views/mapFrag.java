@@ -86,6 +86,7 @@ public class mapFrag extends Fragment {
         super.onCreate(savedInstanceState);
         // Get back arguments
         this.viewModel = ViewModelProviders.of(this).get(GetPlayerViewModel.class);
+
         this.player = viewModel.getPlayer();
 
         this.curr_planet = player.getCurrentPlanet();
@@ -299,12 +300,24 @@ public class mapFrag extends Fragment {
                     List<Planet> planets = next_system.getPlanets();
 
 
+
                     player = viewModel.getPlayer();
                     for (int y = 0; y < 3; y++) {
                         if (planets.get(y).getName().contains(next_planet_name)) {
                             player.setCurrentPlayerPlanet(next_system, y);
                         }
                     }
+
+//                    for (int x = 0; x < players.size(); x++) {
+//                        if (players.get(x).getID() == player.getID()) {
+//                            //mapFrag.this.player = players.get(x);
+                            for (int y = 0; y < 3; y++) {
+                                if (planets.get(y).getName().contains(next_planet_name)) {
+                                    player.setCurrentPlayerPlanet(next_system, y);
+                                }
+                            }
+//                        }
+//                    }
 
                     player.subFuel(turn_num);
 
@@ -326,7 +339,15 @@ public class mapFrag extends Fragment {
     @Override
     public void onResume() {
 
+
         this.player = viewModel.getPlayer();
+
+
+//        for (int x = 0; x < players.size(); x++) {
+//            if (players.get(x).getID() == player.getID()) {
+//                this.player = players.get(x);
+//            }
+//        }
 
 
         super.onResume();

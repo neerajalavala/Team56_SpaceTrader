@@ -30,7 +30,7 @@ public class GameStartScreen extends AppCompatActivity {
     /** an int for the request code */
     private static final int EDIT_REQUEST = 5;
 
-    private List<Player> players;
+//    private List<Player> players;
 
     private Player player;
 
@@ -56,10 +56,12 @@ public class GameStartScreen extends AppCompatActivity {
             getSupportActionBar().setHomeButtonEnabled(false);
         }
 
-        this.player = (Player) getIntent().getSerializableExtra(PLAYER_DATA);
+//        this.player = (Player) getIntent().getSerializableExtra(PLAYER_DATA);
 
         this.viewModel = ViewModelProviders.of(this).get(GetPlayerViewModel.class);
-        player = viewModel.getPlayer();
+
+
+        this.player = viewModel.getPlayer();
 
         planetFrag pFrag = planetFrag.newInstance(player);
 
@@ -76,8 +78,18 @@ public class GameStartScreen extends AppCompatActivity {
 
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
                         player = viewModel.getPlayer();
                         GameStartScreen.this.player = player;
+
+//                        players = viewModel.getPlayers();
+//                        for (int x = 0; x < players.size(); x++){
+//                            if (players.get(x).getID() == player.getID()){
+//                                GameStartScreen.this.player = players.get(x);
+//                            }
+//                        }
+
+
 
                         final FragmentTransaction trans = getSupportFragmentManager().beginTransaction();
 

@@ -81,13 +81,13 @@ public class TradeItemActivity extends AppCompatActivity {
 
         /* gets passed good */
         good = (MarketGood) getIntent().getSerializableExtra("TRADE_GOOD");
+//
+//        player = (Player) getIntent().getSerializableExtra("PLAYER_DATA");
 
         this.viewModel = ViewModelProviders.of(this).get(GetPlayerViewModel.class);
         this.player = viewModel.getPlayer();
 
         this.hold = player.getCargoHold();
-
-        /* setting player list for later use */
 
 
         /* setting texy box values */
@@ -155,6 +155,7 @@ public class TradeItemActivity extends AppCompatActivity {
 
         this.player = viewModel.getPlayer();
         this.hold = player.getCargoHold();
+
 
         if (TradeButton.getText().equals("Sell")) {
             /* selling good from cargo hold */

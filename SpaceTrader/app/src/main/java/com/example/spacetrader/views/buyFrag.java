@@ -75,6 +75,8 @@ public class buyFrag extends Fragment {
 
         this.market = curr_planet.getMarketPlace();
 
+        this.viewModel = ViewModelProviders.of(this).get(GetPlayerViewModel.class);
+        this.player = viewModel.getPlayer();
 
 
         adapter = new MarketGoodAdapter();
@@ -111,6 +113,15 @@ public class buyFrag extends Fragment {
         this.player = viewModel.getPlayer();
         this.hold = player.getCargoHold();
         this.market = player.getCurrentPlanet().getMarketPlace();
+
+
+//        for (int x = 0; x < players.size(); x++){
+//            if (players.get(x).getID() == player.getID()){
+//                this.player = players.get(x);
+//                this.hold = player.getCargoHold();
+//                this.market = player.getCurrentPlanet().getMarketPlace();
+//            }
+//        }
 
 
         super.onResume();
