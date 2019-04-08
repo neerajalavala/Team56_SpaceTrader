@@ -41,6 +41,7 @@ public class planetFrag extends Fragment {
 
     private Button refuelButton;
     private Button repairButton;
+    private Button saveButton;
 
 
     private String player_data = "PLAYER_DATA";
@@ -93,6 +94,7 @@ public class planetFrag extends Fragment {
 
         this.refuelButton = (Button) getView().findViewById(R.id.refuel_button);
         this.repairButton = (Button) getView().findViewById(R.id.repair_button);
+        this.saveButton = (Button ) getView().findViewById(R.id.save_button);
 
         for (int i = 0; i < solar_systems.length; i++) {
             if (solar_systems[i].getEntityID() == curr_planet.getSolar_id()) {
