@@ -82,14 +82,16 @@ public class TradeItemActivity extends AppCompatActivity {
 
         /* gets passed good */
         good = (MarketGood) getIntent().getSerializableExtra("TRADE_GOOD");
+//
+//        player = (Player) getIntent().getSerializableExtra("PLAYER_DATA");
 
-        player = (Player) getIntent().getSerializableExtra("PLAYER_DATA");
-
-        this.hold = player.getCargoHold();
+//        this.hold = player.getCargoHold();
 
         /* setting player list for later use */
         this.viewModel = ViewModelProviders.of(this).get(GetPlayerViewModel.class);
-        this.players = viewModel.getPlayers();
+        this.player = viewModel.getPlayer();
+
+        this.hold = player.getCargoHold();
 
         /* setting texy box values */
         MarketGoodName.setText(good.getType().toString());
@@ -154,12 +156,12 @@ public class TradeItemActivity extends AppCompatActivity {
         Integer trade_q = (Integer) trade_quantity.getSelectedItem();
         Integer trade_v = trade_q * good.getPrice();
 
-        for (int x = 0; x < players.size(); x++){
-            if (players.get(x).getID() == player.getID()){
-                this.player = players.get(x);
-                this.hold = player.getCargoHold();
-            }
-        }
+//        for (int x = 0; x < players.size(); x++){
+//            if (players.get(x).getID() == player.getID()){
+//                this.player = players.get(x);
+//                this.hold = player.getCargoHold();
+//            }
+//        }
 
         if (TradeButton.getText().equals("Sell")) {
             /* selling good from cargo hold */

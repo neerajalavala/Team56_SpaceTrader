@@ -24,7 +24,7 @@ public class GetPlayerViewModel extends AndroidViewModel {
     }
 
 
-    public Player getPlayers() {
+    public Player getPlayer() {
         return interactor.getPlayer();
     }
 

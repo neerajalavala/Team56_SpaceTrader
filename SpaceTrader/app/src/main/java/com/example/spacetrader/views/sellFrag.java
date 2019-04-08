@@ -67,16 +67,22 @@ public class sellFrag extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Get back arguments
-        this.player = (Player) getArguments().getSerializable("PLAYER_DATA");
+//        this.player = (Player) getArguments().getSerializable("PLAYER_DATA");
+
+//        this.curr_planet = player.getCurrentPlanet();
+//
+//        this.hold = player.getCargoHold();
+//
+//        this.market = curr_planet.getMarketPlace();
+
+        this.viewModel = ViewModelProviders.of(this).get(GetPlayerViewModel.class);
+        this.player = viewModel.getPlayer();
 
         this.curr_planet = player.getCurrentPlanet();
 
         this.hold = player.getCargoHold();
 
         this.market = curr_planet.getMarketPlace();
-
-        this.viewModel = ViewModelProviders.of(this).get(GetPlayerViewModel.class);
-        this.players = viewModel.getPlayers();
 
         adapter = new MarketGoodAdapter();
     }
@@ -108,13 +114,13 @@ public class sellFrag extends Fragment {
     @Override
     public void onResume() {
 
-        for (int x = 0; x < players.size(); x++){
-            if (players.get(x).getID() == player.getID()){
-                this.player = players.get(x);
-                this.hold = player.getCargoHold();
-                this.market = player.getCurrentPlanet().getMarketPlace();
-            }
-        }
+//        for (int x = 0; x < players.size(); x++){
+//            if (players.get(x).getID() == player.getID()){
+//                this.player = players.get(x);
+//                this.hold = player.getCargoHold();
+//                this.market = player.getCurrentPlanet().getMarketPlace();
+//            }
+//        }
 
         super.onResume();
 

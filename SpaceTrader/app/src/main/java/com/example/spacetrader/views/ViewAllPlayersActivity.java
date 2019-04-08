@@ -45,7 +45,7 @@ public class ViewAllPlayersActivity extends AppCompatActivity {
         //grab our view model instance
         viewModel = ViewModelProviders.of(this).get(GetPlayerViewModel.class);
 
-        Log.d("APP", viewModel.getPlayers().toString());
+        Log.d("APP", viewModel.getPlayer().toString());
 
         setTitle("Players");
 
@@ -54,7 +54,7 @@ public class ViewAllPlayersActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        adapter.setPlayerList(viewModel.getPlayers());
+        adapter.setPlayerList(viewModel.getPlayer());
 
         adapter.setOnPlayerClickListener(new PlayerAdapter.OnPlayerClickListener(){
             @Override

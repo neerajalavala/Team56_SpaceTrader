@@ -63,8 +63,8 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerView
         return playerList.size();
     }
 
-    public void setPlayerList(List<Player> players) {
-        playerList = players;
+    public void setPlayerList(Player player) {
+        if (playerList.size() < 1) playerList.add(player);
         notifyDataSetChanged();
     }
 

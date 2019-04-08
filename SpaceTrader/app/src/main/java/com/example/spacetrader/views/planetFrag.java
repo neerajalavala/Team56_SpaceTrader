@@ -68,16 +68,20 @@ public class planetFrag extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Get back arguments
-        this.player = (Player) getArguments().getSerializable("PLAYER_DATA");
+//        this.player = (Player) getArguments().getSerializable("PLAYER_DATA");
 
-        this.curr_planet = player.getCurrentPlanet();
+//        this.curr_planet = player.getCurrentPlanet();
+//
+//        this.solar_systems = player.getGame().getSolarSystems();
 
-        this.solar_systems = player.getGame().getSolarSystems();
-
-        System.out.println(curr_planet.getName());
+//        System.out.println(curr_planet.getName());
 
         this.viewModel = ViewModelProviders.of(this).get(GetPlayerViewModel.class);
-        this.players = viewModel.getPlayers();
+        this.player = viewModel.getPlayer();
+
+        this.curr_planet = player.getCurrentPlanet();
+        this.solar_systems = player.getGame().getSolarSystems();
+
 
     }
 
@@ -133,11 +137,11 @@ public class planetFrag extends Fragment {
     @Override
     public void onResume() {
 
-        for (int x = 0; x < players.size(); x++){
-            if (players.get(x).getID() == player.getID()){
-                this.player = players.get(x);
-            }
-        }
+//        for (int x = 0; x < players.size(); x++){
+//            if (players.get(x).getID() == player.getID()){
+//                this.player = players.get(x);
+//            }
+//        }
 
         super.onResume();
 

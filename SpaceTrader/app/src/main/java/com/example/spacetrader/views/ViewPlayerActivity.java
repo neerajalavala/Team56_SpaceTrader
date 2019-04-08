@@ -12,6 +12,7 @@ import com.example.spacetrader.R;
 import com.example.spacetrader.entity.gamelogic.Player;
 import com.example.spacetrader.viewmodels.GetPlayerViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ViewPlayerActivity extends AppCompatActivity {
@@ -71,7 +72,8 @@ public class ViewPlayerActivity extends AppCompatActivity {
 
         viewModel = ViewModelProviders.of(this).get(GetPlayerViewModel.class);
 
-        players = viewModel.getPlayers();
+        players = new ArrayList<>();
+        players.add(viewModel.getPlayer());
 
         for (Integer i = 0; i < players.size(); i++) {
             if (players.get(i).getID() == player.getID()) {

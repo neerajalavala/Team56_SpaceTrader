@@ -86,7 +86,9 @@ public class mapFrag extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Get back arguments
-        this.player = (Player) getArguments().getSerializable("PLAYER_DATA");
+        this.viewModel = ViewModelProviders.of(this).get(GetPlayerViewModel.class);
+//        this.player = (Player) getArguments().getSerializable("PLAYER_DATA");
+        this.player = viewModel.getPlayer();
 
         this.curr_planet = player.getCurrentPlanet();
 
@@ -94,7 +96,7 @@ public class mapFrag extends Fragment {
 
         this.speed = player.getShipType().getMaxFuel();
 
-        this.viewModel = ViewModelProviders.of(this).get(GetPlayerViewModel.class);
+//        this.viewModel = ViewModelProviders.of(this).get(GetPlayerViewModel.class);
 
     }
 
@@ -273,16 +275,16 @@ public class mapFrag extends Fragment {
                     List<Planet> planets = next_system.getPlanets();
 
 
-                    for (int x = 0; x < players.size(); x++) {
-                        if (players.get(x).getID() == player.getID()) {
-                            //mapFrag.this.player = players.get(x);
+//                    for (int x = 0; x < players.size(); x++) {
+//                        if (players.get(x).getID() == player.getID()) {
+//                            //mapFrag.this.player = players.get(x);
                             for (int y = 0; y < 3; y++) {
                                 if (planets.get(y).getName().contains(next_planet_name)) {
-                                    players.get(x).setCurrentPlayerPlanet(next_system, y);
+                                    player.setCurrentPlayerPlanet(next_system, y);
                                 }
                             }
-                        }
-                    }
+//                        }
+//                    }
 
                     player.subFuel(turn_num);
 
@@ -304,11 +306,11 @@ public class mapFrag extends Fragment {
     @Override
     public void onResume() {
 
-        for (int x = 0; x < players.size(); x++) {
-            if (players.get(x).getID() == player.getID()) {
-                this.player = players.get(x);
-            }
-        }
+//        for (int x = 0; x < players.size(); x++) {
+//            if (players.get(x).getID() == player.getID()) {
+//                this.player = players.get(x);
+//            }
+//        }
 
         super.onResume();
 
