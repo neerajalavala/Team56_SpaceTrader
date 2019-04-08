@@ -25,8 +25,13 @@ import com.example.spacetrader.entity.gamelogic.Player;
 import com.example.spacetrader.entity.gamelogic.randomEvent;
 import com.example.spacetrader.entity.world.Planet;
 import com.example.spacetrader.entity.world.SolarSystem;
+import com.example.spacetrader.persistence.Serializer;
 import com.example.spacetrader.viewmodels.GetPlayerViewModel;
+import com.google.firebase.FirebaseApp;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,6 +62,7 @@ public class mapFrag extends Fragment {
     private Spinner systemPlanetsSpinner;
 
     private Button travelButton;
+    private Button saveButton;
 
     /**
      * an adapter for the recycler view
@@ -102,6 +108,7 @@ public class mapFrag extends Fragment {
         return inflater.inflate(R.layout.map_fragment, parent, false);
     }
 
+    final Context c = getContext();
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 

@@ -18,6 +18,9 @@ import com.example.spacetrader.entity.world.Planet;
 import com.example.spacetrader.entity.world.SolarSystem;
 import com.example.spacetrader.viewmodels.GetPlayerViewModel;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.List;
 
 public class planetFrag extends Fragment {
@@ -82,6 +85,7 @@ public class planetFrag extends Fragment {
         return inflater.inflate(R.layout.planet_fragment, parent, false);
     }
 
+    final Context c = getContext();
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
@@ -119,6 +123,19 @@ public class planetFrag extends Fragment {
             public void onClick(View v) {
                 refuelShip();
             }
+        });
+
+        saveButton.setOnClickListener((view1) -> {
+//            FirebaseApp.initializeApp(getContext());
+//            Serializer serializer = new Serializer("SpaceTrader.ser", 1024 * 10000);
+//            serializer.serialize(player);
+            try {
+                FileOutputStream fos = c.openFileOutput("SpaceTrader.ser", Context.MODE_PRIVATE);
+                ObjectOutputStream os = new ObjectOutputStream(fos);
+                os.writeObject(player);
+                os.close();
+                fos.close();
+            } catch (IOException e) {e.printStackTrace();}
         });
     }
 

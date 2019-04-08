@@ -1,6 +1,7 @@
 package com.example.spacetrader.views;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -22,6 +23,10 @@ import com.example.spacetrader.entity.gamelogic.Difficulty;
 import com.example.spacetrader.entity.gamelogic.Player;
 
 import com.example.spacetrader.viewmodels.CreatePlayerViewModel;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 
 /**
  * This class acts as the code behind for creating a new player
@@ -181,6 +186,13 @@ public class CreatePlayerActivity extends AppCompatActivity {
 
             Log.d("Edit", "Got new player data: " + player);
 
+            try {
+                FileOutputStream fos = this.openFileOutput("SpaceTrader.ser", Context.MODE_PRIVATE);
+                ObjectOutputStream os = new ObjectOutputStream(fos);
+                os.writeObject(player);
+                os.close();
+                fos.close();
+            } catch (IOException e) {e.printStackTrace();}
             viewModel.addPlayer(player);
 
             finish();
