@@ -12,6 +12,8 @@ import com.example.spacetrader.R;
 import com.example.spacetrader.entity.gamelogic.Player;
 import com.example.spacetrader.viewmodels.GetPlayerViewModel;
 
+import java.util.ArrayList;
+
 /**
  * This displays all students in the model, regardless of registration
  */
@@ -45,7 +47,7 @@ public class ViewAllPlayersActivity extends AppCompatActivity {
         //grab our view model instance
         viewModel = ViewModelProviders.of(this).get(GetPlayerViewModel.class);
 
-        Log.d("APP", viewModel.getPlayers().toString());
+        Log.d("APP", viewModel.getPlayer().toString());
 
         setTitle("Players");
 
@@ -54,7 +56,9 @@ public class ViewAllPlayersActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        adapter.setPlayerList(viewModel.getPlayers());
+        ArrayList<Player> players= new ArrayList<>();
+        players.add(viewModel.getPlayer());
+        adapter.setPlayerList(players);
 
         adapter.setOnPlayerClickListener(new PlayerAdapter.OnPlayerClickListener(){
             @Override

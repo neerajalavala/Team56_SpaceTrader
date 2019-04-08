@@ -22,6 +22,7 @@ import android.widget.Button;
 import com.example.spacetrader.R;
 import com.example.spacetrader.entity.commerce.MarketPlace;
 import com.example.spacetrader.entity.gamelogic.Player;
+import com.example.spacetrader.entity.gamelogic.randomEvent;
 import com.example.spacetrader.entity.world.Planet;
 import com.example.spacetrader.entity.world.SolarSystem;
 import com.example.spacetrader.viewmodels.GetPlayerViewModel;
@@ -35,8 +36,6 @@ public class mapFrag extends Fragment {
     private GetPlayerViewModel viewModel;
 
     private Player player;
-
-    private List<Player> players;
 
     private Integer speed;
 
@@ -86,15 +85,14 @@ public class mapFrag extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Get back arguments
-        this.player = (Player) getArguments().getSerializable("PLAYER_DATA");
+        this.viewModel = ViewModelProviders.of(this).get(GetPlayerViewModel.class);
+        this.player = viewModel.getPlayer();
 
         this.curr_planet = player.getCurrentPlanet();
 
         this.solar_systems = player.getGame().getSolarSystems();
 
         this.speed = player.getShipType().getMaxFuel();
-
-        this.viewModel = ViewModelProviders.of(this).get(GetPlayerViewModel.class);
 
     }
 
@@ -266,6 +264,34 @@ public class mapFrag extends Fragment {
                         }
                     }
 
+                    randomEvent event;
+                    for (int i = 0; i < turn_num; i++) {
+                        event = player.getGame().getRandomEvent();
+
+                        String event_name = "";
+                        if (event == randomEvent.CREDITS) {
+                            event_name = "Found Credits!";
+                        } else if (event == randomEvent.TRADER) {
+                            event_name = "Trader Ship Appeared!";
+                        } else if (event == randomEvent.PIRATE) {
+                            event_name = "Pirate Attack!";
+                        } else if (event == randomEvent.COPS) {
+                            event_name = "The Cops!";
+                        }
+
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                        builder.setMessage(event_name)
+                                .setCancelable(false)
+                                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        //do things
+                                    }
+                                });
+                        AlertDialog alert = builder.create();
+                        alert.show();
+                    }
+
+
                     currentSystemName.setText(next_system_name);
                     turns.setText("0");
 
@@ -273,14 +299,10 @@ public class mapFrag extends Fragment {
                     List<Planet> planets = next_system.getPlanets();
 
 
-                    for (int x = 0; x < players.size(); x++) {
-                        if (players.get(x).getID() == player.getID()) {
-                            //mapFrag.this.player = players.get(x);
-                            for (int y = 0; y < 3; y++) {
-                                if (planets.get(y).getName().contains(next_planet_name)) {
-                                    players.get(x).setCurrentPlayerPlanet(next_system, y);
-                                }
-                            }
+                    player = viewModel.getPlayer();
+                    for (int y = 0; y < 3; y++) {
+                        if (planets.get(y).getName().contains(next_planet_name)) {
+                            player.setCurrentPlayerPlanet(next_system, y);
                         }
                     }
 
@@ -304,11 +326,8 @@ public class mapFrag extends Fragment {
     @Override
     public void onResume() {
 
-        for (int x = 0; x < players.size(); x++) {
-            if (players.get(x).getID() == player.getID()) {
-                this.player = players.get(x);
-            }
-        }
+        this.player = viewModel.getPlayer();
+
 
         super.onResume();
 
@@ -365,11 +384,8 @@ public class mapFrag extends Fragment {
             System.out.println(player.getCurrentPlanet().getName());
 
 
-            for (int x = 0; x < players.size(); x++) {
-                if (players.get(x).getID() == player.getID()) {
-                    this.player = players.get(x);
-                }
-            }
+
+            this.player = viewModel.getPlayer();
 
             for (int y = 0; y < 3; y++) {
                 if (planets.get(y).getName().contains(next_planet_name)) {

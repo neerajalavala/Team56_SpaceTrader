@@ -25,8 +25,6 @@ public class ViewPlayerActivity extends AppCompatActivity {
 
     private GetPlayerViewModel viewModel;
 
-    private List<Player> players;
-
     private Player play;
 
     private TextView playerName;
@@ -67,29 +65,22 @@ public class ViewPlayerActivity extends AppCompatActivity {
         credits = findViewById(R.id.credit_num);
         shipType = findViewById(R.id.ship_type);
 
-        player = (Player) getIntent().getSerializableExtra(PLAYER_DATA);
-
         viewModel = ViewModelProviders.of(this).get(GetPlayerViewModel.class);
+        player = viewModel.getPlayer();
 
-        players = viewModel.getPlayers();
 
-        for (Integer i = 0; i < players.size(); i++) {
-            if (players.get(i).getID() == player.getID()) {
-                this.play = players.get(i);
 
-                playerName.setText(players.get(i).getName());
-                difficulty.setText(players.get(i).getDiff().toString());
+        playerName.setText(player.getName());
+        difficulty.setText(player.getDiff().toString());
 
-                pilot.setText(players.get(i).getPilot().toString());
-                fighter.setText(players.get(i).getFighter().toString());
-                trader.setText(players.get(i).getTrader().toString());
-                engineer.setText(players.get(i).getEngineer().toString());
+        pilot.setText(player.getPilot().toString());
+        fighter.setText(player.getFighter().toString());
+        trader.setText(player.getTrader().toString());
+        engineer.setText(player.getEngineer().toString());
 
-                credits.setText(players.get(i).getCredits().toString());
-                shipType.setText(players.get(i).getShipType().toString());
-                break;
-            }
-        }
+        credits.setText(player.getCredits().toString());
+        shipType.setText(player.getShipType().toString());
+
 
         setTitle("Select Save");
 
@@ -108,7 +99,7 @@ public class ViewPlayerActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        credits.setText(play.getCredits().toString());
+        credits.setText(player.getCredits().toString());
 
     }
 }

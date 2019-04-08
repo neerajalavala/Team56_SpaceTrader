@@ -32,8 +32,6 @@ public class planetFrag extends Fragment {
 
     private Player player;
 
-    private List<Player> players;
-
     private TextView currentPlanet;
     private TextView techLevel;
     private TextView resources;
@@ -77,7 +75,7 @@ public class planetFrag extends Fragment {
         System.out.println(curr_planet.getName());
 
         this.viewModel = ViewModelProviders.of(this).get(GetPlayerViewModel.class);
-        this.players = viewModel.getPlayers();
+        this.player = viewModel.getPlayer();
 
     }
 
@@ -132,12 +130,6 @@ public class planetFrag extends Fragment {
 
     @Override
     public void onResume() {
-
-        for (int x = 0; x < players.size(); x++){
-            if (players.get(x).getID() == player.getID()){
-                this.player = players.get(x);
-            }
-        }
 
         super.onResume();
 

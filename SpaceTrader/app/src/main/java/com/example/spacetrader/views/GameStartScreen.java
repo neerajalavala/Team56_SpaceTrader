@@ -59,7 +59,7 @@ public class GameStartScreen extends AppCompatActivity {
         this.player = (Player) getIntent().getSerializableExtra(PLAYER_DATA);
 
         this.viewModel = ViewModelProviders.of(this).get(GetPlayerViewModel.class);
-        this.players = viewModel.getPlayers();
+        player = viewModel.getPlayer();
 
         planetFrag pFrag = planetFrag.newInstance(player);
 
@@ -76,13 +76,8 @@ public class GameStartScreen extends AppCompatActivity {
 
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                        players = viewModel.getPlayers();
-                        for (int x = 0; x < players.size(); x++){
-                            if (players.get(x).getID() == player.getID()){
-                                GameStartScreen.this.player = players.get(x);
-                            }
-                        }
-
+                        player = viewModel.getPlayer();
+                        GameStartScreen.this.player = player;
 
                         final FragmentTransaction trans = getSupportFragmentManager().beginTransaction();
 
