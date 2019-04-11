@@ -33,8 +33,6 @@ public class Universe implements Serializable {
 
     private Integer[][] grid = new Integer[250][450];
 
-    private Difficulty diff;
-
     private String[] solarSystemNames = {
             "System A","System B","System C","System D","System E","System F","System G","System H","System I","System J"
     };
@@ -48,9 +46,8 @@ public class Universe implements Serializable {
 
     private Planet currentPlayerPlanet;
 
-    public Universe(int id, Difficulty diff){
+    public Universe(int id){
         this.playerID = id;
-        this.diff = diff;
 
         for (int i = 0; i < solarSystemNames.length; i++){
             solarSystems[i] = new SolarSystem(count, solarSystemNames[i], xlocs[i], ylocs[i]);
@@ -76,15 +73,15 @@ public class Universe implements Serializable {
         return this.grid;
     }
 
-    public UniverseEntity getGridLocData(Integer x,Integer y){
-        Integer id = grid[x][y];
-
-        if (id == null) {
-            return null;
-        } else {
-            return entities.get(id);
-        }
-    }
+//    public UniverseEntity getGridLocData(Integer x,Integer y){
+//        Integer id = grid[x][y];
+//
+//        if (id == null) {
+//            return null;
+//        } else {
+//            return entities.get(id);
+//        }
+//    }
 
     public void setGrid(Integer x,Integer y, Integer ent_id){
         grid[x][y] = ent_id;

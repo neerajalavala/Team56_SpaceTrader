@@ -73,13 +73,9 @@ public class MarketGood implements Serializable {
     }
 
     public MarketGood(MarketGoodType mGT, int id) {
-        this.marketGoodType = mGT;
-        this.quantity = 0;
-        this.techLevel = TechLevel.NONE;
-        this.resources = Resources.NONE;
+        this(mGT, false, TechLevel.NONE, Resources.NONE);
         this.price = mGT.getBasePrice();
         this.price_count = 0;
-
     }
 
     public int getQuantity() {

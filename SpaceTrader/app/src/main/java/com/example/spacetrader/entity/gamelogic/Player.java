@@ -60,7 +60,7 @@ public class Player implements Serializable {
 
         this.Credits = startCredits;
 
-        this.game = new Universe(player_ids, diff);
+        this.game = new Universe(player_ids);
 
         player_ids++;
 
