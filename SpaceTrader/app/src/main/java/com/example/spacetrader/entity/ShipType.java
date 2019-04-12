@@ -1,4 +1,4 @@
-package com.example.spacetrader.entity.gamelogic;
+package com.example.spacetrader.entity;
 
 public enum ShipType {
     FLEA("Flea", 10, 20),

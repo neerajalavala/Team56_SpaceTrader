@@ -1,4 +1,4 @@
-package com.example.spacetrader.entity.world;
+package com.example.spacetrader.entity;
 
 import java.util.ArrayList;
 import java.util.List;

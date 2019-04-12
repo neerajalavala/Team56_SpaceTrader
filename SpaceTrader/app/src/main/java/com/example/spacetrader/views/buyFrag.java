@@ -15,15 +15,14 @@ import android.content.Context;
 import android.app.Activity;
 
 import com.example.spacetrader.R;
-import com.example.spacetrader.entity.commerce.MarketGood;
-import com.example.spacetrader.entity.commerce.MarketPlace;
-import com.example.spacetrader.entity.gamelogic.CargoHold;
-import com.example.spacetrader.entity.gamelogic.Player;
-import com.example.spacetrader.entity.world.Planet;
+import com.example.spacetrader.entity.MarketGood;
+import com.example.spacetrader.entity.MarketPlace;
+import com.example.spacetrader.entity.CargoHold;
+import com.example.spacetrader.entity.Player;
+import com.example.spacetrader.entity.Planet;
 import com.example.spacetrader.viewmodels.GetPlayerViewModel;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class buyFrag extends Fragment {
     private FragmentActivity listener;

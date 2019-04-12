@@ -1,12 +1,6 @@
-package com.example.spacetrader.entity.world;
-
-import android.util.Log;
-
-import com.example.spacetrader.entity.gamelogic.Difficulty;
-import com.example.spacetrader.entity.gamelogic.randomEvent;
+package com.example.spacetrader.entity;
 
 import java.io.Serializable;
-import java.util.HashMap;
 import java.util.Random;
 
 public class Universe implements Serializable {
@@ -102,21 +96,21 @@ public class Universe implements Serializable {
         return currentPlayerPlanet;
     }
 
-    public randomEvent getRandomEvent() {
+    public RandomEvent getRandomEvent() {
 
         Random rand = new Random();
         int eventNum = rand.nextInt(11);
 
         if (eventNum <= 5) {
-            return randomEvent.CREDITS;
+            return RandomEvent.CREDITS;
         } else if (eventNum > 5 && eventNum <= 7) {
-            return randomEvent.TRADER;
+            return RandomEvent.TRADER;
         } else if (eventNum > 7 && eventNum <= 9) {
-            return randomEvent.PIRATE;
+            return RandomEvent.PIRATE;
         } else if (eventNum > 9) {
-            return randomEvent.COPS;
+            return RandomEvent.COPS;
         }
-        return randomEvent.COPS;
+        return RandomEvent.COPS;
     }
 
 

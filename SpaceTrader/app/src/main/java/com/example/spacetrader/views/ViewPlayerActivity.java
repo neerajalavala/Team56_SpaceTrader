@@ -9,11 +9,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.spacetrader.R;
-import com.example.spacetrader.entity.gamelogic.Player;
+import com.example.spacetrader.entity.Player;
 import com.example.spacetrader.viewmodels.GetPlayerViewModel;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ViewPlayerActivity extends AppCompatActivity {
 

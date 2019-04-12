@@ -1,7 +1,4 @@
-package com.example.spacetrader.entity.commerce;
-
-import com.example.spacetrader.entity.world.Resources;
-import com.example.spacetrader.entity.world.TechLevel;
+package com.example.spacetrader.entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;

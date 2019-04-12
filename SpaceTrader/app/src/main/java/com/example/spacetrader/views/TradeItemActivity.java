@@ -17,15 +17,13 @@ import android.content.Intent;
 import android.app.Activity;
 
 import com.example.spacetrader.R;
-import com.example.spacetrader.entity.commerce.MarketGood;
-import com.example.spacetrader.entity.commerce.MarketPlace;
-import com.example.spacetrader.entity.gamelogic.CargoHold;
-import com.example.spacetrader.entity.gamelogic.Player;
-import com.example.spacetrader.entity.world.Resources;
-import com.example.spacetrader.entity.world.TechLevel;
+import com.example.spacetrader.entity.MarketGood;
+import com.example.spacetrader.entity.MarketPlace;
+import com.example.spacetrader.entity.CargoHold;
+import com.example.spacetrader.entity.Player;
+import com.example.spacetrader.entity.Resources;
+import com.example.spacetrader.entity.TechLevel;
 import com.example.spacetrader.viewmodels.GetPlayerViewModel;
-
-import java.util.List;
 
 public class TradeItemActivity extends AppCompatActivity {
     /** a key for passing data */

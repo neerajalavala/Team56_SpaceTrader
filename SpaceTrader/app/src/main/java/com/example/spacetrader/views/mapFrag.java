@@ -21,18 +21,13 @@ import android.widget.TextView;
 import android.widget.Button;
 
 import com.example.spacetrader.R;
-import com.example.spacetrader.entity.commerce.MarketPlace;
-import com.example.spacetrader.entity.gamelogic.Player;
-import com.example.spacetrader.entity.gamelogic.randomEvent;
-import com.example.spacetrader.entity.world.Planet;
-import com.example.spacetrader.entity.world.SolarSystem;
-import com.example.spacetrader.persistence.Serializer;
+import com.example.spacetrader.entity.MarketPlace;
+import com.example.spacetrader.entity.Player;
+import com.example.spacetrader.entity.RandomEvent;
+import com.example.spacetrader.entity.Planet;
+import com.example.spacetrader.entity.SolarSystem;
 import com.example.spacetrader.viewmodels.GetPlayerViewModel;
-import com.google.firebase.FirebaseApp;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -273,18 +268,18 @@ public class mapFrag extends Fragment {
                         }
                     }
 
-                    randomEvent event;
+                    RandomEvent event;
                     for (int i = 0; i < turn_num; i++) {
                         event = player.getGame().getRandomEvent();
 
                         String event_name = "";
-                        if (event == randomEvent.CREDITS) {
+                        if (event == RandomEvent.CREDITS) {
                             event_name = "Found Credits!";
-                        } else if (event == randomEvent.TRADER) {
+                        } else if (event == RandomEvent.TRADER) {
                             event_name = "Trader Ship Appeared!";
-                        } else if (event == randomEvent.PIRATE) {
+                        } else if (event == RandomEvent.PIRATE) {
                             event_name = "Pirate Attack!";
-                        } else if (event == randomEvent.COPS) {
+                        } else if (event == RandomEvent.COPS) {
                             event_name = "The Cops!";
                         }
 

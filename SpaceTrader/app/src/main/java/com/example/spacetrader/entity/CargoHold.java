@@ -1,12 +1,7 @@
-package com.example.spacetrader.entity.gamelogic;
-
-import com.example.spacetrader.entity.commerce.MarketGood;
-import com.example.spacetrader.entity.commerce.MarketGoodType;
-import com.example.spacetrader.entity.world.TechLevel;
+package com.example.spacetrader.entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 public class CargoHold implements Serializable {
     private Integer count;

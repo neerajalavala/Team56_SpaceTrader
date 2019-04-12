@@ -13,10 +13,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.spacetrader.R;
-import com.example.spacetrader.entity.gamelogic.Player;
-import com.example.spacetrader.persistence.Serializer;
+import com.example.spacetrader.entity.Player;
 import com.example.spacetrader.viewmodels.CreatePlayerViewModel;
-import com.google.firebase.FirebaseApp;
 
 import java.io.FileInputStream;
 import java.io.IOException;

@@ -8,19 +8,15 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
 import com.example.spacetrader.R;
-import com.example.spacetrader.entity.gamelogic.Player;
-import com.example.spacetrader.entity.world.Planet;
-import com.example.spacetrader.entity.world.SolarSystem;
-import com.example.spacetrader.entity.world.Universe;
+import com.example.spacetrader.entity.Player;
+import com.example.spacetrader.entity.Planet;
+import com.example.spacetrader.entity.SolarSystem;
+import com.example.spacetrader.entity.Universe;
 import com.example.spacetrader.viewmodels.GetPlayerViewModel;
 
 import android.view.MenuItem;
 import android.support.annotation.NonNull;
 import android.widget.FrameLayout;
-import android.widget.ArrayAdapter;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import android.support.design.widget.BottomNavigationView;
 

@@ -1,7 +1,5 @@
 package com.example.spacetrader.persistence;
 
-import com.example.spacetrader.entity.gamelogic.Player;
-
 public interface DatabaseInteractor {
     /**
      * uploads an object represented as a byte array to the database

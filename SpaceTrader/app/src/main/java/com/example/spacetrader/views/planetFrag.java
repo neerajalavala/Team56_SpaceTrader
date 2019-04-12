@@ -13,15 +13,14 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.spacetrader.R;
-import com.example.spacetrader.entity.gamelogic.Player;
-import com.example.spacetrader.entity.world.Planet;
-import com.example.spacetrader.entity.world.SolarSystem;
+import com.example.spacetrader.entity.Player;
+import com.example.spacetrader.entity.Planet;
+import com.example.spacetrader.entity.SolarSystem;
 import com.example.spacetrader.viewmodels.GetPlayerViewModel;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.util.List;
 
 public class planetFrag extends Fragment {
 

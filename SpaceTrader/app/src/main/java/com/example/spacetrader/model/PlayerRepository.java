@@ -1,12 +1,7 @@
 package com.example.spacetrader.model;
 
-import android.util.Log;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import com.example.spacetrader.entity.gamelogic.Difficulty;
-import com.example.spacetrader.entity.gamelogic.Player;
+import com.example.spacetrader.entity.Difficulty;
+import com.example.spacetrader.entity.Player;
 
 /**
  * This class is an abstraction of the data storage for the business classes

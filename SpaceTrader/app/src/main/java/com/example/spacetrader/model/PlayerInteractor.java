@@ -1,6 +1,6 @@
 package com.example.spacetrader.model;
 
-import com.example.spacetrader.entity.gamelogic.Player;
+import com.example.spacetrader.entity.Player;
 
 /**
  * Provide the operations associated with Player Entity

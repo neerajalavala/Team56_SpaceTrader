@@ -1,9 +1,6 @@
-package com.example.spacetrader.entity.commerce;
+package com.example.spacetrader.entity;
 
 import android.support.annotation.NonNull;
-
-import com.example.spacetrader.entity.world.Resources;
-import com.example.spacetrader.entity.world.TechLevel;
 
 public enum MarketGoodType {
     WATER("Water", 30, 4, 3, TechLevel.PREAGRICULTURE, TechLevel.PREAGRICULTURE, TechLevel.MEDIEVAL, 0, Resources.LOTSOFWATER, Resources.DESERT),

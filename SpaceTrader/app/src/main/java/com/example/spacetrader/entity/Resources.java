@@ -1,4 +1,4 @@
-package com.example.spacetrader.entity.world;
+package com.example.spacetrader.entity;
 
 public enum Resources {
     NOSPECIALRESOURCES("No Special Resources", 0),

@@ -1,8 +1,4 @@
-package com.example.spacetrader.entity.gamelogic;
-
-import com.example.spacetrader.entity.world.SolarSystem;
-import com.example.spacetrader.entity.world.Universe;
-import com.example.spacetrader.entity.world.Planet;
+package com.example.spacetrader.entity;
 
 import java.io.Serializable;
 

@@ -1,6 +1,6 @@
-package com.example.spacetrader.entity.gamelogic;
+package com.example.spacetrader.entity;
 
-public enum randomEvent {
+public enum RandomEvent {
     COPS("Cops"),
     TRADER("Trader"),
     PIRATE("Pirate"),
@@ -8,7 +8,7 @@ public enum randomEvent {
 
     private String diff;
 
-    private randomEvent(String s) {
+    private RandomEvent(String s) {
         this.diff = s;
     }
 

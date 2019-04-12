@@ -1,6 +1,4 @@
-package com.example.spacetrader.entity.world;
-
-import com.example.spacetrader.entity.commerce.MarketPlace;
+package com.example.spacetrader.entity;
 
 import java.io.Serializable;
 import java.util.Random;

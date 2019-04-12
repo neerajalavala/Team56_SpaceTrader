@@ -1,6 +1,6 @@
 package com.example.spacetrader.persistence;
 
-import com.example.spacetrader.entity.gamelogic.Player;
+import com.example.spacetrader.entity.Player;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

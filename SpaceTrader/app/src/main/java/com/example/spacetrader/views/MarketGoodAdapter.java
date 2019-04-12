@@ -11,7 +11,7 @@ import android.widget.TextView;
 import android.widget.Button;
 
 import com.example.spacetrader.R;
-import com.example.spacetrader.entity.commerce.MarketGood;
+import com.example.spacetrader.entity.MarketGood;
 
 import java.util.ArrayList;
 import java.util.List;
