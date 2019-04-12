@@ -1,5 +1,7 @@
 package com.example.spacetrader.entity;
 
+import com.example.spacetrader.exception.PurchaseException;
+
 import java.io.Serializable;
 import java.util.Random;
 
@@ -116,5 +118,9 @@ public class Universe implements Serializable {
 
     public MarketPlace getCurrentPlayerMarketPlace() {
         return currentPlayerPlanet.getMarketPlace();
+    }
+
+    public void removeCurrentMarketPlaceQuantity(String goodName, int quantity) throws PurchaseException {
+        currentPlayerPlanet.removeMarketPlaceQuantity(goodName, quantity);
     }
 }

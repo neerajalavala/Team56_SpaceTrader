@@ -1,5 +1,7 @@
 package com.example.spacetrader.entity;
 
+import com.example.spacetrader.exception.PurchaseException;
+
 import java.io.Serializable;
 import java.util.Random;
 
@@ -64,5 +66,9 @@ public class Planet implements Serializable {
 
     public boolean equals(Planet planet) {
         return this.name.equals(planet.name);
+    }
+
+    public void removeMarketPlaceQuantity(String goodName, int quantity) throws PurchaseException {
+        marketPlace.removeGoods(goodName, quantity);
     }
 }

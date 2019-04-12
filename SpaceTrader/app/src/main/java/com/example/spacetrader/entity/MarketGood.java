@@ -142,4 +142,9 @@ public class MarketGood implements Serializable {
     public int getPrice() {
         return price;
     }
+
+    @Override
+    public String toString() {
+        return marketGoodType.toString();
+    }
 }

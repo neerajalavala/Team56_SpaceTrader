@@ -1,7 +1,11 @@
 package com.example.spacetrader.entity;
 
+import com.example.spacetrader.exception.PurchaseException;
+
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CargoHold implements Serializable {
     private Integer count;
@@ -10,51 +14,54 @@ public class CargoHold implements Serializable {
 
     private Integer capacity;
 
-    private ArrayList<MarketGood> hold = new ArrayList<>();
+    private Map<String, MarketGood> hold = new HashMap<>();
 
     public CargoHold(int cap, int id) {
         MarketGoodType[] types = MarketGoodType.values();
         this.capacity = cap;
         this.playerID = id;
 
-        for (int i = 0; i < types.length; i++) {
-            hold.add(new MarketGood(types[i], playerID));
+//        for (int i = 0; i < types.length; i++) {
+//            hold.add(new MarketGood(types[i], playerID));
+//        }
+
+        for (MarketGoodType t : types) {
+            hold.put(t.toString(), new MarketGood(t, playerID));
         }
         count = 0;
     }
 
-    public boolean addGood(MarketGood good, int q) {
-        if (count + q > capacity) {
-            return false;
+    public void addGoods(String goodName, int quantity) throws PurchaseException {
+        if (count + quantity > capacity) {
+            throw new PurchaseException("No room in hold!");
         }
-        for (MarketGood m : hold) {
-            if (m.getType() == good.getType()) {
-                System.out.println("adding " + q +  " " + m.getType().toString() + " to hold");
-                m.addQuantity(q);
-                break;
-            }
+        if (!hold.containsKey(goodName)) {
+            throw new PurchaseException("Illegal good name: " + goodName + "!");
         }
-        count += q;
-        return true;
+        hold.computeIfPresent(goodName, (k, v) -> {
+            v.addQuantity(quantity);
+            return v;
+        });
+        count += quantity;
     }
 
-    public boolean subQuant(MarketGood good, int q) {
-        if (count - q < 0) {
-            return false;
+    public void removeGoods(String goodName, int quantity) throws PurchaseException {
+        if (count - quantity < 0) {
+            throw new PurchaseException("Cannot sell " + quantity + " goods with only " + count + " in the hold!");
         }
-        for (MarketGood m : hold) {
-            if (m.getType() == good.getType() && m.getQuantity() - q >= 0) {
-                m.subQuantity(q);
-                count -= q;
-                return true;
-            }
+        if (!hold.containsKey(goodName)) {
+            throw new PurchaseException("Illegal good name: " + goodName + "!");
         }
-        return false;
+        hold.computeIfPresent(goodName, (k, v) -> {
+            v.subQuantity(quantity);
+            return v;
+        });
+        count -= quantity;
     }
 
     public ArrayList<MarketGood> getSellableGoods(TechLevel lev) {
         ArrayList<MarketGood> sellList = new ArrayList<>();
-        for (MarketGood m : hold) {
+        for (MarketGood m : hold.values()) {
             if (m.getType().canSell(lev) && m.getQuantity() > 0){
                 if (m.getPrice_count() % 2 == 0) {
                     m.setPrice();

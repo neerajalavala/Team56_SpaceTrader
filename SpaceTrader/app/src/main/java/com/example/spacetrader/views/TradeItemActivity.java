@@ -14,7 +14,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import android.content.Intent;
-import android.app.Activity;
 
 import com.example.spacetrader.R;
 import com.example.spacetrader.entity.MarketGood;
@@ -23,6 +22,7 @@ import com.example.spacetrader.entity.CargoHold;
 import com.example.spacetrader.entity.Player;
 import com.example.spacetrader.entity.Resources;
 import com.example.spacetrader.entity.TechLevel;
+import com.example.spacetrader.exception.PurchaseException;
 import com.example.spacetrader.viewmodels.GetPlayerViewModel;
 
 public class TradeItemActivity extends AppCompatActivity {
@@ -54,7 +54,7 @@ public class TradeItemActivity extends AppCompatActivity {
     private MarketGood good;
 
     private MarketPlace mark;
-
+    private boolean buying;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,9 +99,11 @@ public class TradeItemActivity extends AppCompatActivity {
         if (good.getTechLevel() == TechLevel.NONE && good.getResources() == Resources.NONE) {
             TradeButton.setText("Sell");
             setTitle("Sell " + good.getType().toString());
+            buying = false;
         } else {
             TradeButton.setText("Buy");
             setTitle("Buy " + good.getType().toString());
+            buying = true;
         }
 
         int max_quan = good.getQuantity();
@@ -149,79 +151,109 @@ public class TradeItemActivity extends AppCompatActivity {
         Integer trade_q = (Integer) trade_quantity.getSelectedItem();
         Integer trade_v = trade_q * good.getPrice();
 
-        this.player = viewModel.getPlayer();
-        this.hold = player.getCargoHold();
+//        this.player = viewModel.getPlayer();
+//        this.hold = player.getCargoHold();
 
-
-        if (TradeButton.getText().equals("Sell")) {
-            /* selling good from cargo hold */
-
-            if ((hold.getCount() - trade_q) < 0)  {
+        if (buying) {
+            try {
+                player.buy(good, trade_q);
+                finish();
+            } catch (PurchaseException p) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage("Cannot Sell more than you have")
+                builder.setMessage(p.getMessage())
                         .setCancelable(false)
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                //do things
-                            }
+                        .setPositiveButton("OK", (dialog, id) -> {
+                            //do things
                         });
                 AlertDialog alert = builder.create();
                 alert.show();
-            } else {
-                hold.subQuant(good, trade_q);
-                player.addCredits(trade_v);
-                finish();
             }
-
         } else {
-            /* buying good from marketplace */
-
-            if (trade_v > player.getCredits()) {
-                /* trade too expensive */
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage("Not enough credits to buy")
-                        .setCancelable(false)
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                //do things
-                            }
-                        });
-                AlertDialog alert = builder.create();
-                alert.show();
-            } else if((hold.getCount() + trade_q) > hold.getCapacity())  {
-                /* not enough space in hold */
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage("Not enough space in hold")
-                        .setCancelable(false)
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                //do things
-                            }
-                        });
-                AlertDialog alert = builder.create();
-                alert.show();
-
-            } else {
-
-                hold.addGood(good, trade_q);
-
-                mark = player.getCurrentMarketPlace();
-
-                mark.updateGoodQuantity(good, trade_q);
-
-                Intent resultIntent = new Intent();
-
-//                resultIntent.putExtra("UPDATED_MARKET", mark);
-//                setResult(Activity.RESULT_OK, resultIntent);
-
-                player.subCredits(trade_v);
-
-                System.out.println(player.getCredits().toString());
+            try {
+                player.sell(good, trade_q);
                 finish();
+            } catch (PurchaseException p) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage(p.getMessage())
+                        .setCancelable(false)
+                        .setPositiveButton("OK", (dialog, id) -> {
+                            //do things
+                        });
+                AlertDialog alert = builder.create();
+                alert.show();
             }
         }
+
+
+//        if (TradeButton.getText().equals("Sell")) {
+//            /* selling good from cargo hold */
+//
+//            if ((hold.getCount() - trade_q) < 0)  {
+//                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//                builder.setMessage("Cannot Sell more than you have")
+//                        .setCancelable(false)
+//                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//                            public void onClick(DialogInterface dialog, int id) {
+//                                //do things
+//                            }
+//                        });
+//                AlertDialog alert = builder.create();
+//                alert.show();
+//            } else {
+//                hold.removeGoods(good, trade_q);
+//                player.addCredits(trade_v);
+//                finish();
+//            }
+//
+//        } else {
+//            /* buying good from marketplace */
+//
+//            if (trade_v > player.getCredits()) {
+//                /* trade too expensive */
+//
+//                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//                builder.setMessage("Not enough credits to buy")
+//                        .setCancelable(false)
+//                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//                            public void onClick(DialogInterface dialog, int id) {
+//                                //do things
+//                            }
+//                        });
+//                AlertDialog alert = builder.create();
+//                alert.show();
+//            } else if((hold.getCount() + trade_q) > hold.getCapacity())  {
+//                /* not enough space in hold */
+//
+//                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//                builder.setMessage("Not enough space in hold")
+//                        .setCancelable(false)
+//                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//                            public void onClick(DialogInterface dialog, int id) {
+//                                //do things
+//                            }
+//                        });
+//                AlertDialog alert = builder.create();
+//                alert.show();
+//
+//            } else {
+//
+//                try{hold.addGoods(good.toString(), trade_q);} catch (Exception e) {e.printStackTrace();}
+//
+//                mark = player.getCurrentMarketPlace();
+//
+//                mark.updateGoodQuantity(good, trade_q);
+//
+//                Intent resultIntent = new Intent();
+//
+////                resultIntent.putExtra("UPDATED_MARKET", mark);
+////                setResult(Activity.RESULT_OK, resultIntent);
+//
+//                player.subCredits(trade_v);
+//
+//                System.out.println(player.getCredits().toString());
+//                finish();
+//            }
+//        }
 
     }
 
