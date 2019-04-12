@@ -40,12 +40,12 @@ import com.example.spacetrader.entity.SolarSystem;
             //bind the player data for one player
             SolarSystem solarSystem = SolarSystemList[position];
 
-            Log.d("APP", "Binding: " + position + " " + SolarSystemList[position].getName());
+//            Log.d("APP", "Binding: " + position + " " + SolarSystemList[position].getName());
 
             if(solarSystem.getName() == null) {
                 holder.solarSystemName.setText("None");
             } else {
-                holder.solarSystemName.setText(SolarSystemList[position].getName());
+                holder.solarSystemName.setText(solarSystem.getName());
             }
         }
 

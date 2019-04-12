@@ -80,4 +80,8 @@ public class CargoHold implements Serializable {
     public Integer getCount() {
         return count;
     }
+
+    public String toString() {
+        return "Hold: " + count + "/" + capacity;
+    }
 }

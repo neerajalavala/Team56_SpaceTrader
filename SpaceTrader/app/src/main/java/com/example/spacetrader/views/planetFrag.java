@@ -16,6 +16,7 @@ import com.example.spacetrader.R;
 import com.example.spacetrader.entity.Player;
 import com.example.spacetrader.entity.Planet;
 import com.example.spacetrader.entity.SolarSystem;
+import com.example.spacetrader.entity.Universe;
 import com.example.spacetrader.viewmodels.GetPlayerViewModel;
 
 import java.io.FileOutputStream;
@@ -33,6 +34,7 @@ public class planetFrag extends Fragment {
     private SolarSystem[] solar_systems;
 
     private Player player;
+    private Universe game;
 
     private TextView currentPlanet;
     private TextView techLevel;
@@ -71,9 +73,10 @@ public class planetFrag extends Fragment {
 
         this.viewModel = ViewModelProviders.of(this).get(GetPlayerViewModel.class);
         this.player = viewModel.getPlayer();
+        this.game = viewModel.getPlayerGame();
 
         this.curr_planet = player.getCurrentPlanet();
-        this.solar_systems = player.getGame().getSolarSystems();
+        this.solar_systems = game.getSolarSystems();
 
 
 
@@ -101,14 +104,15 @@ public class planetFrag extends Fragment {
         this.repairButton = (Button) getView().findViewById(R.id.repair_button);
         this.saveButton = (Button ) getView().findViewById(R.id.save_button);
 
-        for (int i = 0; i < solar_systems.length; i++) {
-            if (solar_systems[i].getEntityID() == curr_planet.getSolar_id()) {
-                String currentSystemName = solar_systems[i].getName();
-                ((GameStartScreen) getActivity())
-                        .setActionBarTitle(currentSystemName);
-            }
-        }
+//        for (int i = 0; i < solar_systems.length; i++) {
+//            if (solar_systems[i].getEntityID() == curr_planet.getSolar_id()) {
+//                String currentSystemName = solar_systems[i].getName();
+//                ((GameStartScreen) getActivity())
+//                        .setActionBarTitle(currentSystemName);
+//            }
+//        }
 
+        ((GameStartScreen) getActivity()).setActionBarTitle(curr_planet.getName());
         currentPlanet.setText(curr_planet.getName());
         techLevel.setText(curr_planet.getTechLevel().toString());
         resources.setText(curr_planet.getResources().toString());
@@ -122,7 +126,8 @@ public class planetFrag extends Fragment {
         refuelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                refuelShip();
+                player.refuel();
+                fuel.setText(player.getFuel() + "/" + player.getShipMaxFuel());
             }
         });
 
@@ -157,13 +162,5 @@ public class planetFrag extends Fragment {
 
         super.onResume();
 
-    }
-
-    public void refuelShip() {
-        while (player.getCredits() - 50 >= 0 && player.getFuel() < player.getShipMaxFuel()) {
-            player.addFuel(1);
-            player.subCredits(50);
-        }
-        fuel.setText(player.getFuel() + "/" + player.getShipMaxFuel());
     }
 }

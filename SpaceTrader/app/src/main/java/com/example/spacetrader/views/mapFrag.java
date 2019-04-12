@@ -274,7 +274,7 @@ public class mapFrag extends Fragment {
 
                     RandomEvent event;
                     for (int i = 0; i < turn_num; i++) {
-                        event = player.getGame().getRandomEvent();
+                        event = game.getRandomEvent();
 
                         String event_name = "";
                         if (event == RandomEvent.CREDITS) {
@@ -364,15 +364,15 @@ public class mapFrag extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case (55): {
-                if (resultCode == Activity.RESULT_OK) {
-                    MarketPlace returnValue = (MarketPlace) data.getSerializableExtra("UPDATED_MARKET");
-                    player.getCurrentPlanet().setMarketPlace(returnValue);
-                }
-                break;
-            }
-        }
+//        switch (requestCode) {
+//            case (55): {
+//                if (resultCode == Activity.RESULT_OK) {
+//                    MarketPlace returnValue = (MarketPlace) data.getSerializableExtra("UPDATED_MARKET");
+//                    player.getCurrentPlanet().setMarketPlace(returnValue);
+//                }
+//                break;
+//            }
+//        }
     }
 
     public void onTravelPressed(View view) {

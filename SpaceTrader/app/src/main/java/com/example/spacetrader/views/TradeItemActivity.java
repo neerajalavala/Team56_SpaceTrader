@@ -88,7 +88,7 @@ public class TradeItemActivity extends AppCompatActivity {
         this.hold = player.getCargoHold();
 
 
-        /* setting texy box values */
+        /* setting text box values */
         MarketGoodName.setText(good.getType().toString());
 
         Integer price = (Integer)good.getPrice();
@@ -209,7 +209,7 @@ public class TradeItemActivity extends AppCompatActivity {
 
                 hold.addGood(good, trade_q);
 
-                MarketPlace mark = player.getCurrentMarketPlace();
+                mark = player.getCurrentMarketPlace();
 
                 mark.updateGoodQuantity(good, trade_q);
 

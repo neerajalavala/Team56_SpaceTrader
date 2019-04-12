@@ -43,7 +43,7 @@ public class MarketGoodAdapter extends RecyclerView.Adapter<MarketGoodAdapter.Ma
         //bind the MarketGood data for one MarketGood
         MarketGood MarketGood = MarketGoodList.get(position);
 
-        Log.d("APP", "Binding: " + position + " " + MarketGoodList.get(position));
+//        Log.d("APP", "Binding: " + position + " " + MarketGoodList.get(position));
 
         holder.MarketGoodName.setText(MarketGood.getType().toString());
 

@@ -96,8 +96,8 @@ public class buyFrag extends Fragment {
         recyclerView.setAdapter(adapter);
 
         ((GameStartScreen) getActivity())
-                .setActionBarTitle("Hold: " + hold.getCount().toString() + "/" + hold.getCapacity().toString()
-                        + "  Credits: " + player.getCredits().toString());
+                .setActionBarTitle(hold.toString()
+                        + "  Credits: " + player.getCredits());
 
 
     }
@@ -131,8 +131,8 @@ public class buyFrag extends Fragment {
         adapter.setMarketGoodList(goods);
 
         ((GameStartScreen) getActivity())
-                .setActionBarTitle("Hold: " + hold.getCount().toString() + "/" + hold.getCapacity().toString()
-                + "  Credits: " + player.getCredits().toString());
+                .setActionBarTitle(hold.toString()
+                + "  Credits: " + player.getCredits());
 
         adapter.setOnMarketGoodClickListener(new MarketGoodAdapter.OnMarketGoodClickListener(){
             @Override

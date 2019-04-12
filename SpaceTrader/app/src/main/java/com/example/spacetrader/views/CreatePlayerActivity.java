@@ -149,7 +149,7 @@ public class CreatePlayerActivity extends AppCompatActivity {
      * @param view the button that was pressed
      */
     public void onAddPressed(View view) {
-        Log.d("Edit", "Add Player Pressed");
+//        Log.d("Edit", "Add Player Pressed");
 
         int pilot = (int) pilot_spinner.getSelectedItem();
         int fighter = (int) fighter_spinner.getSelectedItem();

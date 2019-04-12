@@ -70,6 +70,13 @@ public class Player implements Serializable {
     }
 */
 
+    public void refuel() {
+        while (Credits - 50 >= 0 && fuel < Ship_type.getMaxFuel()) {
+            addFuel(1);
+            subCredits(50);
+        }
+    }
+
     public CargoHold getCargoHold() {
         return cargoHold;
     }

@@ -105,7 +105,7 @@ public class sellFrag extends Fragment {
 
         this.player = viewModel.getPlayer();
         this.hold = player.getCargoHold();
-        this.market = player.getCurrentPlanet().getMarketPlace();
+        this.market = player.getCurrentMarketPlace();
 
         super.onResume();
 
@@ -114,14 +114,14 @@ public class sellFrag extends Fragment {
         adapter.setMarketGoodList(goods);
 
         ((GameStartScreen) getActivity())
-                .setActionBarTitle("Hold: " + hold.getCount().toString() + "/" + hold.getCapacity().toString());
+                .setActionBarTitle(hold.toString());
 
         adapter.setOnMarketGoodClickListener(new MarketGoodAdapter.OnMarketGoodClickListener(){
             @Override
             public void onMarketGoodClicked(MarketGood good) {
                 Intent intent = new Intent(getActivity(), TradeItemActivity.class);
                 intent.putExtra(trade_good, good);
-                intent.putExtra(player_data, player);
+//                intent.putExtra(player_data, player);
                 startActivityForResult(intent, 45);
             }
         });
@@ -130,15 +130,15 @@ public class sellFrag extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch(requestCode) {
-            case (45) : {
-                if (resultCode == Activity.RESULT_OK) {
-                    MarketPlace returnValue = (MarketPlace) data.getSerializableExtra("UPDATED_MARKET");
-                    this.market = returnValue;
-                    player.getCurrentPlanet().setMarketPlace(returnValue);
-                }
-                break;
-            }
-        }
+//        switch(requestCode) {
+//            case (45) : {
+//                if (resultCode == Activity.RESULT_OK) {
+//                    MarketPlace returnValue = (MarketPlace) data.getSerializableExtra("UPDATED_MARKET");
+//                    this.market = returnValue;
+//                    player.getCurrentPlanet().setMarketPlace(returnValue);
+//                }
+//                break;
+//            }
+//        }
     }
 }
