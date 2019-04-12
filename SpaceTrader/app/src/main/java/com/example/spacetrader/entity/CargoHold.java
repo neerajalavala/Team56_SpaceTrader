@@ -84,4 +84,8 @@ public class CargoHold implements Serializable {
     public String toString() {
         return "Hold: " + count + "/" + capacity;
     }
+
+    public boolean canAdd(int quantity) {
+        return count + quantity <= capacity;
+    }
 }

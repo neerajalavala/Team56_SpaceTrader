@@ -84,7 +84,6 @@ public class TradeItemActivity extends AppCompatActivity {
 
         this.viewModel = ViewModelProviders.of(this).get(GetPlayerViewModel.class);
         this.player = viewModel.getPlayer();
-
         this.hold = player.getCargoHold();
 
 
@@ -107,7 +106,6 @@ public class TradeItemActivity extends AppCompatActivity {
 
         int max_quan = good.getQuantity();
         Integer[] quan_vals = new Integer[max_quan];
-
         for (int i = 0; i < max_quan; i++) {
             quan_vals[i] = i + 1;
         }

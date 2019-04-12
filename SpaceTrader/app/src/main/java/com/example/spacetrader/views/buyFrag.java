@@ -110,9 +110,9 @@ public class buyFrag extends Fragment {
     @Override
     public void onResume() {
 
-        this.player = viewModel.getPlayer();
-        this.hold = player.getCargoHold();
-        this.market = player.getCurrentMarketPlace();
+//        this.player = viewModel.getPlayer();
+//        this.hold = player.getCargoHold();
+//        this.market = player.getCurrentMarketPlace();
 
 
 //        for (int x = 0; x < players.size(); x++){

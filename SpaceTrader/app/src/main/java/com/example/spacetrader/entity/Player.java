@@ -1,12 +1,15 @@
 package com.example.spacetrader.entity;
 
+import com.example.spacetrader.exception.PlayerCreationException;
+import com.example.spacetrader.exception.PurchaseException;
+
 import java.io.Serializable;
 
 public class Player implements Serializable {
     /** counter for id */
     private static Integer player_ids = 1;
     /** total number of skill points */
-    private final Integer skillPtCap = 16;
+    private static final Integer skillPtCap = 16;
     /** starting number of credits */
     private final Integer startCredits = 1000;
     /** a globally unique number for this object */
@@ -58,17 +61,26 @@ public class Player implements Serializable {
 
         cargoHold = new CargoHold(Ship_type.getCapacity(), this.ID);
     }
-/*
-    public static Player createPlayer(String name, Integer pilot, Integer fighter, Integer trader, Integer engineer, Difficulty diff) {
+
+    public static Player createPlayer(String name, Integer pilot, Integer fighter, Integer trader, Integer engineer, Difficulty diff) throws PlayerCreationException {
         if ((pilot + fighter + trader + engineer != skillPtCap) || (pilot < 0 || fighter < 0 || trader < 0 || engineer < 0)) {
-            // throw new IllegalPointAllocationException
+            throw new PlayerCreationException("Invalid distribution of skill points!");
         }
-        if (name.equals("") || name == null) {
-            // throw new InvalidNameException
+        if (name == null || name.equals("")) {
+            throw new PlayerCreationException("Name cannot be empty");
         }
         return new Player(name, pilot, fighter, trader, engineer, diff);
     }
-*/
+
+    public void buy(MarketGood marketGood, int quantity) throws PurchaseException {
+        if (marketGood.getPrice() * quantity > this.Credits) {
+            throw new PurchaseException("Not enough credits for this purchase");
+        }
+        if (!cargoHold.canAdd(quantity)) {
+            throw new PurchaseException("Not enough space in hold!");
+        }
+
+    }
 
     public void refuel() {
         while (Credits - 50 >= 0 && fuel < Ship_type.getMaxFuel()) {
