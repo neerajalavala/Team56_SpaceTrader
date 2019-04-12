@@ -21,10 +21,6 @@ public class CargoHold implements Serializable {
         this.capacity = cap;
         this.playerID = id;
 
-//        for (int i = 0; i < types.length; i++) {
-//            hold.add(new MarketGood(types[i], playerID));
-//        }
-
         for (MarketGoodType t : types) {
             hold.put(t.toString(), new MarketGood(t, playerID));
         }
@@ -90,9 +86,5 @@ public class CargoHold implements Serializable {
 
     public String toString() {
         return "Hold: " + count + "/" + capacity;
-    }
-
-    public boolean canAdd(int quantity) {
-        return count + quantity <= capacity;
     }
 }
