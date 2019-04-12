@@ -1,15 +1,17 @@
 package com.example.spacetrader.persistence;
 
+import com.example.spacetrader.entity.Player;
+
 public interface DatabaseInteractor {
     /**
-     * uploads an object represented as a byte array to the database
+     * Uploads player data to the database
      */
-    void upload(byte[] bytes);
+    void upload(Player player);
 
     /**
-     * Downloads a file from the given url to a byte array
+     * Creates a player object using database data
      *
-     * @return a byte array representing the object
+     * @return the player object with data from the database
      */
-    byte[] download();
+    Player download();
 }
