@@ -74,7 +74,7 @@ public class Player implements Serializable {
 
     public void buy(MarketGood marketGood, int quantity) throws PurchaseException {
         if (marketGood.getPrice() * quantity > this.Credits) {
-            throw new PurchaseException("Not enough credits for this purchase");
+            throw new PurchaseException("Not enough credits for this purchase!");
         }
         cargoHold.addGoods(marketGood.toString(), quantity);
         game.removeCurrentMarketPlaceQuantity(marketGood.toString(), quantity);

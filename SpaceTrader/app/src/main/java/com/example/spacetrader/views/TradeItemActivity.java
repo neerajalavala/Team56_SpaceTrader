@@ -150,7 +150,7 @@ public class TradeItemActivity extends AppCompatActivity {
                 finish();
             } catch (PurchaseException p) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage(p.getMessage())
+                builder.setMessage(p.toString())
                         .setCancelable(false)
                         .setPositiveButton("OK", (dialog, id) -> {
                             //do things
@@ -164,7 +164,7 @@ public class TradeItemActivity extends AppCompatActivity {
                 finish();
             } catch (PurchaseException p) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage(p.getMessage())
+                builder.setMessage(p.toString())
                         .setCancelable(false)
                         .setPositiveButton("OK", (dialog, id) -> {
                             //do things
