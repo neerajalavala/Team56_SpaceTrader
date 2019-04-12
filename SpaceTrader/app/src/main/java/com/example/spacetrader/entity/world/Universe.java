@@ -40,7 +40,7 @@ public class Universe implements Serializable {
     private int[] xlocs = {30,50,70,90,110,130,150,170,190,210};
     private  int[] ylocs = {20,40,60,80,100,120,140,160,180,200};
 
-    private HashMap<Integer, UniverseEntity> entities  = new HashMap<Integer, UniverseEntity>();
+    //private HashMap<Integer, UniverseEntity> entities  = new HashMap<Integer, UniverseEntity>();
 
     private SolarSystem[] solarSystems = new SolarSystem[solarSystemNames.length];
 
@@ -49,21 +49,17 @@ public class Universe implements Serializable {
     public Universe(int id){
         this.playerID = id;
 
-        for (int i = 0; i < solarSystemNames.length; i++){
+        for (int i = 0; i < solarSystemNames.length; i++) {
             solarSystems[i] = new SolarSystem(count, solarSystemNames[i], xlocs[i], ylocs[i]);
 
             /* Sets coordinates in the solar system to the id */
-            setGrid(xlocs[i],ylocs[i], count);
+            setGrid(xlocs[i], ylocs[i], count);
 
             /* maps id to entity */
-            entities.put(count, solarSystems[i]);
+            //entities.put(count, solarSystems[i]);
 
             /* increases count to make new id */
             count++;
-        }
-        Log.d("M6_LOGCAT", "Player " + id + " Universe:");
-        for (int i = 0; i < solarSystems.length; i++) {
-            largeLog("M6_LOGCAT", "In System " + solarSystemNames[i] + " at location <" + xlocs[i] + ", " + ylocs[i] + ">: " + solarSystems[i].toString());
         }
 
         this.currentPlayerPlanet = solarSystems[0].getPlanet(0);
@@ -90,15 +86,6 @@ public class Universe implements Serializable {
 
     public SolarSystem[] getSolarSystems(){
         return solarSystems;
-    }
-
-    public static void largeLog(String tag, String content) {
-        if (content.length() > 4000) {
-            Log.d(tag, content.substring(0, 4000));
-            largeLog(tag, content.substring(4000));
-        } else {
-            Log.d(tag, content);
-        }
     }
 
     /**

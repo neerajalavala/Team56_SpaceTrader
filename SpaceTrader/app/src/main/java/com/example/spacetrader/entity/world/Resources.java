@@ -25,9 +25,6 @@ public enum Resources {
     }
 
     public int index() {
-        if (this == null) {
-            return -1;
-        }
         return index;
     }
 

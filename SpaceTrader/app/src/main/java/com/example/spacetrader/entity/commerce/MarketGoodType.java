@@ -1,5 +1,7 @@
 package com.example.spacetrader.entity.commerce;
 
+import android.support.annotation.NonNull;
+
 import com.example.spacetrader.entity.world.Resources;
 import com.example.spacetrader.entity.world.TechLevel;
 
@@ -94,6 +96,8 @@ public enum MarketGoodType {
         return index;
     }
 
+    @NonNull
+    @Override
     public String toString() {
         return this.name;
     }
