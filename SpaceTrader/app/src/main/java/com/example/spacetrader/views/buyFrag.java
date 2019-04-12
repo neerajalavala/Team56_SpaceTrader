@@ -112,7 +112,7 @@ public class buyFrag extends Fragment {
 
         this.player = viewModel.getPlayer();
         this.hold = player.getCargoHold();
-        this.market = player.getCurrentPlanet().getMarketPlace();
+        this.market = player.getCurrentMarketPlace();
 
 
 //        for (int x = 0; x < players.size(); x++){
@@ -148,15 +148,15 @@ public class buyFrag extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch(requestCode) {
-            case (55) : {
-                if (resultCode == Activity.RESULT_OK) {
-                    MarketPlace returnValue = (MarketPlace) data.getSerializableExtra("UPDATED_MARKET");
-                    this.market = returnValue;
-                    player.getCurrentPlanet().setMarketPlace(returnValue);
-                }
-                break;
-            }
-        }
+//        switch(requestCode) {
+//            case (55) : {
+//                if (resultCode == Activity.RESULT_OK) {
+//                    MarketPlace returnValue = (MarketPlace) data.getSerializableExtra("UPDATED_MARKET");
+//                    this.market = returnValue;
+//                    player.getCurrentPlanet().setMarketPlace(returnValue);
+//                }
+//                break;
+//            }
+//        }
     }
 }

@@ -1,5 +1,7 @@
 package com.example.spacetrader.model;
 
+import com.example.spacetrader.entity.Universe;
+
 /**
  * Interface for our concrete interactors
  */
@@ -14,4 +16,6 @@ public abstract class Interactor {
     protected PlayerRepository getRepository() {
         return myPlayerRepository;
     }
+
+    public abstract Universe getPlayerGame();
 }

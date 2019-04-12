@@ -2,6 +2,7 @@ package com.example.spacetrader.model;
 
 import com.example.spacetrader.entity.Difficulty;
 import com.example.spacetrader.entity.Player;
+import com.example.spacetrader.entity.Universe;
 
 /**
  * This class is an abstraction of the data storage for the business classes
@@ -41,5 +42,9 @@ class PlayerRepository {
      */
     public void newPlayer(Player player) {
         this.player = player;
+    }
+
+    public Universe getPlayerGame() {
+        return player.getGame();
     }
 }

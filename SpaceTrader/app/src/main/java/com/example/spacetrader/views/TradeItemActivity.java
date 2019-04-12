@@ -209,14 +209,14 @@ public class TradeItemActivity extends AppCompatActivity {
 
                 hold.addGood(good, trade_q);
 
-                MarketPlace mark = player.getCurrentPlanet().getMarketPlace();
+                MarketPlace mark = player.getCurrentMarketPlace();
 
                 mark.updateGoodQuantity(good, trade_q);
 
                 Intent resultIntent = new Intent();
 
-                resultIntent.putExtra("UPDATED_MARKET", mark);
-                setResult(Activity.RESULT_OK, resultIntent);
+//                resultIntent.putExtra("UPDATED_MARKET", mark);
+//                setResult(Activity.RESULT_OK, resultIntent);
 
                 player.subCredits(trade_v);
 

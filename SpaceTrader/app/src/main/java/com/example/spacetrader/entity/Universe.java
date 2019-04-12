@@ -114,4 +114,7 @@ public class Universe implements Serializable {
     }
 
 
+    public MarketPlace getCurrentPlayerMarketPlace() {
+        return currentPlayerPlanet.getMarketPlace();
+    }
 }

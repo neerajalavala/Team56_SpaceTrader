@@ -26,6 +26,7 @@ import com.example.spacetrader.entity.Player;
 import com.example.spacetrader.entity.RandomEvent;
 import com.example.spacetrader.entity.Planet;
 import com.example.spacetrader.entity.SolarSystem;
+import com.example.spacetrader.entity.Universe;
 import com.example.spacetrader.viewmodels.GetPlayerViewModel;
 
 import java.util.ArrayList;
@@ -37,6 +38,7 @@ public class mapFrag extends Fragment {
     private GetPlayerViewModel viewModel;
 
     private Player player;
+    private Universe game;
 
     private Integer speed;
 
@@ -91,11 +93,13 @@ public class mapFrag extends Fragment {
 
         this.player = viewModel.getPlayer();
 
+        this.game = viewModel.getPlayerGame();
+
         this.curr_planet = player.getCurrentPlanet();
 
-        this.solar_systems = player.getGame().getSolarSystems();
+        this.solar_systems = game.getSolarSystems();
 
-        this.speed = player.getShipType().getMaxFuel();
+        this.speed = player.getShipMaxFuel();
 
     }
 
@@ -163,7 +167,7 @@ public class mapFrag extends Fragment {
                 planets_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 systemPlanetsSpinner.setAdapter(planets_adapter);
                 for (int i = 0; i < planet_names.length; i++) {
-                    if (player.getCurrentPlanet().getName().equals(planet_names[i])) systemPlanetsSpinner.setSelection(i);
+                    if (player.getCurrentPlanet().equals(planets.get(i))) systemPlanetsSpinner.setSelection(i);
                 }
 
                 if (currentSystem.getEntityID() == next_system_2.getEntityID()) {

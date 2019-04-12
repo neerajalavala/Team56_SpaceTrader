@@ -5,6 +5,7 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.support.annotation.NonNull;
 
 import com.example.spacetrader.entity.Player;
+import com.example.spacetrader.entity.Universe;
 import com.example.spacetrader.model.Model;
 import com.example.spacetrader.model.PlayerInteractor;
 
@@ -26,4 +27,7 @@ public class GetPlayerViewModel extends AndroidViewModel {
         return interactor.getPlayer();
     }
 
+    public Universe getPlayerGame() {
+        return interactor.getPlayerGame();
+    }
 }

@@ -5,16 +5,12 @@ import java.io.Serializable;
 public class Player implements Serializable {
     /** counter for id */
     private static Integer player_ids = 1;
-
-    /** a globally unique number for this object */
-    private int ID;
-
     /** total number of skill points */
     private final Integer skillPtCap = 16;
-
     /** starting number of credits */
     private final Integer startCredits = 1000;
-
+    /** a globally unique number for this object */
+    private int ID;
     /** difficulty player is playing at */
     private Difficulty diff;
 
@@ -64,7 +60,7 @@ public class Player implements Serializable {
     }
 /*
     public static Player createPlayer(String name, Integer pilot, Integer fighter, Integer trader, Integer engineer, Difficulty diff) {
-        if ((pilot + fighter + trader + engineer != 16) || (pilot < 0 || fighter < 0 || trader < 0 || engineer < 0)) {
+        if ((pilot + fighter + trader + engineer != skillPtCap) || (pilot < 0 || fighter < 0 || trader < 0 || engineer < 0)) {
             // throw new IllegalPointAllocationException
         }
         if (name.equals("") || name == null) {
@@ -73,8 +69,13 @@ public class Player implements Serializable {
         return new Player(name, pilot, fighter, trader, engineer, diff);
     }
 */
+
     public CargoHold getCargoHold() {
         return cargoHold;
+    }
+
+    public void setCargoHold(CargoHold cargoHold) {
+        this.cargoHold = cargoHold;
     }
 
     public boolean addCredits(int q) {
@@ -105,27 +106,12 @@ public class Player implements Serializable {
         return Engineer;
     }
 
-    public void setDiff(Difficulty diff) {
-        this.diff = diff;
-    }
-
     public Difficulty getDiff() {
         return this.diff;
     }
 
-    /**
-     * method for setting player id
-     */
-    public void setID(Integer id) {
-        this.ID = id;
-    }
-
-    /**
-     * method for getting player id
-     * @return id of player
-     */
-    public Integer getID() {
-        return this.ID;
+    public void setDiff(Difficulty diff) {
+        this.diff = diff;
     }
 
     /**
@@ -183,9 +169,8 @@ public class Player implements Serializable {
         this.game = game;
     }
 
-    @Override
-    public String toString() {
-        return this.getName();
+    public MarketPlace getCurrentMarketPlace() {
+        return game.getCurrentPlayerMarketPlace();
     }
 
     public Planet getCurrentPlanet() {
@@ -194,10 +179,6 @@ public class Player implements Serializable {
 
     public void setCurrentPlayerPlanet(SolarSystem s, int i) {
         game.setCurrentPlayerPlanet(s, i);
-    }
-
-    public void setCargoHold(CargoHold cargoHold) {
-        this.cargoHold = cargoHold;
     }
 
     public int getFuel() {
@@ -220,5 +201,10 @@ public class Player implements Serializable {
 
     public int getShipMaxFuel() {
         return Ship_type.getMaxFuel();
+    }
+
+    @Override
+    public String toString() {
+        return this.getName();
     }
 }
