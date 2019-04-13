@@ -200,8 +200,8 @@ public class Player implements Serializable {
         return game.getCurrentPlayerPlanet();
     }
 
-    public void setCurrentPlayerPlanet(SolarSystem s, int i) {
-        game.setCurrentPlayerPlanet(s, i);
+    public void setCurrentPlayerPlanet(SolarSystem s, Planet p) {
+        game.setCurrentPlayerLocation(s, p);
     }
 
     public int getFuel() {
@@ -224,6 +224,11 @@ public class Player implements Serializable {
 
     public int getShipMaxFuel() {
         return Ship_type.getMaxFuel();
+    }
+
+    public void travelTo(SolarSystem s, Planet p, int turns) {
+        game.setCurrentPlayerLocation(s, p);
+        fuel -= turns;
     }
 
     @Override

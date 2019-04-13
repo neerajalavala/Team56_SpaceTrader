@@ -3,6 +3,8 @@ package com.example.spacetrader.entity;
 import com.example.spacetrader.exception.PurchaseException;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Universe implements Serializable {
@@ -41,6 +43,7 @@ public class Universe implements Serializable {
     private SolarSystem[] solarSystems = new SolarSystem[solarSystemNames.length];
 
     private Planet currentPlayerPlanet;
+    private SolarSystem currentPlayerSystem;
 
     public Universe(int id){
         this.playerID = id;
@@ -59,6 +62,7 @@ public class Universe implements Serializable {
         }
 
         this.currentPlayerPlanet = solarSystems[0].getPlanet(0);
+        this.currentPlayerSystem = solarSystems[0];
     }
 
     public Integer[][] getGrid(){
@@ -87,11 +91,17 @@ public class Universe implements Serializable {
     /**
      * sets the current planet to the ith planet of system s
      *
+     * @param p the planet to have the player be on
      * @param s the system to have the player be on
-     * @param i the index of the planet that the player is on
      */
-    public void setCurrentPlayerPlanet(SolarSystem s, int i) {
-        this.currentPlayerPlanet = s.getPlanet(i);
+    public void setCurrentPlayerLocation(SolarSystem s, Planet p) {
+        this.currentPlayerSystem = s;
+        this.currentPlayerPlanet = p;
+    }
+
+    public SolarSystem
+    getCurrentPlayerSystem() {
+        return currentPlayerSystem;
     }
 
     public Planet getCurrentPlayerPlanet() {
@@ -122,5 +132,22 @@ public class Universe implements Serializable {
 
     public void removeCurrentMarketPlaceQuantity(String goodName, int quantity) throws PurchaseException {
         currentPlayerPlanet.removeMarketPlaceQuantity(goodName, quantity);
+    }
+
+    public List<SolarSystem> getPlayerTravleablePlanets(int fuel) {
+        List<SolarSystem> travelableSystems = new ArrayList<>();
+        for (SolarSystem s : solarSystems){
+            int fuels;
+            int distanceTo = currentPlayerSystem.distanceTo(s);
+            if (distanceTo % fuel != 0) {
+                fuels = (distanceTo / fuel) + 1;
+            } else {
+                fuels = (distanceTo / fuel);
+            }
+            if (fuels <= fuel) {
+                travelableSystems.add(s);
+            }
+        }
+        return travelableSystems;
     }
 }

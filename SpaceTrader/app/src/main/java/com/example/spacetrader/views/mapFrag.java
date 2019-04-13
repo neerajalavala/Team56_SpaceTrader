@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -21,10 +20,9 @@ import android.widget.TextView;
 import android.widget.Button;
 
 import com.example.spacetrader.R;
-import com.example.spacetrader.entity.MarketPlace;
 import com.example.spacetrader.entity.Player;
-import com.example.spacetrader.entity.RandomEvent;
 import com.example.spacetrader.entity.Planet;
+import com.example.spacetrader.entity.RandomEvent;
 import com.example.spacetrader.entity.SolarSystem;
 import com.example.spacetrader.entity.Universe;
 import com.example.spacetrader.viewmodels.GetPlayerViewModel;
@@ -40,20 +38,23 @@ public class mapFrag extends Fragment {
     private Player player;
     private Universe game;
 
-    private Integer speed;
+    private Integer fuel;
 
     private Integer turnNum;
-
-    private String player_data = "PLAYER_DATA";
+    private Integer distanceTo;
 
     private SolarSystem[] solar_systems;
     private SolarSystem currentSystem;
+    private SolarSystem nextSystem;
+    private Planet nextPlanet;
 
     private ArrayList<String> systemNames = new ArrayList<String>();
+    private List<SolarSystem> travelableSystems;
+    private List<Planet> planetsList;
 
     private TextView currentSystemName;
     private TextView distance;
-    private TextView shipSpeed;
+    private TextView shipFuel;
     private TextView turns;
 
     private Spinner systemsSpinner;
@@ -99,8 +100,11 @@ public class mapFrag extends Fragment {
 
         this.solar_systems = game.getSolarSystems();
 
-        this.speed = player.getShipMaxFuel();
+        this.fuel = player.getFuel();
 
+        this.currentSystem = game.getCurrentPlayerSystem();
+        this.nextSystem = currentSystem;
+        planetsList = new ArrayList<>();
     }
 
     @Override
@@ -114,7 +118,7 @@ public class mapFrag extends Fragment {
 
         this.currentSystemName = (TextView) getView().findViewById(R.id.system_name);
         this.distance = (TextView) getView().findViewById(R.id.distance_val);
-        this.shipSpeed = (TextView) getView().findViewById(R.id.speed_val);
+        this.shipFuel = (TextView) getView().findViewById(R.id.speed_val);
         this.turns = (TextView) getView().findViewById(R.id.turns_num);
 
         this.systemsSpinner = (Spinner) getView().findViewById(R.id.systems_spinner);
@@ -122,114 +126,36 @@ public class mapFrag extends Fragment {
 
         travelButton= (Button) getView().findViewById(R.id.travel_button);
 
-        int curSysIndex = 0;
-        for (int i = 0; i < solar_systems.length; i++) {
-            if (solar_systems[i].getEntityID() == curr_planet.getSolar_id()) {
-                currentSystem = solar_systems[i];
-                curSysIndex = i;
-            }
-            this.systemNames.add(solar_systems[i].getName());
-        }
+        travelableSystems = game.getPlayerTravleablePlanets(player.getFuel());
 
-        final ArrayAdapter<String> systems_adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, this.systemNames);
+
+        final ArrayAdapter<SolarSystem> systems_adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, travelableSystems);
         systems_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
         systemsSpinner.setAdapter(systems_adapter);
-        systemsSpinner.setSelection(curSysIndex);
+        systemsSpinner.setSelection(systems_adapter.getPosition(game.getCurrentPlayerSystem()));
 
-        currentSystemName.setText(currentSystem.getName());
+        final ArrayAdapter<Planet> planets_adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, planetsList);
+        planets_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        systemPlanetsSpinner.setAdapter(planets_adapter);
+        systemPlanetsSpinner.setSelection(planets_adapter.getPosition(curr_planet));
 
-        shipSpeed.setText(speed.toString());
+        updateUI();
 
         systemsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
 
-                String next_system_name = (String) systemsSpinner.getSelectedItem();
-                SolarSystem next_system = currentSystem;
+                nextSystem = (SolarSystem) systemsSpinner.getSelectedItem();
+                distanceTo = currentSystem.distanceTo(nextSystem);
+                turnNum = currentSystem.turnsTo(nextSystem, player.getFuel());
 
-                for (SolarSystem s : solar_systems) {
-                    if (s.getName().contains(next_system_name)) {
-                        next_system = s;
-                    }
-                }
+                turns.setText(turnNum.toString());
+                distance.setText(distanceTo.toString());
+                systemPlanetsSpinner.setSelection(planets_adapter.getPosition(curr_planet));
 
-                final SolarSystem next_system_2 = next_system;
-
-                List<Planet> planets = next_system.getPlanets();
-                String[] planet_names = new String[3];
-
-                for (int x = 0; x < 3; x++) {
-                    planet_names[x] = planets.get(x).getName();
-                }
-
-                final ArrayAdapter<String> planets_adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, planet_names);
-                planets_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                systemPlanetsSpinner.setAdapter(planets_adapter);
-                for (int i = 0; i < planet_names.length; i++) {
-                    if (player.getCurrentPlanet().equals(planets.get(i))) systemPlanetsSpinner.setSelection(i);
-                }
-
-                if (currentSystem.getEntityID() == next_system_2.getEntityID()) {
-
-                    systemPlanetsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                        @Override
-                        public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                            Planet curr_planet = player.getCurrentPlanet();
-                            String next_planet_name = (String) systemPlanetsSpinner.getSelectedItem();
-
-                            Integer turn_num;
-
-                            if (curr_planet.getName().contains(next_planet_name)) {
-                                distance.setText("0");
-                                turn_num = 0;
-                            } else {
-                                distance.setText("1");
-                                turn_num = 1;
-                            }
-
-                            turns.setText(turn_num.toString());
-
-                        }
-
-                        @Override
-                        public void onNothingSelected(AdapterView<?> parentView) {
-                        }
-
-                    });
-
-                } else {
-
-                    systemPlanetsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                        @Override
-                        public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-
-                            int xloc1 = currentSystem.getLocation()[0];
-                            int yloc1 = currentSystem.getLocation()[1];
-
-                            int xloc2 = next_system_2.getLocation()[0];
-                            int yloc2 = next_system_2.getLocation()[1];
-
-                            Integer dist = (int) Math.sqrt(Math.pow((xloc1 - xloc2), 2) + Math.pow((yloc1 - yloc2), 2));
-
-                            distance.setText(dist.toString());
-
-                            Integer turn_num;
-
-                            if (dist % speed != 0) {
-                                turn_num = (dist / speed) + 1;
-                            } else {
-                                turn_num = (dist / speed);
-                            }
-                            turns.setText(turn_num.toString());
-                        }
-
-                        @Override
-                        public void onNothingSelected(AdapterView<?> parentView) {
-                        }
-
-                    });
-                }
+                planetsList.clear();
+                planetsList.addAll(nextSystem.getPlanets());
+                planets_adapter.notifyDataSetChanged();
             }
 
             @Override
@@ -239,19 +165,41 @@ public class mapFrag extends Fragment {
 
         });
 
+        systemPlanetsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                nextPlanet = (Planet) systemPlanetsSpinner.getSelectedItem();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         travelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("Edit", "Changing current planet");
-                int playerFuel = player.getFuel();//10;
+                player.travelTo(nextSystem, nextPlanet, turnNum);
 
-                System.out.println("traveling");
 
-                Integer turn_num = Integer.parseInt(turns.getText().toString());
+                RandomEvent event;
+                for (int i = 0; i < turnNum; i++) {
+                    event = game.getRandomEvent();
 
-                if (turn_num > playerFuel) {
+                    String event_name = "";
+                    if (event == RandomEvent.CREDITS) {
+                        event_name = "Found Credits!";
+                    } else if (event == RandomEvent.TRADER) {
+                        event_name = "Trader Ship Appeared!";
+                    } else if (event == RandomEvent.PIRATE) {
+                        event_name = "Pirate Attack!";
+                    } else if (event == RandomEvent.COPS) {
+                        event_name = "The Cops!";
+                    }
+
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage("Not enough fuel")
+                    builder.setMessage(event_name)
                             .setCancelable(false)
                             .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
@@ -260,76 +208,9 @@ public class mapFrag extends Fragment {
                             });
                     AlertDialog alert = builder.create();
                     alert.show();
-
-                } else {
-
-                    String next_system_name = (String) systemsSpinner.getSelectedItem();
-                    SolarSystem next_system = currentSystem;
-
-                    for (SolarSystem s : solar_systems) {
-                        if (s.getName().contains(next_system_name)) {
-                            next_system = s;
-                        }
-                    }
-
-                    RandomEvent event;
-                    for (int i = 0; i < turn_num; i++) {
-                        event = game.getRandomEvent();
-
-                        String event_name = "";
-                        if (event == RandomEvent.CREDITS) {
-                            event_name = "Found Credits!";
-                        } else if (event == RandomEvent.TRADER) {
-                            event_name = "Trader Ship Appeared!";
-                        } else if (event == RandomEvent.PIRATE) {
-                            event_name = "Pirate Attack!";
-                        } else if (event == RandomEvent.COPS) {
-                            event_name = "The Cops!";
-                        }
-
-                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                        builder.setMessage(event_name)
-                                .setCancelable(false)
-                                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int id) {
-                                        //do things
-                                    }
-                                });
-                        AlertDialog alert = builder.create();
-                        alert.show();
-                    }
-
-
-                    currentSystemName.setText(next_system_name);
-                    turns.setText("0");
-
-                    String next_planet_name = (String) systemPlanetsSpinner.getSelectedItem();
-                    List<Planet> planets = next_system.getPlanets();
-
-
-
-                    player = viewModel.getPlayer();
-                    for (int y = 0; y < 3; y++) {
-                        if (planets.get(y).getName().contains(next_planet_name)) {
-                            player.setCurrentPlayerPlanet(next_system, y);
-                        }
-                    }
-
-//                    for (int x = 0; x < players.size(); x++) {
-//                        if (players.get(x).getID() == player.getID()) {
-//                            //mapFrag.this.player = players.get(x);
-                            for (int y = 0; y < 3; y++) {
-                                if (planets.get(y).getName().contains(next_planet_name)) {
-                                    player.setCurrentPlayerPlanet(next_system, y);
-                                }
-                            }
-//                        }
-//                    }
-
-                    player.subFuel(turn_num);
-
-                    System.out.println(player.getCurrentPlanet().getName());
                 }
+
+                updateUI();
             }
         });
 
@@ -375,54 +256,13 @@ public class mapFrag extends Fragment {
 //        }
     }
 
-    public void onTravelPressed(View view) {
-        Log.d("Edit", "Changing current planet");
-        int playerFuel = 10;
-
-        System.out.println("traveling");
-
-        Integer turn_num = Integer.parseInt(turns.getText().toString());
-
-        if (turn_num > playerFuel) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setMessage("Not enough fuel")
-                    .setCancelable(false)
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            //do things
-                        }
-                    });
-            AlertDialog alert = builder.create();
-            alert.show();
-
-        } else {
-
-            String next_system_name = (String) systemsSpinner.getSelectedItem();
-            SolarSystem next_system = currentSystem;
-
-            for (SolarSystem s : solar_systems) {
-                if (s.getName().contains(next_system_name)) {
-                    next_system = s;
-                }
-            }
-
-            String next_planet_name = (String) systemPlanetsSpinner.getSelectedItem();
-            List<Planet> planets = next_system.getPlanets();
-
-            System.out.println(player.getCurrentPlanet().getName());
-
-
-
-            this.player = viewModel.getPlayer();
-
-            for (int y = 0; y < 3; y++) {
-                if (planets.get(y).getName().contains(next_planet_name)) {
-                    player.setCurrentPlayerPlanet(next_system, y);
-                }
-            }
-
-            System.out.println(player.getCurrentPlanet().getName());
-        }
+    private void updateUI() {
+        currentSystemName.setText(nextSystem.getName());
+        fuel = player.getFuel();
+        shipFuel.setText(fuel.toString());
+        turnNum = 0;
+        distanceTo = 0;
+        turns.setText(turnNum.toString());
+        distance.setText(distanceTo.toString());
     }
-
 }

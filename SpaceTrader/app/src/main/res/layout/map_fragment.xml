@@ -83,7 +83,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="150dp"
             android:layout_marginTop="270dp"
-            android:text="Ship Speed:"
+            android:text="Ship Fuel:"
             android:textSize="24sp" />
 
         <TextView

@@ -61,7 +61,7 @@ public class Planet implements Serializable {
     }
 
     public String toString() {
-        return name + ", " + techLevel + ", " + resources + "; ";
+        return name;
     }
 
     public boolean equals(Planet planet) {

@@ -4,8 +4,6 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 
 import com.example.spacetrader.R;
 import com.example.spacetrader.entity.Player;
@@ -44,11 +42,8 @@ public class GameStartScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
         setContentView(R.layout.main_screen_layout);
 
-        FragmentManager manager = getSupportFragmentManager();
         final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
         if (getSupportActionBar() != null) {
@@ -56,11 +51,7 @@ public class GameStartScreen extends AppCompatActivity {
             getSupportActionBar().setHomeButtonEnabled(false);
         }
 
-//        this.player = (Player) getIntent().getSerializableExtra(PLAYER_DATA);
-
         this.viewModel = ViewModelProviders.of(this).get(GetPlayerViewModel.class);
-
-
         this.player = viewModel.getPlayer();
 
         planetFrag pFrag = planetFrag.newInstance(player);
@@ -74,23 +65,8 @@ public class GameStartScreen extends AppCompatActivity {
 
         bottomNavigationView.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
-                    Fragment in;
-
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-                        player = viewModel.getPlayer();
-                        GameStartScreen.this.player = player;
-
-//                        players = viewModel.getPlayers();
-//                        for (int x = 0; x < players.size(); x++){
-//                            if (players.get(x).getID() == player.getID()){
-//                                GameStartScreen.this.player = players.get(x);
-//                            }
-//                        }
-
-
-
                         final FragmentTransaction trans = getSupportFragmentManager().beginTransaction();
 
                         switch (item.getItemId()) {

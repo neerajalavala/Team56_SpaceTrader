@@ -43,11 +43,7 @@ public class SolarSystem extends UniverseEntity{
     }
 
     public String toString() {
-        String a = "";
-        for (Planet p : PlanetList) {
-            a += p.toString();
-        }
-        return a;
+        return getName();
     }
 
     public int[] getLocation() {
@@ -58,4 +54,26 @@ public class SolarSystem extends UniverseEntity{
         return PlanetList.get(i);
     }
 
+    public boolean equals(SolarSystem solarSystem) {
+        return this.name.equals(solarSystem.name);
+    }
+
+    public int distanceTo(SolarSystem s) {
+        int xloc1 = location[0];
+        int yloc1 = location[1];
+
+        int xloc2 = s.getLocation()[0];
+        int yloc2 = s.getLocation()[1];
+
+        return (int) Math.sqrt(Math.pow((xloc1 - xloc2), 2) + Math.pow((yloc1 - yloc2), 2));
+    }
+
+    public int turnsTo(SolarSystem s, int fuel) {
+        int distance = distanceTo(s);
+        if (distance % fuel != 0) {
+            return (distance / fuel) + 1;
+        } else {
+            return (distance / fuel);
+        }
+    }
 }
