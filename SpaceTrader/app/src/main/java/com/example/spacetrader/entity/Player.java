@@ -67,7 +67,7 @@ public class Player implements Serializable {
             throw new PlayerCreationException("Invalid distribution of skill points!");
         }
         if (name == null || name.equals("")) {
-            throw new PlayerCreationException("Name cannot be empty");
+            throw new PlayerCreationException("Name cannot be empty!");
         }
         return new Player(name, pilot, fighter, trader, engineer, diff);
     }

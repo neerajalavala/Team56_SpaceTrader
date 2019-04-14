@@ -22,6 +22,7 @@ import com.example.spacetrader.R;
 import com.example.spacetrader.entity.Difficulty;
 import com.example.spacetrader.entity.Player;
 
+import com.example.spacetrader.exception.PlayerCreationException;
 import com.example.spacetrader.viewmodels.CreatePlayerViewModel;
 
 import java.io.FileOutputStream;
@@ -155,36 +156,10 @@ public class CreatePlayerActivity extends AppCompatActivity {
         int fighter = (int) fighter_spinner.getSelectedItem();
         int trader = (int) trader_spinner.getSelectedItem();
         int engineer = (int) engineer_spinner.getSelectedItem();
+        Difficulty diff = (Difficulty) difficulty_spinner.getSelectedItem();
 
-        if (pilot + fighter + trader + engineer != 16) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("Exactly 16 skill points must be allocated. ")
-                    .setCancelable(false)
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            //do things
-                        }
-                    });
-            AlertDialog alert = builder.create();
-            alert.show();
-        } else if (nameField.getText().toString().equals("")) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("Player name cannot be empty. ")
-                    .setCancelable(false)
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            //do things
-                        }
-                    });
-            AlertDialog alert = builder.create();
-            alert.show();
-        } else {
-
-            Difficulty diff = (Difficulty) difficulty_spinner.getSelectedItem();
-
-            Player player = new Player(nameField.getText().toString(), pilot, fighter, trader, engineer, diff);
-
-            Log.d("Edit", "Got new player data: " + player);
+        try {
+            Player player = Player.createPlayer(nameField.getText().toString(), pilot, fighter, trader, engineer, diff);
 
             try {
                 FileOutputStream fos = this.openFileOutput("SpaceTrader.ser", Context.MODE_PRIVATE);
@@ -196,7 +171,60 @@ public class CreatePlayerActivity extends AppCompatActivity {
             viewModel.addPlayer(player);
 
             finish();
+        } catch (PlayerCreationException p) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage(p.toString())
+                    .setCancelable(false)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            //do things
+                        }
+                    });
+            AlertDialog alert = builder.create();
+            alert.show();
         }
+
+//        if (pilot + fighter + trader + engineer != 16) {
+//            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//            builder.setMessage("Exactly 16 skill points must be allocated. ")
+//                    .setCancelable(false)
+//                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//                        public void onClick(DialogInterface dialog, int id) {
+//                            //do things
+//                        }
+//                    });
+//            AlertDialog alert = builder.create();
+//            alert.show();
+//        } else if (nameField.getText().toString().equals("")) {
+//            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//            builder.setMessage("Player name cannot be empty. ")
+//                    .setCancelable(false)
+//                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//                        public void onClick(DialogInterface dialog, int id) {
+//                            //do things
+//                        }
+//                    });
+//            AlertDialog alert = builder.create();
+//            alert.show();
+//        } else {
+//
+//
+//
+//            Player player = new Player(nameField.getText().toString(), pilot, fighter, trader, engineer, diff);
+//
+//            Log.d("Edit", "Got new player data: " + player);
+//
+//            try {
+//                FileOutputStream fos = this.openFileOutput("SpaceTrader.ser", Context.MODE_PRIVATE);
+//                ObjectOutputStream os = new ObjectOutputStream(fos);
+//                os.writeObject(player);
+//                os.close();
+//                fos.close();
+//            } catch (IOException e) {e.printStackTrace();}
+//            viewModel.addPlayer(player);
+//
+//            finish();
+//        }
     }
 
     /**

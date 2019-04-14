@@ -45,9 +45,9 @@ public class MarketPlace implements Serializable {
         ArrayList<MarketGood> buyList = new ArrayList<>();
         for (MarketGood m : marketGoods.values()) {
             if (m.isBuyable() && m.getQuantity() != 0){
-                if (m.getPrice_count() % 2 == 0) {
-                    m.setPrice();
-                }
+//                if (m.getPrice_count() % 2 == 0) {
+//                    m.setPrice();
+//                }
                 buyList.add(m);
             }
         }
@@ -63,9 +63,9 @@ public class MarketPlace implements Serializable {
     }
 
     public int getPrice(MarketGood marketGood) {
-        if (marketGood.getPrice_count() % 2 == 0) {
-            marketGood.setPrice();
-        }
+//        if (marketGood.getPrice_count() % 2 == 0) {
+//            marketGood.setPrice();
+//        }
         return marketGood.getPrice();
     }
 }

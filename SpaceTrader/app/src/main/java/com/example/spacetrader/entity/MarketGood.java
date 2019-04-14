@@ -37,35 +37,35 @@ public class MarketGood implements Serializable {
                         * (topTechLevMultiplier)
                             * ((1 + techLevel.index()) - marketGoodType.getMinimumLevelToProduce().index());
         }
-
-        /** start price calculation */
-
-        double cheapResMult = 1.0;
-        int expResMult = 1;
-
-        int varCoinFlip = -1;
-
-        if (new Random().nextInt() > 0) {
-            varCoinFlip = 1;
-        }
-
-        double variance = ((double) new Random().nextInt(marketGoodType.getVariance()) / 100.0);
-
-        if (marketGoodType.getCheapResource().index() == resources.index()) {
-            cheapResMult = 0.5;
-        } else if (marketGoodType.getExpensiveResource().index() == resources.index()) {
-            expResMult = 3;
-        }
-
-        int price_calc = ((int)(marketGoodType.getBasePrice() * cheapResMult * expResMult))
-                + (marketGoodType.getIncreasePerLevel() * (techLevel.index() - marketGoodType.getMinimumLevelToProduce().index()))
-                + (int)(varCoinFlip * variance * marketGoodType.getBasePrice());
-
-        if (price_calc <= 0) {
-            price_calc = marketGoodType.getBasePrice() / 2;
-        }
-        this.price = price_calc;
-        this.price_count = 1;
+        setPrice();
+//        /** start price calculation */
+//
+//        double cheapResMult = 1.0;
+//        int expResMult = 1;
+//
+//        int varCoinFlip = -1;
+//
+//        if (new Random().nextInt() > 0) {
+//            varCoinFlip = 1;
+//        }
+//
+//        double variance = ((double) new Random().nextInt(marketGoodType.getVariance()) / 100.0);
+//
+//        if (marketGoodType.getCheapResource().index() == resources.index()) {
+//            cheapResMult = 0.5;
+//        } else if (marketGoodType.getExpensiveResource().index() == resources.index()) {
+//            expResMult = 3;
+//        }
+//
+//        int price_calc = ((int)(marketGoodType.getBasePrice() * cheapResMult * expResMult))
+//                + (marketGoodType.getIncreasePerLevel() * (techLevel.index() - marketGoodType.getMinimumLevelToProduce().index()))
+//                + (int)(varCoinFlip * variance * marketGoodType.getBasePrice());
+//
+//        if (price_calc <= 0) {
+//            price_calc = marketGoodType.getBasePrice() / 2;
+//        }
+//        this.price = price_calc;
+//        this.price_count = 1;
 
     }
 
@@ -105,6 +105,10 @@ public class MarketGood implements Serializable {
         return marketGoodType.canSell(techLevel);
     }
 
+    public boolean canSell(TechLevel t) {
+        return marketGoodType.canSell(t) && quantity > 0;
+    }
+
     public void setPrice() {
         double cheapResMult = 1.0;
         int expResMult = 1;
@@ -132,7 +136,6 @@ public class MarketGood implements Serializable {
         }
 
         this.price = price;
-        this.price_count ++;
     }
 
     public int getPrice_count() {

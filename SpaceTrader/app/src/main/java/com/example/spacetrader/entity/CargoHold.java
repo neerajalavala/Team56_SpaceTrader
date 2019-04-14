@@ -58,10 +58,10 @@ public class CargoHold implements Serializable {
     public ArrayList<MarketGood> getSellableGoods(TechLevel lev) {
         ArrayList<MarketGood> sellList = new ArrayList<>();
         for (MarketGood m : hold.values()) {
-            if (m.getType().canSell(lev) && m.getQuantity() > 0){
-                if (m.getPrice_count() % 2 == 0) {
-                    m.setPrice();
-                }
+            if (m.canSell(lev)){
+//                if (m.getPrice_count() % 2 == 0) {
+//                    m.setPrice();
+//                }
                 sellList.add(m);
             }
         }

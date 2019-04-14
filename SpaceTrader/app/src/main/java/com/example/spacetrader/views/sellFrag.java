@@ -16,7 +16,7 @@ import android.os.Bundle;
 
 import com.example.spacetrader.R;
 import com.example.spacetrader.entity.MarketGood;
-import com.example.spacetrader.entity.MarketPlace;
+//import com.example.spacetrader.entity.MarketPlace;
 import com.example.spacetrader.entity.CargoHold;
 import com.example.spacetrader.entity.Player;
 import com.example.spacetrader.entity.Planet;
@@ -27,7 +27,7 @@ import java.util.ArrayList;
 public class sellFrag extends Fragment {
     private FragmentActivity listener;
 
-    private MarketPlace market;
+//    private MarketPlace market;
 
     private GetPlayerViewModel viewModel;
 
@@ -71,7 +71,7 @@ public class sellFrag extends Fragment {
 
         this.hold = player.getCargoHold();
 
-        this.market = curr_planet.getMarketPlace();
+//        this.market = curr_planet.getMarketPlace();
 
         adapter = new MarketGoodAdapter();
     }
@@ -105,7 +105,7 @@ public class sellFrag extends Fragment {
 
         this.player = viewModel.getPlayer();
         this.hold = player.getCargoHold();
-        this.market = player.getCurrentMarketPlace();
+//        this.market = player.getCurrentMarketPlace();
 
         super.onResume();
 
