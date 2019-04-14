@@ -19,7 +19,6 @@ import android.widget.FrameLayout;
 import android.support.design.widget.BottomNavigationView;
 
 public class GameStartScreen extends AppCompatActivity {
-    public static final String PLAYER_DATA = "PLAYER_DATA";
 
     private String new_market = "UPDATED_MARKET";
 

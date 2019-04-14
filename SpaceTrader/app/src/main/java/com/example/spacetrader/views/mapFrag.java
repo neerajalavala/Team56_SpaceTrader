@@ -31,8 +31,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class mapFrag extends Fragment {
-    private FragmentActivity listener;
-
     private GetPlayerViewModel viewModel;
 
     private Player player;
@@ -81,9 +79,6 @@ public class mapFrag extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof Activity) {
-            this.listener = (FragmentActivity) context;
-        }
     }
 
     @Override

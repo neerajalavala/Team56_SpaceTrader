@@ -25,7 +25,6 @@ import com.example.spacetrader.viewmodels.GetPlayerViewModel;
 import java.util.ArrayList;
 
 public class sellFrag extends Fragment {
-    private FragmentActivity listener;
 
     private MarketPlace market;
 
@@ -55,9 +54,6 @@ public class sellFrag extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof Activity){
-            this.listener = (FragmentActivity) context;
-        }
     }
 
     @Override

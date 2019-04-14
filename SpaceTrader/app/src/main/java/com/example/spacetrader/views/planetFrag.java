@@ -27,8 +27,6 @@ public class planetFrag extends Fragment {
 
     private Planet curr_planet;
 
-    private FragmentActivity listener;
-
     private GetPlayerViewModel viewModel;
 
     private SolarSystem[] solar_systems;
@@ -62,9 +60,6 @@ public class planetFrag extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof Activity){
-            this.listener = (FragmentActivity) context;
-        }
     }
 
     @Override

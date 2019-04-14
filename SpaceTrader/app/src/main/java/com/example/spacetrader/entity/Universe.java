@@ -8,11 +8,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Universe implements Serializable {
-    /**
-     * gamestate is a players specific universe
-     */
     private final int playerID;
-
 
     private final int shipID = 0;
 
@@ -20,14 +16,6 @@ public class Universe implements Serializable {
      * count for creating unique identities for each entity in universe
      */
     private Integer count = 1;
-
-    /**
-     * my current thinking for making the map is to make an int array filled with nulls
-     *
-     * each object created ie. solarsystem, policeship, trader ship has a specific int id
-     *
-     * id is mapped through hashmap to object and location
-     */
 
     private Integer[][] grid = new Integer[250][450];
 
@@ -37,8 +25,6 @@ public class Universe implements Serializable {
 
     private int[] xlocs = {30,50,70,90,110,130,150,170,190,210};
     private  int[] ylocs = {20,40,60,80,100,120,140,160,180,200};
-
-    //private HashMap<Integer, UniverseEntity> entities  = new HashMap<Integer, UniverseEntity>();
 
     private SolarSystem[] solarSystems = new SolarSystem[solarSystemNames.length];
 
