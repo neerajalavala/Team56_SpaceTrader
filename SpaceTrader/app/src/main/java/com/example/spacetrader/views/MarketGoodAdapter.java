@@ -46,10 +46,10 @@ public class MarketGoodAdapter extends RecyclerView.Adapter<MarketGoodAdapter.Ma
 
         holder.MarketGoodName.setText(MarketGood.getType().toString());
 
-        Integer price = (Integer)MarketGood.getPrice();
+        Integer price = MarketGood.getPrice();
         holder.Price.setText(price.toString());
 
-        Integer quan = (Integer)MarketGood.getQuantity();
+        Integer quan = MarketGood.getQuantity();
         holder.Quantity_btn.setText(quan.toString());
 
 
@@ -74,9 +74,6 @@ public class MarketGoodAdapter extends RecyclerView.Adapter<MarketGoodAdapter.Ma
         private TextView Price;
         private Button Quantity_btn;
         private Button Max_btn;
-
-
-
 
         public MarketGoodViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -110,19 +107,6 @@ public class MarketGoodAdapter extends RecyclerView.Adapter<MarketGoodAdapter.Ma
                 }
             });
 
-/*
-            itemView.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View view) {
-                    int position = getAdapterPosition();
-
-                    if (listener != null && position != RecyclerView.NO_POSITION) {
-                        listener.onMarketGoodClicked(MarketGoodList.get(position));
-                    }
-                }
-            });
-*/
         }
     }
 

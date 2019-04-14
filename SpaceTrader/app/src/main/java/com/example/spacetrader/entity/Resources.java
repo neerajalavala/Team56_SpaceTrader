@@ -19,7 +19,7 @@ public enum Resources {
     private String name;
     private int index;
 
-    private Resources(String s, int i){
+    Resources(String s, int i){
         this.name = s;
         this.index = i;
     }

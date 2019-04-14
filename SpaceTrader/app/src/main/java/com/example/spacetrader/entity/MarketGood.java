@@ -21,7 +21,7 @@ public class MarketGood implements Serializable {
         this.techLevel = tL;
         this.resources = resources;
 
-        /** quantity calculation */
+        /* quantity calculation */
         if (!genQ) {
             this.quantity = 0;
         } else {

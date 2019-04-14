@@ -30,6 +30,7 @@ public class SolarSystem extends UniverseEntity{
 
     }
 
+    @Override
     public String getName() {
         return name;
     }
@@ -38,6 +39,7 @@ public class SolarSystem extends UniverseEntity{
         return PlanetList;
     }
 
+    @Override
     public int getEntityID() {
         return EntityID;
     }

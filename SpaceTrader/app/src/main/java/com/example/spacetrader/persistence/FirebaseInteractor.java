@@ -5,7 +5,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 public class FirebaseInteractor implements DatabaseInteractor {
-    private StorageReference playerReference;
 
     /**
      * Make a new FirebaseInteractor
@@ -13,7 +12,7 @@ public class FirebaseInteractor implements DatabaseInteractor {
      * @param referenceName the name of collection where the player is located
      */
     public FirebaseInteractor(String referenceName) {
-        playerReference = FirebaseStorage.getInstance().getReference().child(referenceName);
+        StorageReference playerReference = FirebaseStorage.getInstance().getReference().child(referenceName);
     }
 
     @Override

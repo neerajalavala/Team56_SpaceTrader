@@ -10,10 +10,6 @@ public class Player implements Serializable {
     private static Integer player_ids = 1;
     /** total number of skill points */
     private static final Integer skillPtCap = 16;
-    /** starting number of credits */
-    private final Integer startCredits = 1000;
-    /** a globally unique number for this object */
-    private int ID;
     /** difficulty player is playing at */
     private Difficulty diff;
 
@@ -43,7 +39,8 @@ public class Player implements Serializable {
     private Universe game;
 
     public Player(String name, Integer pilot, Integer fighter, Integer trader, Integer engineer, Difficulty diff) {
-        this.ID = player_ids;
+        /* a globally unique number for this object */
+        int ID = player_ids;
         this.Name = name;
 
         this.Pilot = pilot;
@@ -53,13 +50,14 @@ public class Player implements Serializable {
 
         this.diff = diff;
 
-        this.Credits = startCredits;
+        /* starting number of credits */
+        this.Credits = 1000;
 
         this.game = new Universe(player_ids);
 
-        player_ids++;
+        this.player_ids++;
 
-        cargoHold = new CargoHold(Ship_type.getCapacity(), this.ID);
+        cargoHold = new CargoHold(Ship_type.getCapacity(), ID);
     }
 
     public static Player createPlayer(String name, Integer pilot, Integer fighter, Integer trader, Integer engineer, Difficulty diff) throws PlayerCreationException {

@@ -28,8 +28,8 @@ public enum MarketGoodType {
     private int index;
 
 
-    private MarketGoodType(String name, int bP, int var, int ipl, TechLevel mltp, TechLevel mltu,
-                                TechLevel ttp, int i, Resources cr, Resources er) {
+    MarketGoodType(String name, int bP, int var, int ipl, TechLevel mltp, TechLevel mltu,
+                   TechLevel ttp, int i, Resources cr, Resources er) {
         this.name = name;
         this.basePrice = bP;
         this.variance = var;

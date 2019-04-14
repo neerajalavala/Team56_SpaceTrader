@@ -1,6 +1,5 @@
 package com.example.spacetrader.views;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
@@ -8,7 +7,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -29,10 +27,9 @@ import com.example.spacetrader.viewmodels.GetPlayerViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class mapFrag extends Fragment {
-    private FragmentActivity listener;
-
     private GetPlayerViewModel viewModel;
 
     private Player player;
@@ -43,13 +40,11 @@ public class mapFrag extends Fragment {
     private Integer turnNum;
     private Integer distanceTo;
 
-    private SolarSystem[] solar_systems;
     private SolarSystem currentSystem;
     private SolarSystem nextSystem;
     private Planet nextPlanet;
 
     private ArrayList<String> systemNames = new ArrayList<String>();
-    private List<SolarSystem> travelableSystems;
     private List<Planet> planetsList;
 
     private TextView currentSystemName;
@@ -60,7 +55,6 @@ public class mapFrag extends Fragment {
     private Spinner systemsSpinner;
     private Spinner systemPlanetsSpinner;
 
-    private Button travelButton;
     private Button saveButton;
 
     /**
@@ -70,20 +64,9 @@ public class mapFrag extends Fragment {
 
     private Planet curr_planet;
 
-    public static mapFrag newInstance(Player player) {
-        mapFrag frag = new mapFrag();
-        Bundle args = new Bundle();
-        args.putSerializable("PLAYER_DATA", player);
-        frag.setArguments(args);
-        return frag;
-    }
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof Activity) {
-            this.listener = (FragmentActivity) context;
-        }
     }
 
     @Override
@@ -98,7 +81,7 @@ public class mapFrag extends Fragment {
 
         this.curr_planet = player.getCurrentPlanet();
 
-        this.solar_systems = game.getSolarSystems();
+        SolarSystem[] solar_systems = game.getSolarSystems();
 
         this.fuel = player.getFuel();
 
@@ -116,20 +99,20 @@ public class mapFrag extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 
-        this.currentSystemName = (TextView) getView().findViewById(R.id.system_name);
-        this.distance = (TextView) getView().findViewById(R.id.distance_val);
-        this.shipFuel = (TextView) getView().findViewById(R.id.speed_val);
-        this.turns = (TextView) getView().findViewById(R.id.turns_num);
+        this.currentSystemName = Objects.requireNonNull(getView()).findViewById(R.id.system_name);
+        this.distance = getView().findViewById(R.id.distance_val);
+        this.shipFuel = getView().findViewById(R.id.speed_val);
+        this.turns = getView().findViewById(R.id.turns_num);
 
-        this.systemsSpinner = (Spinner) getView().findViewById(R.id.systems_spinner);
-        this.systemPlanetsSpinner = (Spinner) getView().findViewById(R.id.planet_spinner);
+        this.systemsSpinner = getView().findViewById(R.id.systems_spinner);
+        this.systemPlanetsSpinner = getView().findViewById(R.id.planet_spinner);
 
-        travelButton= (Button) getView().findViewById(R.id.travel_button);
+        Button travelButton = getView().findViewById(R.id.travel_button);
 
-        travelableSystems = game.getPlayerTravleablePlanets(player.getFuel());
+        List<SolarSystem> travelableSystems = game.getPlayerTravleablePlanets(player.getFuel());
 
 
-        final ArrayAdapter<SolarSystem> systems_adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, travelableSystems);
+        final ArrayAdapter<SolarSystem> systems_adapter = new ArrayAdapter<>(Objects.requireNonNull(getActivity()), android.R.layout.simple_spinner_item, travelableSystems);
         systems_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         systemsSpinner.setAdapter(systems_adapter);
         systemsSpinner.setSelection(systems_adapter.getPosition(game.getCurrentPlayerSystem()));
@@ -202,6 +185,7 @@ public class mapFrag extends Fragment {
                     builder.setMessage(event_name)
                             .setCancelable(false)
                             .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
                                 public void onClick(DialogInterface dialog, int id) {
                                     //do things
                                 }

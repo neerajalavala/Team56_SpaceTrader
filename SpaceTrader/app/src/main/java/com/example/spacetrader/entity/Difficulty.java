@@ -11,7 +11,7 @@ public enum Difficulty {
 
     private String diff;
 
-    private Difficulty(String s) {
+    Difficulty(String s) {
         this.diff = s;
     }
 

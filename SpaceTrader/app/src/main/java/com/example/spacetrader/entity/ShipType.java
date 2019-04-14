@@ -16,7 +16,7 @@ public enum ShipType {
     private int capacity;
     private int maxFuel;
 
-    private ShipType(String s, int c, int maxFuel) {
+    ShipType(String s, int c, int maxFuel) {
         this.ship = s;
         this.capacity = c;
         this.maxFuel = maxFuel;

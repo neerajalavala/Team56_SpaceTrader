@@ -8,7 +8,7 @@ public enum RandomEvent {
 
     private String diff;
 
-    private RandomEvent(String s) {
+    RandomEvent(String s) {
         this.diff = s;
     }
 
