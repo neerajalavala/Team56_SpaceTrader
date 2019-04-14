@@ -21,20 +21,9 @@ public class ViewPlayerActivity extends AppCompatActivity {
 
     private Player player;
 
-    private GetPlayerViewModel viewModel;
-
     private Player play;
 
-    private TextView playerName;
-    private TextView difficulty;
-
-    private TextView pilot;
-    private TextView fighter;
-    private TextView trader;
-    private TextView engineer;
-
     private TextView credits;
-    private TextView shipType;
 
     private Button startButton;
 
@@ -52,18 +41,18 @@ public class ViewPlayerActivity extends AppCompatActivity {
             getSupportActionBar().setHomeButtonEnabled(false);
         }
 
-        playerName = findViewById(R.id.player_name);
-        difficulty = findViewById(R.id.diff_value);
+        TextView playerName = findViewById(R.id.player_name);
+        TextView difficulty = findViewById(R.id.diff_value);
 
-        pilot = findViewById(R.id.pilot_points);
-        fighter = findViewById(R.id.fighter_points);
-        trader = findViewById(R.id.trader_points);
-        engineer = findViewById(R.id.engineer_points);
+        TextView pilot = findViewById(R.id.pilot_points);
+        TextView fighter = findViewById(R.id.fighter_points);
+        TextView trader = findViewById(R.id.trader_points);
+        TextView engineer = findViewById(R.id.engineer_points);
 
         credits = findViewById(R.id.credit_num);
-        shipType = findViewById(R.id.ship_type);
+        TextView shipType = findViewById(R.id.ship_type);
 
-        viewModel = ViewModelProviders.of(this).get(GetPlayerViewModel.class);
+        GetPlayerViewModel viewModel = ViewModelProviders.of(this).get(GetPlayerViewModel.class);
         player = viewModel.getPlayer();
 
 

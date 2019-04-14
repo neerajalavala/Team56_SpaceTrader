@@ -1,16 +1,11 @@
 package com.example.spacetrader.views;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v4.app.FragmentTransaction;
 
 import com.example.spacetrader.R;
 import com.example.spacetrader.entity.Player;
-import com.example.spacetrader.entity.Planet;
-import com.example.spacetrader.entity.SolarSystem;
-import com.example.spacetrader.entity.Universe;
-import com.example.spacetrader.viewmodels.GetPlayerViewModel;
 
 import android.view.MenuItem;
 import android.support.annotation.NonNull;
@@ -18,25 +13,13 @@ import android.widget.FrameLayout;
 
 import android.support.design.widget.BottomNavigationView;
 
+import java.util.Objects;
+
 public class GameStartScreen extends AppCompatActivity {
 
     private String new_market = "UPDATED_MARKET";
 
-    /** an int for the request code */
-    private static final int EDIT_REQUEST = 5;
-
-//    private List<Player> players;
-
     private Player player;
-
-    private GetPlayerViewModel viewModel;
-
-    private Universe game;
-    private SolarSystem currentSystem;
-    private Planet currentPlanet;
-
-
-    private FrameLayout placeholder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,17 +33,14 @@ public class GameStartScreen extends AppCompatActivity {
             getSupportActionBar().setHomeButtonEnabled(false);
         }
 
-        this.viewModel = ViewModelProviders.of(this).get(GetPlayerViewModel.class);
-        this.player = viewModel.getPlayer();
-
-        planetFrag pFrag = planetFrag.newInstance(player);
+        planetFrag pFrag = new planetFrag();
 
         transaction.add(R.id.placeholder_planet, pFrag, "planet");
         transaction.commit();
 
-        placeholder = findViewById(R.id.placeholder_planet);
+        FrameLayout placeholder = findViewById(R.id.placeholder_planet);
 
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -71,25 +51,21 @@ public class GameStartScreen extends AppCompatActivity {
                         switch (item.getItemId()) {
 
                             case R.id.action_planet:
-                                planetFrag pFrag = planetFrag.newInstance(player);
+                                planetFrag pFrag = new planetFrag();
                                 trans.replace(R.id.placeholder_planet, pFrag, "planet");
                                 trans.commit();
                                 break;
 
                             case R.id.action_buy:
 
-                                System.out.println();
-                                System.out.println(player.getCredits().toString());
-                                System.out.println();
-
-                                buyFrag bFrag = buyFrag.newInstance(player);
+                                buyFrag bFrag = new buyFrag();
                                 trans.replace(R.id.placeholder_planet, bFrag, "buy");
                                 trans.commit();
                                 break;
 
                             case R.id.action_sell:
 
-                                sellFrag sFrag = new sellFrag().newInstance(player);
+                                sellFrag sFrag = new sellFrag();
                                 trans.replace(R.id.placeholder_planet, sFrag, "sell");
                                 trans.commit();
                                 break;
@@ -103,11 +79,7 @@ public class GameStartScreen extends AppCompatActivity {
 
                             case R.id.action_map:
 
-                                System.out.println();
-                                System.out.println(player.getCredits().toString());
-                                System.out.println();
-
-                                mapFrag mFrag = mapFrag.newInstance(player);
+                                mapFrag mFrag = new mapFrag();
                                 trans.replace(R.id.placeholder_planet, mFrag, "map");
                                 trans.commit();
                                 break;
@@ -119,7 +91,7 @@ public class GameStartScreen extends AppCompatActivity {
     }
 
     public void setActionBarTitle(String title) {
-        getSupportActionBar().setTitle(title);
+        Objects.requireNonNull(getSupportActionBar()).setTitle(title);
     }
 
     @Override

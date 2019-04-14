@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
                     fis.close();
                 } catch (IOException e) {e.printStackTrace();} catch (ClassNotFoundException e) {e.printStackTrace();}
                 Intent intent = new Intent(MainActivity.this, ViewAllPlayersActivity.class);
-                System.out.print("hi");
                 startActivity(intent);
             }
         });

@@ -14,7 +14,7 @@ public enum TechLevel {
     private String name;
     private int index;
 
-    private TechLevel(String s, int i){
+    TechLevel(String s, int i){
         this.name = s;
         this.index = i;
     }

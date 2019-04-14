@@ -31,21 +31,7 @@ public class TradeItemActivity extends AppCompatActivity {
 
     private TextView trade_total;
 
-    private GetPlayerViewModel viewModel;
-
     private Player player;
-
-    private CargoHold hold;
-
-    private TextView MarketGoodName;
-    private TextView Price;
-
-    private TextView Quantity;
-
-    private TextView hold_val;
-    private TextView creds;
-
-    private Button TradeButton;
 
     private MarketGood good;
 
@@ -64,37 +50,37 @@ public class TradeItemActivity extends AppCompatActivity {
         /* setting views to ids */
         trade_quantity = findViewById(R.id.trade_quantity);
         trade_total = findViewById(R.id.total_val);
-        MarketGoodName = findViewById(R.id.item_val);
-        Price = findViewById(R.id.price_val);
-        Quantity = findViewById(R.id.quan_num);
-        TradeButton = findViewById((R.id.buy_sell_button));
-        hold_val = findViewById(R.id.hold_val);
-        creds = findViewById(R.id.credits_val);
+        TextView marketGoodName = findViewById(R.id.item_val);
+        TextView price1 = findViewById(R.id.price_val);
+        TextView quantity = findViewById(R.id.quan_num);
+        Button tradeButton = findViewById((R.id.buy_sell_button));
+        TextView hold_val = findViewById(R.id.hold_val);
+        TextView creds = findViewById(R.id.credits_val);
 
 
         /* gets passed good */
         good = (MarketGood) getIntent().getSerializableExtra("TRADE_GOOD");
 
-        this.viewModel = ViewModelProviders.of(this).get(GetPlayerViewModel.class);
+        GetPlayerViewModel viewModel = ViewModelProviders.of(this).get(GetPlayerViewModel.class);
         this.player = viewModel.getPlayer();
-        this.hold = player.getCargoHold();
+        CargoHold hold = player.getCargoHold();
 
 
         /* setting text box values */
-        MarketGoodName.setText(good.getType().toString());
+        marketGoodName.setText(good.getType().toString());
 
-        Integer price = (Integer)good.getPrice();
-        Price.setText(price.toString());
+        Integer price = good.getPrice();
+        price1.setText(price.toString());
 
-        Integer quan = (Integer)good.getQuantity();
-        Quantity.setText(quan.toString());
+        Integer quan = good.getQuantity();
+        quantity.setText(quan.toString());
 
         if (good.getTechLevel() == TechLevel.NONE && good.getResources() == Resources.NONE) {
-            TradeButton.setText("Sell");
+            tradeButton.setText("Sell");
             setTitle("Sell " + good.getType().toString());
             buying = false;
         } else {
-            TradeButton.setText("Buy");
+            tradeButton.setText("Buy");
             setTitle("Buy " + good.getType().toString());
             buying = true;
         }

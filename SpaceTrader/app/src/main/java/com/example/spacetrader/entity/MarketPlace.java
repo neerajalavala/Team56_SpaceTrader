@@ -11,21 +11,15 @@ import java.util.Map;
 public class MarketPlace implements Serializable {
     private Map<String, MarketGood> marketGoods = new HashMap<>();
 
-    private TechLevel techLevel;
-    private Resources resources;
-
-    private final MarketGoodType[] goodTypes = MarketGoodType.values();
-
     public MarketPlace(TechLevel techLevel, Resources resources) {
-        this.techLevel = techLevel;
-        this.resources = resources;
 
+        MarketGoodType[] goodTypes = MarketGoodType.values();
         for(int i = 0; i < goodTypes.length; i++){
-            if (goodTypes[i].canBuy(this.techLevel)) {
-                marketGoods.put(goodTypes[i].toString(), new MarketGood(goodTypes[i], true, this.techLevel, this.resources));
+            if (goodTypes[i].canBuy(techLevel)) {
+                marketGoods.put(goodTypes[i].toString(), new MarketGood(goodTypes[i], true, techLevel, resources));
             } else {
-                if (goodTypes[i].canSell(this.techLevel)) {
-                    marketGoods.put(goodTypes[i].toString(), new MarketGood(goodTypes[i], false, this.techLevel, this.resources));
+                if (goodTypes[i].canSell(techLevel)) {
+                    marketGoods.put(goodTypes[i].toString(), new MarketGood(goodTypes[i], false, techLevel, resources));
                 }
             }
         }

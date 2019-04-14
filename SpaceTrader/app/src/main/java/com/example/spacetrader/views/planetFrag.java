@@ -1,10 +1,8 @@
 package com.example.spacetrader.views;
 
-import android.app.Activity;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -22,40 +20,18 @@ import com.example.spacetrader.viewmodels.GetPlayerViewModel;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.util.Objects;
 
 public class planetFrag extends Fragment {
 
     private Planet curr_planet;
 
-    private GetPlayerViewModel viewModel;
-
-    private SolarSystem[] solar_systems;
-
     private Player player;
-    private Universe game;
-
-    private TextView currentPlanet;
-    private TextView techLevel;
-    private TextView resources;
 
     private TextView fuel;
-    private TextView health;
-
-    private Button refuelButton;
-    private Button repairButton;
-    private Button saveButton;
 
 
     private String player_data = "PLAYER_DATA";
-
-
-    public static planetFrag newInstance(Player player) {
-        planetFrag frag = new planetFrag();
-        Bundle args = new Bundle();
-        args.putSerializable("PLAYER_DATA", player);
-        frag.setArguments(args);
-        return frag;
-    }
 
     @Override
     public void onAttach(Context context) {
@@ -66,12 +42,12 @@ public class planetFrag extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        this.viewModel = ViewModelProviders.of(this).get(GetPlayerViewModel.class);
+        GetPlayerViewModel viewModel = ViewModelProviders.of(this).get(GetPlayerViewModel.class);
         this.player = viewModel.getPlayer();
-        this.game = viewModel.getPlayerGame();
+        Universe game = viewModel.getPlayerGame();
 
         this.curr_planet = player.getCurrentPlanet();
-        this.solar_systems = game.getSolarSystems();
+        SolarSystem[] solar_systems = game.getSolarSystems();
 
 
 
@@ -79,25 +55,25 @@ public class planetFrag extends Fragment {
 
     Context c;
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
+    public View onCreateView( LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         c = getActivity();
         return inflater.inflate(R.layout.planet_fragment, parent, false);
     }
 
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated( View view, Bundle savedInstanceState) {
 
-        this.currentPlanet = (TextView) getView().findViewById(R.id.planet_name);
-        this.techLevel = (TextView) getView().findViewById(R.id.t_level_val);
-        this.resources= (TextView) getView().findViewById(R.id.res_value);
+        TextView currentPlanet = Objects.requireNonNull(getView()).findViewById(R.id.planet_name);
+        TextView techLevel = getView().findViewById(R.id.t_level_val);
+        TextView resources = getView().findViewById(R.id.res_value);
 
-        this.fuel = (TextView) getView().findViewById(R.id.fuel_val);
-        this.health = (TextView) getView().findViewById(R.id.health_val);
+        this.fuel = getView().findViewById(R.id.fuel_val);
+        TextView health = getView().findViewById(R.id.health_val);
 
-        this.refuelButton = (Button) getView().findViewById(R.id.refuel_button);
-        this.repairButton = (Button) getView().findViewById(R.id.repair_button);
-        this.saveButton = (Button ) getView().findViewById(R.id.save_button);
+        Button refuelButton = getView().findViewById(R.id.refuel_button);
+        Button repairButton = getView().findViewById(R.id.repair_button);
+        Button saveButton = getView().findViewById(R.id.save_button);
 
 //        for (int i = 0; i < solar_systems.length; i++) {
 //            if (solar_systems[i].getEntityID() == curr_planet.getSolar_id()) {
@@ -107,7 +83,7 @@ public class planetFrag extends Fragment {
 //            }
 //        }
 
-        ((GameStartScreen) getActivity()).setActionBarTitle(curr_planet.getName());
+        ((GameStartScreen) Objects.requireNonNull(getActivity())).setActionBarTitle(curr_planet.getName());
         currentPlanet.setText(curr_planet.getName());
         techLevel.setText(curr_planet.getTechLevel().toString());
         resources.setText(curr_planet.getResources().toString());

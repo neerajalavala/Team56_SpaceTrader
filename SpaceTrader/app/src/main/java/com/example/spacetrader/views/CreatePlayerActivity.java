@@ -115,7 +115,7 @@ public class CreatePlayerActivity extends AppCompatActivity {
                     int trader = (int) trader_spinner.getSelectedItem();
                     int engineer = (int) engineer_spinner.getSelectedItem();
 
-                    Integer pts_left = (Integer) (16 - pilot - fighter - trader - engineer);
+                    Integer pts_left = (16 - pilot - fighter - trader - engineer);
                     skill_pts.setText(pts_left.toString());
 
                 }
@@ -161,6 +161,7 @@ public class CreatePlayerActivity extends AppCompatActivity {
             builder.setMessage("Exactly 16 skill points must be allocated. ")
                     .setCancelable(false)
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
                         public void onClick(DialogInterface dialog, int id) {
                             //do things
                         }
@@ -172,6 +173,7 @@ public class CreatePlayerActivity extends AppCompatActivity {
             builder.setMessage("Player name cannot be empty. ")
                     .setCancelable(false)
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
                         public void onClick(DialogInterface dialog, int id) {
                             //do things
                         }

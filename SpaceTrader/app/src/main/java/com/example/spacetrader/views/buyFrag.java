@@ -4,7 +4,6 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -12,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.os.Bundle;
 import android.content.Context;
-import android.app.Activity;
 
 import com.example.spacetrader.R;
 import com.example.spacetrader.entity.MarketGood;
@@ -23,12 +21,11 @@ import com.example.spacetrader.entity.Planet;
 import com.example.spacetrader.viewmodels.GetPlayerViewModel;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class buyFrag extends Fragment {
 
     private MarketPlace market;
-
-    private GetPlayerViewModel viewModel;
 
     private Player player;
 
@@ -41,15 +38,6 @@ public class buyFrag extends Fragment {
     /** an adapter for the recycler view */
     private MarketGoodAdapter adapter;
 
-    private Planet curr_planet;
-
-    public static buyFrag newInstance(Player player) {
-        buyFrag frag = new buyFrag();
-        Bundle args = new Bundle();
-        args.putSerializable("PLAYER_DATA", player);
-        frag.setArguments(args);
-        return frag;
-    }
 
     @Override
     public void onAttach(Context context) {
@@ -60,18 +48,16 @@ public class buyFrag extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        this.viewModel = ViewModelProviders.of(this).get(GetPlayerViewModel.class);
+        GetPlayerViewModel viewModel = ViewModelProviders.of(this).get(GetPlayerViewModel.class);
         this.player = viewModel.getPlayer();
 
-        this.curr_planet = player.getCurrentPlanet();
-
-        System.out.println(curr_planet.getName());
+        Planet curr_planet = player.getCurrentPlanet();
 
         this.hold = player.getCargoHold();
 
         this.market = curr_planet.getMarketPlace();
 
-        this.viewModel = ViewModelProviders.of(this).get(GetPlayerViewModel.class);
+        viewModel = ViewModelProviders.of(this).get(GetPlayerViewModel.class);
         this.player = viewModel.getPlayer();
 
 
@@ -86,12 +72,12 @@ public class buyFrag extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 
-        RecyclerView recyclerView = (RecyclerView) getView().findViewById(R.id.trade_list);
+        RecyclerView recyclerView = Objects.requireNonNull(getView()).findViewById(R.id.trade_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
 
-        ((GameStartScreen) getActivity())
+        ((GameStartScreen) Objects.requireNonNull(getActivity()))
                 .setActionBarTitle(hold.toString()
                         + "  Credits: " + player.getCredits());
 
@@ -126,7 +112,7 @@ public class buyFrag extends Fragment {
 
         adapter.setMarketGoodList(goods);
 
-        ((GameStartScreen) getActivity())
+        ((GameStartScreen) Objects.requireNonNull(getActivity()))
                 .setActionBarTitle(hold.toString()
                 + "  Credits: " + player.getCredits());
 

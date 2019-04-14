@@ -21,7 +21,7 @@ public class MarketGood implements Serializable {
         this.techLevel = tL;
         this.resources = resources;
 
-        /** quantity calculation */
+        /* quantity calculation */
         if (!genQ) {
             this.quantity = 0;
         } else {
@@ -38,7 +38,7 @@ public class MarketGood implements Serializable {
                             * ((1 + techLevel.index()) - marketGoodType.getMinimumLevelToProduce().index());
         }
 
-        /** start price calculation */
+        /* start price calculation */
 
         double cheapResMult = 1.0;
         int expResMult = 1;

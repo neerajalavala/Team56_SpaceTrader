@@ -1,12 +1,10 @@
 package com.example.spacetrader.views;
 
-import android.app.Activity;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -23,6 +21,7 @@ import com.example.spacetrader.entity.Planet;
 import com.example.spacetrader.viewmodels.GetPlayerViewModel;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class sellFrag extends Fragment {
 
@@ -80,12 +79,12 @@ public class sellFrag extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
-        RecyclerView recyclerView = (RecyclerView) getView().findViewById(R.id.trade_list);
+        RecyclerView recyclerView = Objects.requireNonNull(getView()).findViewById(R.id.trade_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
 
-        ((GameStartScreen) getActivity())
+        ((GameStartScreen) Objects.requireNonNull(getActivity()))
                 .setActionBarTitle("Hold: " + hold.getCount().toString() + "/" + hold.getCapacity().toString());
 
 
@@ -109,7 +108,7 @@ public class sellFrag extends Fragment {
 
         adapter.setMarketGoodList(goods);
 
-        ((GameStartScreen) getActivity())
+        ((GameStartScreen) Objects.requireNonNull(getActivity()))
                 .setActionBarTitle(hold.toString());
 
         adapter.setOnMarketGoodClickListener(new MarketGoodAdapter.OnMarketGoodClickListener(){
