@@ -12,10 +12,10 @@ import java.util.Map;
  * It is a Singleton so that it can be accessed from anywhere in the application
  */
 
-public class Model {
+public final class Model {
 
     /** the data repository */
-    private Repository myRepository;
+    private PlayerRepository myPlayerRepository;
 
     private Map<String, Object> interactorMap;
 
@@ -32,18 +32,18 @@ public class Model {
      * Make a new Model instance
      */
     private Model() {
-        myRepository = new Repository();
+        myPlayerRepository = new PlayerRepository();
         interactorMap = new HashMap<>();
         registerInteractors();
     }
 
-    /** end Singleton Pattern */
+    /* end Singleton Pattern */
 
     /**
      * Create a set of interactors to be used by the application
      */
     private void registerInteractors() {
-        interactorMap.put("Player", new PlayerInteractor(myRepository));
+        interactorMap.put("Player", new PlayerInteractor(myPlayerRepository));
     }
 
     public PlayerInteractor getPlayerInteractor() {

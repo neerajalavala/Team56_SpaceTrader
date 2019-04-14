@@ -1,6 +1,7 @@
 package com.example.spacetrader.views;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -18,10 +19,15 @@ import android.widget.TextView;
 
 import com.example.spacetrader.R;
 
-import com.example.spacetrader.entity.gamelogic.Difficulty;
-import com.example.spacetrader.entity.gamelogic.Player;
+import com.example.spacetrader.entity.Difficulty;
+import com.example.spacetrader.entity.Player;
 
+import com.example.spacetrader.exception.PlayerCreationException;
 import com.example.spacetrader.viewmodels.CreatePlayerViewModel;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 
 /**
  * This class acts as the code behind for creating a new player
@@ -90,7 +96,8 @@ public class CreatePlayerActivity extends AppCompatActivity {
         /*
           Set up the adapter to display the allowable skill point ranges in the spinner
          */
-        final ArrayAdapter<Integer> skill_pt_adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, skill_pt_range);
+        final ArrayAdapter<Integer> skill_pt_adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, skill_pt_range);
         skill_pt_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         pilot_spinner.setAdapter(skill_pt_adapter);
@@ -103,14 +110,15 @@ public class CreatePlayerActivity extends AppCompatActivity {
         for (Spinner spin : spins){
             spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
-                public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                public void onItemSelected(AdapterView<?> parentView, View selectedItemView,
+                                           int position, long id) {
                     // your code here
                     int pilot = (int) pilot_spinner.getSelectedItem();
                     int fighter = (int) fighter_spinner.getSelectedItem();
                     int trader = (int) trader_spinner.getSelectedItem();
                     int engineer = (int) engineer_spinner.getSelectedItem();
 
-                    Integer pts_left = (Integer) (16 - pilot - fighter - trader - engineer);
+                    Integer pts_left = (16 - pilot - fighter - trader - engineer);
                     skill_pts.setText(pts_left.toString());
 
                 }
@@ -124,7 +132,8 @@ public class CreatePlayerActivity extends AppCompatActivity {
         }
 
         /* set difficulty spinner */
-        difficulty_spinner.setAdapter(new ArrayAdapter<Difficulty>(this, android.R.layout.simple_spinner_item, Difficulty.values()));
+        difficulty_spinner.setAdapter(new ArrayAdapter<Difficulty>(this,
+                android.R.layout.simple_spinner_item, Difficulty.values()));
 
 
 
@@ -144,47 +153,86 @@ public class CreatePlayerActivity extends AppCompatActivity {
      * @param view the button that was pressed
      */
     public void onAddPressed(View view) {
-        Log.d("Edit", "Add Player Pressed");
+//        Log.d("Edit", "Add Player Pressed");
 
         int pilot = (int) pilot_spinner.getSelectedItem();
         int fighter = (int) fighter_spinner.getSelectedItem();
         int trader = (int) trader_spinner.getSelectedItem();
         int engineer = (int) engineer_spinner.getSelectedItem();
+        Difficulty diff = (Difficulty) difficulty_spinner.getSelectedItem();
 
-        if (pilot + fighter + trader + engineer != 16) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("Exactly 16 skill points must be allocated. ")
-                    .setCancelable(false)
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            //do things
-                        }
-                    });
-            AlertDialog alert = builder.create();
-            alert.show();
-        } else if (nameField.getText().toString().equals("")) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("Player name cannot be empty. ")
-                    .setCancelable(false)
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            //do things
-                        }
-                    });
-            AlertDialog alert = builder.create();
-            alert.show();
-        } else {
+        try {
+            Player player = Player.createPlayer(nameField.getText().toString(), pilot, fighter,
+                    trader, engineer, diff);
 
-            Difficulty diff = (Difficulty) difficulty_spinner.getSelectedItem();
-
-            Player player = new Player(nameField.getText().toString(), pilot, fighter, trader, engineer, diff);
-
-            Log.d("Edit", "Got new player data: " + player);
-
+            try {
+                FileOutputStream fos = this.openFileOutput("SpaceTrader.ser",
+                        Context.MODE_PRIVATE);
+                ObjectOutputStream os = new ObjectOutputStream(fos);
+                os.writeObject(player);
+                os.close();
+                fos.close();
+            } catch (IOException e) {e.printStackTrace();}
             viewModel.addPlayer(player);
 
             finish();
+        } catch (PlayerCreationException p) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage(p.toString())
+                    .setCancelable(false)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int id) {
+                            //do things
+                        }
+                    });
+            AlertDialog alert = builder.create();
+            alert.show();
         }
+
+//        if (pilot + fighter + trader + engineer != 16) {
+//            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//            builder.setMessage("Exactly 16 skill points must be allocated. ")
+//                    .setCancelable(false)
+//                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//                        public void onClick(DialogInterface dialog, int id) {
+//                            //do things
+//                        }
+//                    });
+//            AlertDialog alert = builder.create();
+//            alert.show();
+//        } else if (nameField.getText().toString().equals("")) {
+//            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//            builder.setMessage("Player name cannot be empty. ")
+//                    .setCancelable(false)
+//                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//                        public void onClick(DialogInterface dialog, int id) {
+//                            //do things
+//                        }
+//                    });
+//            AlertDialog alert = builder.create();
+//            alert.show();
+//        } else {
+//
+//
+//
+//            Player player = new Player(nameField.getText().toString(), pilot, fighter, trader,
+// engineer, diff);
+//
+//            Log.d("Edit", "Got new player data: " + player);
+//
+//            try {
+//                FileOutputStream fos = this.openFileOutput("SpaceTrader.ser",
+// Context.MODE_PRIVATE);
+//                ObjectOutputStream os = new ObjectOutputStream(fos);
+//                os.writeObject(player);
+//                os.close();
+//                fos.close();
+//            } catch (IOException e) {e.printStackTrace();}
+//            viewModel.addPlayer(player);
+//
+//            finish();
+//        }
     }
 
     /**

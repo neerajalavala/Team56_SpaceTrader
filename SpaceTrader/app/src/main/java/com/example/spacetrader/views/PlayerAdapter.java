@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.spacetrader.R;
-import com.example.spacetrader.entity.gamelogic.Player;
+import com.example.spacetrader.entity.Player;
 
 /**
  * Adapts the list of players in the model to be a list of graphical elements in view
@@ -63,8 +63,10 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerView
         return playerList.size();
     }
 
-    public void setPlayerList(List<Player> players) {
-        playerList = players;
+    public void setPlayerList(Player player) {
+        if (playerList.size() < 1) {
+            playerList.add(player);
+        }
         notifyDataSetChanged();
     }
 

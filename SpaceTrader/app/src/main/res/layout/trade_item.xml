@@ -8,54 +8,36 @@
 
     <RelativeLayout
         android:layout_width="405dp"
-        android:layout_height="100dp"
+        android:layout_height="50dp"
         android:padding="8dp">
-
-        <TextView
-            android:id="@+id/item_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-            android:text="Item:"
-            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/item_val"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="0dp"
-            android:layout_marginTop="50dp" />
+            android:layout_marginTop="0dp" />
 
-        <TextView
-            android:id="@+id/price_text"
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/quan_button"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="130dp"
-            android:layout_marginTop="0dp"
-            android:text="Price:"
-            android:textSize="24sp" />
+            android:layout_marginLeft="120dp"
+            android:text="#" />
+
+        <Button
+            android:id="@+id/max_button"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="200dp"
+            android:text="Max" />
 
         <TextView
             android:id="@+id/price_val"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="130dp"
-            android:layout_marginTop="50dp" />
-
-        <TextView
-            android:id="@+id/quantity_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="240dp"
-            android:text="Total Quan:"
-            android:textSize="24sp" />
-
-        <TextView
-            android:id="@+id/quantity_val"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="240dp"
-            android:layout_marginTop="50dp" />
+            android:layout_marginLeft="300dp"
+            android:layout_marginTop="0dp" />
 
     </RelativeLayout>
 

@@ -9,10 +9,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.spacetrader.R;
-import com.example.spacetrader.entity.gamelogic.Player;
-import com.example.spacetrader.viewmodels.PlayerListingViewModel;
-
-import java.util.List;
+import com.example.spacetrader.entity.Player;
+import com.example.spacetrader.viewmodels.GetPlayerViewModel;
 
 public class ViewPlayerActivity extends AppCompatActivity {
 
@@ -23,22 +21,9 @@ public class ViewPlayerActivity extends AppCompatActivity {
 
     private Player player;
 
-    private PlayerListingViewModel  viewModel;
-
-    private List<Player> players;
-
     private Player play;
 
-    private TextView playerName;
-    private TextView difficulty;
-
-    private TextView pilot;
-    private TextView fighter;
-    private TextView trader;
-    private TextView engineer;
-
     private TextView credits;
-    private TextView shipType;
 
     private Button startButton;
 
@@ -56,40 +41,33 @@ public class ViewPlayerActivity extends AppCompatActivity {
             getSupportActionBar().setHomeButtonEnabled(false);
         }
 
-        playerName = findViewById(R.id.player_name);
-        difficulty = findViewById(R.id.diff_value);
+        TextView playerName = findViewById(R.id.player_name);
+        TextView difficulty = findViewById(R.id.diff_value);
 
-        pilot = findViewById(R.id.pilot_points);
-        fighter = findViewById(R.id.fighter_points);
-        trader = findViewById(R.id.trader_points);
-        engineer = findViewById(R.id.engineer_points);
+        TextView pilot = findViewById(R.id.pilot_points);
+        TextView fighter = findViewById(R.id.fighter_points);
+        TextView trader = findViewById(R.id.trader_points);
+        TextView engineer = findViewById(R.id.engineer_points);
 
         credits = findViewById(R.id.credit_num);
-        shipType = findViewById(R.id.ship_type);
+        TextView shipType = findViewById(R.id.ship_type);
 
-        player = (Player) getIntent().getSerializableExtra(PLAYER_DATA);
+        GetPlayerViewModel viewModel = ViewModelProviders.of(this).get(GetPlayerViewModel.class);
+        player = viewModel.getPlayer();
 
-        viewModel = ViewModelProviders.of(this).get(PlayerListingViewModel.class);
 
-        players = viewModel.getPlayers();
 
-        for (Integer i = 0; i < players.size(); i++) {
-            if (players.get(i).getID() == player.getID()) {
-                this.play = players.get(i);
+        playerName.setText(player.getName());
+        difficulty.setText(player.getDiff().toString());
 
-                playerName.setText(players.get(i).getName());
-                difficulty.setText(players.get(i).getDiff().toString());
+        pilot.setText(player.getPilot().toString());
+        fighter.setText(player.getFighter().toString());
+        trader.setText(player.getTrader().toString());
+        engineer.setText(player.getEngineer().toString());
 
-                pilot.setText(players.get(i).getPilot().toString());
-                fighter.setText(players.get(i).getFighter().toString());
-                trader.setText(players.get(i).getTrader().toString());
-                engineer.setText(players.get(i).getEngineer().toString());
+        credits.setText(player.getCredits().toString());
+        shipType.setText(player.getShipType().toString());
 
-                credits.setText(players.get(i).getCredits().toString());
-                shipType.setText(players.get(i).getShipType().toString());
-                break;
-            }
-        }
 
         setTitle("Select Save");
 
@@ -97,8 +75,8 @@ public class ViewPlayerActivity extends AppCompatActivity {
         view_universe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ViewPlayerActivity.this, ViewPlanet.class);
-                intent.putExtra(PLAYER_DATA, player.getCurrentPlanet());
+                Intent intent = new Intent(ViewPlayerActivity.this, GameStartScreen.class);
+                intent.putExtra(PLAYER_DATA, player);
                 startActivityForResult(intent, EDIT_REQUEST);
             }
         });
@@ -108,7 +86,7 @@ public class ViewPlayerActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        credits.setText(play.getCredits().toString());
+        credits.setText(player.getCredits().toString());
 
     }
 }

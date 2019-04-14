@@ -12,15 +12,52 @@
         android:orientation="vertical">
 
         <RelativeLayout
-        android:layout_width="405dp"
-        android:layout_height="100dp"
-        android:padding="8dp">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp">
 
-        <include
-            layout="@layout/trade_item"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/item_val"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="0dp"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/total_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="90dp"
+                android:text="Qty:"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/quan_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="140dp"
+                android:text="#"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/price_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="220dp"
+                android:text="$/unit:"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/price_val"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="300dp"
+                android:layout_marginTop="0dp"
+                android:text="#"
+                android:textSize="24sp" />
+
+        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="405dp"
