@@ -9,7 +9,9 @@ import java.util.Map;
 
 
 
-
+/**
+ * Represents the CargoHold to hold goods
+ */
 public class CargoHold implements Serializable {
     private Integer count;
 
@@ -19,6 +21,12 @@ public class CargoHold implements Serializable {
 
     private Map<String, MarketGood> hold = new HashMap<>();
 
+    /**
+     * CargoHold constructor
+     *
+     * @param cap max capacity of CargoHold
+     * @param id player ID
+     */
     public CargoHold(int cap, int id) {
         MarketGoodType[] types = MarketGoodType.values();
         this.capacity = cap;
@@ -30,6 +38,13 @@ public class CargoHold implements Serializable {
         count = 0;
     }
 
+    /**
+     * Adds goods to CargoHold and increases current capacity
+     *
+     * @param goodName name of good that is added to CargoHold
+     * @param quantity amount of good that is addeded to CargoHold
+     * @throws PurchaseException if adding goods would exceed capacity or adding nonexistent good
+     */
     public void addGoods(String goodName, int quantity) throws PurchaseException {
         if (count + quantity > capacity) {
             throw new PurchaseException("No room in hold!");
@@ -44,6 +59,13 @@ public class CargoHold implements Serializable {
         count += quantity;
     }
 
+    /**
+     * Removes goods from CargoHold and decreases current capacity
+     *
+     * @param goodName name of good that is removed to CargoHold
+     * @param quantity quantity of good that is removed from CargoHold
+     * @throws PurchaseException if selling more goods than currently have or selling nonexistent good
+     */
     public void removeGoods(String goodName, int quantity) throws PurchaseException {
         if (count - quantity < 0) {
             throw new PurchaseException("Cannot sell " + quantity + " goods with only " + count +
@@ -59,6 +81,12 @@ public class CargoHold implements Serializable {
         count -= quantity;
     }
 
+    /**
+     * Gets a list of sellable goods based on goods in CargoHold
+     *
+     * @param lev Tech level that goods are sold at
+     * @return list of sellable goods
+     */
     public ArrayList<MarketGood> getSellableGoods(TechLevel lev) {
         ArrayList<MarketGood> sellList = new ArrayList<>();
         for (MarketGood m : hold.values()) {
@@ -72,18 +100,38 @@ public class CargoHold implements Serializable {
         return sellList;
     }
 
+    /**
+     * Checks if the CargoHold is full
+     *
+     * @return True if CargoHold is full, otherwise False
+     */
     public boolean isFull() {
         return count >= capacity;
     }
 
+    /**
+     * Gets player ID
+     *
+     * @return int representing player ID
+     */
     public int getPlayerID() {
         return playerID;
     }
 
+    /**
+     * Gets max capacity of CargoHold
+     *
+     * @return max capacity of CargoHold
+     */
     public Integer getCapacity() {
         return capacity;
     }
 
+    /**
+     * Gets current capacity of CargoHold
+     *
+     * @return current capacity of CargoHold
+     */
     public Integer getCount() {
         return count;
     }

@@ -2,6 +2,9 @@ package com.example.spacetrader.entity;
 
 import android.support.annotation.NonNull;
 
+/**
+ * Documents possible types of marketgoods
+ */
 public enum MarketGoodType {
     WATER("Water", 30, 4, 3, TechLevel.PREAGRICULTURE, TechLevel.PREAGRICULTURE, TechLevel.MEDIEVAL,
             0, Resources.LOTSOFWATER, Resources.DESERT),
@@ -53,38 +56,85 @@ public enum MarketGoodType {
         this.expensiveResource = er;
     }
 
+    /**
+     * Checks if can buy a type based on tech level
+     *
+     * @param planetTech current planet tech level
+     * @return true if can buy at tech level, else false
+     */
     public boolean canBuy(TechLevel planetTech) {
         return this.minimumLevelToProduce.index() <= planetTech.index();
     }
 
+    /**
+     * Checks if can sell a type based on tech level
+     *
+     * @param planetTech current planet tech level
+     * @return true if can sell at tech level, else false
+     */
     public boolean canSell(TechLevel planetTech) {
         return this.minimumLevelToUse.index() <= planetTech.index();
     }
 
+    /**
+     * Gets min tech level required to produce a type
+     *
+     * @return min tech level needed
+     */
     public TechLevel getMinimumLevelToProduce() {
         return minimumLevelToProduce;
     }
 
+    /**
+     * Gets min tech level required to use a type
+     *
+     * @return min tech level needed
+     */
     public TechLevel getMinimumLevelToUse() {
         return minimumLevelToUse;
     }
 
+    /**
+     * Gets tech level at which type has highest production
+     *
+     * @return tech level for highest production of type
+     */
     public TechLevel getTechTopProduction() {
         return techTopProduction;
     }
 
+    /**
+     * Gets increase in price per tech level
+     *
+     * @return amount of increase
+     */
     public int getIncreasePerLevel() {
         return increasePerLevel;
     }
 
+    /**
+     * Gets base price of a type
+     *
+     * @return base price of type
+     */
     public int getBasePrice() {
         return basePrice;
     }
 
+    /**
+     * Gets variance of type price
+     *
+     * @return variance of type price
+     */
     public int getVariance() {
         return variance;
     }
 
+    /**
+     * Gets resource needed to make a type cheap
+     *
+     * @return resource necessary
+     */
     public Resources getCheapResource(){
         if (cheapResource != null) {
             return cheapResource;
@@ -92,6 +142,11 @@ public enum MarketGoodType {
         return Resources.NONE;
     }
 
+    /**
+     * Gets resource needed to make a type expensive
+     *
+     * @return respirce mecessary
+     */
     public Resources getExpensiveResource() {
         if (expensiveResource != null){
             return expensiveResource;
@@ -99,6 +154,11 @@ public enum MarketGoodType {
         return Resources.NONE;
     }
 
+    /**
+     * Returns index of a type
+     *
+     * @return index of a type
+     */
     public int index() {
         return index;
     }
