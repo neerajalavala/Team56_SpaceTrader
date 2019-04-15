@@ -29,7 +29,7 @@ class PlayerRepository {
     }
 
     /**
-     * get all the players in teh system
+     * get all the players in the system
      * @return list of all players
      */
     public Player getPlayer() {
