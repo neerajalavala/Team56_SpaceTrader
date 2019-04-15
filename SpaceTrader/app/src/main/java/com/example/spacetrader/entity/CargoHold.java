@@ -64,7 +64,8 @@ public class CargoHold implements Serializable {
      *
      * @param goodName name of good that is removed to CargoHold
      * @param quantity quantity of good that is removed from CargoHold
-     * @throws PurchaseException if selling more goods than currently have or selling nonexistent good
+     * @throws PurchaseException if selling more goods than currently have
+     * or selling nonexistent good
      */
     public void removeGoods(String goodName, int quantity) throws PurchaseException {
         if (count - quantity < 0) {
