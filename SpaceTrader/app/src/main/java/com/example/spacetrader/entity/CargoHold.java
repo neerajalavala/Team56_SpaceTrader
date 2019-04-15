@@ -137,6 +137,15 @@ public class CargoHold implements Serializable {
         return count;
     }
 
+    /**
+     * return the hold object
+     *
+     * @return the object's hold
+     */
+    public Map<String, MarketGood> getHold() {
+        return hold;
+    }
+
     public String toString() {
         return "Hold: " + count + "/" + capacity;
     }
