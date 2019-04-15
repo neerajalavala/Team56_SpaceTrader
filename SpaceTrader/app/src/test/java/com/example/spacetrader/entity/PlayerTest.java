@@ -30,10 +30,15 @@ public class PlayerTest {
 
     @Test
     public void subFuel() {
+        //test subtracting more fuel than in the tank
         int maxFuel = play.getFuel();
         play.subFuel(maxFuel + 1);
+
+        //test subtracting a negative amount of fuel
         assertEquals(play.getFuel(), maxFuel);
         play.subFuel(-1);
+
+        //test subtracting fuel actually results in the correct subtraction
         assertEquals(play.getFuel(), maxFuel);
         play.subFuel(5);
         assertEquals(play.getFuel(), maxFuel - 5);
