@@ -12,6 +12,7 @@ public class PurchaseException extends Exception {
      * @param message message to set as exception
      */
     public PurchaseException(String message) {
+        super(message);
         this.message = message;
     }
 

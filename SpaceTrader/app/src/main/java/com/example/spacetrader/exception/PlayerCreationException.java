@@ -12,6 +12,7 @@ public class PlayerCreationException extends Exception {
      * @param message message to set as exception
      */
     public PlayerCreationException(String message) {
+        super(message);
         this.message = message;
     }
 
