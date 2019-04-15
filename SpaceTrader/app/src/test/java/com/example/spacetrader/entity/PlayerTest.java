@@ -27,4 +27,15 @@ public class PlayerTest {
         assertEquals(num, 900);
         assertEquals(play.subCredits(1001), false);
     }
+
+    @Test
+    public void subFuel() {
+        int maxFuel = play.getFuel();
+        play.subFuel(maxFuel + 1);
+        assertEquals(play.getFuel(), maxFuel);
+        play.subFuel(-1);
+        assertEquals(play.getFuel(), maxFuel);
+        play.subFuel(5);
+        assertEquals(play.getFuel(), maxFuel - 5);
+    }
 }
