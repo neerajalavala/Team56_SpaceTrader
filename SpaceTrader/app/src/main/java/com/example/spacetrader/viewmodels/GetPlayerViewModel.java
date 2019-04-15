@@ -17,15 +17,28 @@ public class GetPlayerViewModel extends AndroidViewModel {
 
     private PlayerInteractor interactor = Model.getInstance().getPlayerInteractor();
 
+    /**
+     * Gets player view model
+     *
+     * @param application current application
+     */
     public GetPlayerViewModel(@NonNull Application application) {
         super(application);
     }
 
 
+    /**
+     *
+     * @return player to get from interactor
+     */
     public Player getPlayer() {
         return interactor.getPlayer();
     }
 
+    /**
+     *
+     * @return universe to get from interactor
+     */
     public Universe getPlayerGame() {
         return interactor.getPlayerGame();
     }

@@ -15,6 +15,9 @@ import android.support.design.widget.BottomNavigationView;
 
 import java.util.Objects;
 
+/**
+ * Represents game start screen
+ */
 public class GameStartScreen extends AppCompatActivity {
 
     private String new_market = "UPDATED_MARKET";
@@ -91,6 +94,11 @@ public class GameStartScreen extends AppCompatActivity {
                 });
     }
 
+    /**
+     * Sets title of action bar
+     *
+     * @param title message to set
+     */
     public void setActionBarTitle(String title) {
         Objects.requireNonNull(getSupportActionBar()).setTitle(title);
     }

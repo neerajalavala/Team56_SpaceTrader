@@ -17,5 +17,9 @@ public abstract class Interactor {
         return myPlayerRepository;
     }
 
+    /**
+     *
+     * @return universe to get from game
+     */
     public abstract Universe getPlayerGame();
 }

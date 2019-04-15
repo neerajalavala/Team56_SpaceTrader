@@ -24,7 +24,9 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 
-
+/**
+ * Fragment for selling
+ */
 public class sellFrag extends Fragment {
 
 //    private MarketPlace market;
@@ -44,6 +46,11 @@ public class sellFrag extends Fragment {
 
     private Planet curr_planet;
 
+    /**
+     *
+     * @param player player whose data is used
+     * @return new instance of fragment for selling
+     */
     public static sellFrag newInstance(Player player) {
         sellFrag frag = new sellFrag();
         Bundle args = new Bundle();

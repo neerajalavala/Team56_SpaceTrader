@@ -1,7 +1,9 @@
 package com.example.spacetrader.entity;
 
 
-
+/**
+ * Represents possible resources
+ */
 public enum Resources {
     NOSPECIALRESOURCES("No Special Resources", 0),
     MINERALRICH("Mineral Rich", 1),
@@ -26,6 +28,10 @@ public enum Resources {
         this.index = i;
     }
 
+    /**
+     *
+     * @return index of resource
+     */
     public int index() {
         return index;
     }

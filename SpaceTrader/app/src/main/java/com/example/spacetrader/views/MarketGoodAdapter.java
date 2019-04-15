@@ -15,6 +15,9 @@ import com.example.spacetrader.entity.MarketGood;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Adapter for market good
+ */
 public class MarketGoodAdapter extends
         RecyclerView.Adapter<MarketGoodAdapter.MarketGoodViewHolder> {
     /** a copy of the list of MarketGoods in the model */
@@ -63,6 +66,11 @@ public class MarketGoodAdapter extends
         return MarketGoodList.size();
     }
 
+    /**
+     * Sets market good list
+     *
+     * @param MarketGoods markets goods to set in list
+     */
     public void setMarketGoodList(List<MarketGood> MarketGoods) {
         MarketGoodList = MarketGoods;
         notifyDataSetChanged();
@@ -114,9 +122,18 @@ public class MarketGoodAdapter extends
     }
 
     public interface OnMarketGoodClickListener {
+        /**
+         * click listener for market good
+         *
+         * @param MarketGood market good that is clicked
+         */
         void onMarketGoodClicked(MarketGood MarketGood);
     }
 
+    /**
+     *
+     * @param listener click listener to set for market good
+     */
     public void setOnMarketGoodClickListener(MarketGoodAdapter.OnMarketGoodClickListener listener){
         this.listener = listener;
     }

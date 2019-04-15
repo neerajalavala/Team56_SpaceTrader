@@ -61,8 +61,8 @@ public class CreatePlayerActivity extends AppCompatActivity {
        flag for whether this is a new player being added or an existing player being edited;
      */
 
-    public CreatePlayerActivity() {
-    }
+//    public CreatePlayerActivity() {
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

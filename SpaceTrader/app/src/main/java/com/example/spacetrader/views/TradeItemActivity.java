@@ -21,6 +21,9 @@ import com.example.spacetrader.entity.TechLevel;
 import com.example.spacetrader.exception.PurchaseException;
 import com.example.spacetrader.viewmodels.GetPlayerViewModel;
 
+/**
+ * Represents trading
+ */
 public class TradeItemActivity extends AppCompatActivity {
     /** a key for passing data */
     public static final String PLAYER_DATA = "PLAYER_DATA";

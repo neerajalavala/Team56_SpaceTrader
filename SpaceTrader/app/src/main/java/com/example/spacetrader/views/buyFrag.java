@@ -23,6 +23,9 @@ import com.example.spacetrader.viewmodels.GetPlayerViewModel;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * Fragment for buying
+ */
 public class buyFrag extends Fragment {
 
     private MarketPlace market;

@@ -4,6 +4,9 @@ import com.example.spacetrader.entity.Player;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+/**
+ * Documents Firebase functions
+ */
 public class FirebaseInteractor implements DatabaseInteractor {
 
     /**

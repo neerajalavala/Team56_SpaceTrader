@@ -23,7 +23,9 @@ import java.io.ObjectOutputStream;
 import java.util.Objects;
 
 
-
+/**
+ * Fragment for planet
+ */
 public class planetFrag extends Fragment {
 
     private Planet curr_planet;

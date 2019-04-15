@@ -8,6 +8,10 @@ import com.example.spacetrader.entity.Universe;
  */
 public class PlayerInteractor extends Interactor {
 
+    /**
+     *
+     * @param repo repository of player
+     */
     public PlayerInteractor(PlayerRepository repo) {
         super(repo);
     }
@@ -17,10 +21,18 @@ public class PlayerInteractor extends Interactor {
         return getRepository().getPlayerGame();
     }
 
+    /**
+     *
+     * @return player of repository
+     */
     public Player getPlayer() {
         return getRepository().getPlayer();
     }
 
+    /**
+     *
+     * @param p new player of repository
+     */
     public void newPlayer (Player p) {
         getRepository().newPlayer(p);
     }

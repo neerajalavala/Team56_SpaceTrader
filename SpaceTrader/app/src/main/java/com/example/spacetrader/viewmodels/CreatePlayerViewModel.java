@@ -14,10 +14,19 @@ import com.example.spacetrader.model.PlayerInteractor;
 public class CreatePlayerViewModel  extends AndroidViewModel {
     private PlayerInteractor interactor = Model.getInstance().getPlayerInteractor();
 
+    /**
+     * Creates view model for player
+     *
+     * @param application current application
+     */
     public CreatePlayerViewModel(@NonNull Application application) {
         super(application);
     }
 
+    /**
+     *
+     * @param player player to add to interactor
+     */
     public void addPlayer(Player player) {
         interactor.newPlayer(player);
     }

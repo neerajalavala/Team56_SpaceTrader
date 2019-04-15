@@ -29,6 +29,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Fragment for map
+ */
 public class mapFrag extends Fragment {
     private GetPlayerViewModel viewModel;
 

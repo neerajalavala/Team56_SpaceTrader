@@ -1,6 +1,8 @@
 package com.example.spacetrader.entity;
 
-
+/**
+ * Represents types of ships
+ */
 public enum ShipType {
     FLEA("Flea", 10, 20),
     GNAT("Gnat", 15, 15),
@@ -23,10 +25,18 @@ public enum ShipType {
         this.maxFuel = maxFuel;
     }
 
+    /**
+     *
+     * @return max capacity of ship type
+     */
     public int getCapacity() {
         return capacity;
     }
 
+    /**
+     *
+     * @return max fuel of ship type
+     */
     public Integer getMaxFuel() {
         return maxFuel;
     }

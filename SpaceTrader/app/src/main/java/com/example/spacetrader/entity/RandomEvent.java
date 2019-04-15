@@ -1,7 +1,9 @@
 package com.example.spacetrader.entity;
 
 
-
+/**
+ * Represents possible random events
+ */
 public enum RandomEvent {
     COPS("Cops"),
     TRADER("Trader"),

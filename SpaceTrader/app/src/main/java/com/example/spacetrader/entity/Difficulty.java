@@ -2,6 +2,9 @@ package com.example.spacetrader.entity;
 
 import android.support.annotation.NonNull;
 
+/**
+ * Represents levels of difficulty
+ */
 public enum Difficulty {
     BEGINNER("Beginner"),
     EASY("Easy"),

@@ -63,6 +63,10 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerView
         return playerList.size();
     }
 
+    /**
+     *
+     * @param player player to set in list
+     */
     public void setPlayerList(Player player) {
         if (playerList.size() < 1) {
             playerList.add(player);
@@ -117,9 +121,18 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerView
     }
 
     public interface OnPlayerClickListener {
+        /**
+         * click listener for player
+         *
+         * @param player player that is clicked
+         */
         void onPlayerClicked(Player player);
     }
 
+    /**
+     *
+     * @param listener click listener to set for player
+     */
     public void setOnPlayerClickListener(OnPlayerClickListener listener) {
         this.listener = listener;
     }

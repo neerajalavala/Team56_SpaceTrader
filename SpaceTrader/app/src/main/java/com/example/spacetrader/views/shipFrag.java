@@ -9,7 +9,9 @@ import android.os.Bundle;
 import com.example.spacetrader.R;
 
 
-
+/**
+ * Fragment for ship
+ */
 public class shipFrag extends Fragment {
     // The onCreateView method is called when Fragment should create its View object hierarchy,
     // either dynamically or via XML layout inflation.

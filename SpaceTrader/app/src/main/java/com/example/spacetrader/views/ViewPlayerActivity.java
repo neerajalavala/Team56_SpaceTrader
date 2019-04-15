@@ -12,6 +12,9 @@ import com.example.spacetrader.R;
 import com.example.spacetrader.entity.Player;
 import com.example.spacetrader.viewmodels.GetPlayerViewModel;
 
+/**
+ * Represents player activity
+ */
 public class ViewPlayerActivity extends AppCompatActivity {
 
     public static final String PLAYER_DATA = "PLAYER_DATA";

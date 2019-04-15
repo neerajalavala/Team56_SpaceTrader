@@ -2,9 +2,14 @@ package com.example.spacetrader.persistence;
 
 import com.example.spacetrader.entity.Player;
 
+/**
+ * Documents database functions
+ */
 public interface DatabaseInteractor {
     /**
      * Uploads player data to the database
+     *
+     * @param player player whose data is uploaded
      */
     void upload(Player player);
 

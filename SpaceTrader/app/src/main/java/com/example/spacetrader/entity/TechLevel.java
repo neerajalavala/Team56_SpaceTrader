@@ -1,7 +1,9 @@
 package com.example.spacetrader.entity;
 
 
-
+/**
+ * Represents levels of tech
+ */
 public enum TechLevel {
     PREAGRICULTURE("Pre-agriculture", 0),
     AGRICULTURE("Agriculture", 1),
@@ -21,6 +23,10 @@ public enum TechLevel {
         this.index = i;
     }
 
+    /**
+     *
+     * @return index of tech level
+     */
     public int index() {
         return index;
     }
