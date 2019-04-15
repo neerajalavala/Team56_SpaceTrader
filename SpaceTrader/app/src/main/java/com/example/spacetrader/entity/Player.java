@@ -70,7 +70,7 @@ public class Player implements Serializable {
 
         this.game = new Universe(player_ids);
 
-        this.player_ids++;
+        player_ids++;
 
         cargoHold = new CargoHold(Ship_type.getCapacity(), ID);
     }
