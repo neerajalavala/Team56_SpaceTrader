@@ -51,7 +51,7 @@ public class planetFrag extends Fragment {
         Universe game = viewModel.getPlayerGame();
 
         this.curr_planet = player.getCurrentPlanet();
-        SolarSystem[] solar_systems = game.getSolarSystems();
+//        SolarSystem[] solar_systems = game.getSolarSystems();
 
 
 
