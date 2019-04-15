@@ -11,7 +11,7 @@ import java.io.Serializable;
  */
 public class Player implements Serializable {
     /** counter for id */
-    private static Integer player_ids = 1;
+    private static Integer player_ids = 0;
     /** total number of skill points */
     private static final Integer skillPtCap = 16;
     /** difficulty player is playing at */
@@ -70,8 +70,6 @@ public class Player implements Serializable {
 
         this.game = new Universe(player_ids);
 
-        player_ids++;
-
         cargoHold = new CargoHold(Ship_type.getCapacity(), ID);
     }
 
@@ -97,6 +95,7 @@ public class Player implements Serializable {
         if (name == null || name.equals("")) {
             throw new PlayerCreationException("Name cannot be empty!");
         }
+        player_ids++;
         return new Player(name, pilot, fighter, trader, engineer, diff);
     }
 
