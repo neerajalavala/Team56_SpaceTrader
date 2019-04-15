@@ -329,6 +329,15 @@ public class Player implements Serializable {
     }
 
     /**
+     * Sets the player's fuel to an amount
+     *
+     * @param q amount to set fuel to
+     */
+    public void setFuel(int q) {
+        this.fuel = q;
+    }
+
+    /**
      * Adds fuel to player
      *
      * @param q amount to add
