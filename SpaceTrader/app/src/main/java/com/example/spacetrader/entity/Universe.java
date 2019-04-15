@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Represents a universe
+ */
 public class Universe implements Serializable {
 
     private final int shipID = 0;
@@ -21,6 +24,11 @@ public class Universe implements Serializable {
     private Planet currentPlayerPlanet;
     private SolarSystem currentPlayerSystem;
 
+    /**
+     * Creates a universe
+     *
+     * @param id id of universe
+     */
     public Universe(int id){
 
         for (int i = 0; i < solarSystemNames.length; i++) {
@@ -45,6 +53,10 @@ public class Universe implements Serializable {
     }
 
 
+    /**
+     *
+     * @return array of universe's solar systems
+     */
     public SolarSystem[] getSolarSystems(){
         return solarSystems;
     }
@@ -60,15 +72,27 @@ public class Universe implements Serializable {
         this.currentPlayerPlanet = p;
     }
 
-    public SolarSystem
-    getCurrentPlayerSystem() {
+    /**
+     *
+     * @return player's current solar system
+     */
+    public SolarSystem getCurrentPlayerSystem() {
         return currentPlayerSystem;
     }
 
+    /**
+     *
+     * @return player's current planet
+     */
     public Planet getCurrentPlayerPlanet() {
         return currentPlayerPlanet;
     }
 
+    /**
+     * Generates random event while travelling
+     *
+     * @return a random event
+     */
     public RandomEvent getRandomEvent() {
 
         Random rand = new Random();
@@ -86,15 +110,31 @@ public class Universe implements Serializable {
     }
 
 
+    /**
+     *
+     * @return player's current marketplace
+     */
     public MarketPlace getCurrentPlayerMarketPlace() {
         return currentPlayerPlanet.getMarketPlace();
     }
 
+    /**
+     * Removes quantity of player's marketplace
+     *
+     * @param goodName name of good to be removed
+     * @param quantity quantity to remove
+     * @throws PurchaseException if good name is nonexistent
+     */
     public void removeCurrentMarketPlaceQuantity(String goodName,
                                                  int quantity) throws PurchaseException {
         currentPlayerPlanet.removeMarketPlaceQuantity(goodName, quantity);
     }
 
+    /**
+     *
+     * @param fuel amount of fuel of player
+     * @return list of planets player can travel to
+     */
     public List<SolarSystem> getPlayerTravleablePlanets(int fuel) {
         List<SolarSystem> travelableSystems = new ArrayList<>();
         for (SolarSystem s : solarSystems){
