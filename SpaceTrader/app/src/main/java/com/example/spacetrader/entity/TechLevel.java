@@ -15,8 +15,8 @@ public enum TechLevel {
     HITECH("Hi-Tech", 7),
     NONE("NONE", 8);
 
-    private String name;
-    private int index;
+    private final String name;
+    private final int index;
 
     TechLevel(String s, int i){
         this.name = s;

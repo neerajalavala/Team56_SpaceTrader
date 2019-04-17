@@ -21,6 +21,7 @@ import com.example.spacetrader.entity.Planet;
 import com.example.spacetrader.viewmodels.GetPlayerViewModel;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -37,27 +38,27 @@ public class sellFrag extends Fragment {
 
     private CargoHold hold;
 
-    private String trade_good = "TRADE_GOOD";
+    private final String trade_good = "TRADE_GOOD";
 
-    private String player_data = "PLAYER_DATA";
+    private final String player_data = "PLAYER_DATA";
 
     /** an adapter for the recycler view */
     private MarketGoodAdapter adapter;
 
     private Planet curr_planet;
 
-    /**
-     *
-     * @param player player whose data is used
-     * @return new instance of fragment for selling
-     */
-    public static sellFrag newInstance(Player player) {
-        sellFrag frag = new sellFrag();
-        Bundle args = new Bundle();
-        args.putSerializable("PLAYER_DATA", player);
-        frag.setArguments(args);
-        return frag;
-    }
+//    /**
+//     *
+//     * @param player player whose data is used
+//     * @return new instance of fragment for selling
+//     */
+//    public static sellFrag newInstance(Player player) {
+//        sellFrag frag = new sellFrag();
+//        Bundle args = new Bundle();
+//        args.putSerializable("PLAYER_DATA", player);
+//        frag.setArguments(args);
+//        return frag;
+//    }
 
     @Override
     public void onAttach(Context context) {
@@ -114,7 +115,7 @@ public class sellFrag extends Fragment {
 
         super.onResume();
 
-        ArrayList<MarketGood> goods = hold.getSellableGoods(curr_planet.getTechLevel());
+        List<MarketGood> goods = hold.getSellableGoods(curr_planet.getTechLevel());
 
         adapter.setMarketGoodList(goods);
 

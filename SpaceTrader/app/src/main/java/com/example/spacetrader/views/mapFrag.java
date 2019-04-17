@@ -47,7 +47,7 @@ public class mapFrag extends Fragment {
     private SolarSystem nextSystem;
     private Planet nextPlanet;
 
-    private ArrayList<String> systemNames = new ArrayList<String>();
+    private final ArrayList<String> systemNames = new ArrayList<String>();
     private List<Planet> planetsList;
 
     private TextView currentSystemName;

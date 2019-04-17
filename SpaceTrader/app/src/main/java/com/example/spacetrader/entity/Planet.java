@@ -11,15 +11,15 @@ import java.util.Random;
  */
 public class Planet implements Serializable {
 
-    private String name;
+    private final String name;
 
-    private Resources resources;
+    private final Resources resources;
 
-    private TechLevel techLevel;
+    private final TechLevel techLevel;
 
     private MarketPlace marketPlace;
 
-    private int solar_id;
+    private final int solar_id;
 
     /**
      * Creates a planet

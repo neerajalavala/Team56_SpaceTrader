@@ -10,10 +10,10 @@ import java.util.Random;
 public class MarketGood implements Serializable {
     private int quantity;
 
-    private MarketGoodType marketGoodType;
+    private final MarketGoodType marketGoodType;
 
-    private TechLevel techLevel;
-    private Resources resources;
+    private final TechLevel techLevel;
+    private final Resources resources;
 
     private int price_count;
 
@@ -178,7 +178,7 @@ public class MarketGood implements Serializable {
     /**
      * Sets price of marketgood
      */
-    public void setPrice() {
+    private void setPrice() {
         double cheapResMultiply = 1.0;
         int expResMultiply = 1;
 

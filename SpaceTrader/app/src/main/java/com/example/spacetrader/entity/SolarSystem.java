@@ -10,11 +10,11 @@ public class SolarSystem extends UniverseEntity{
 
     private final int EntityID;
 
-    private int[] location = new int[2];
+    private final int[] location = new int[2];
 
-    private String name;
+    private final String name;
 
-    private List<Planet> PlanetList = new ArrayList<>();
+    private final List<Planet> PlanetList = new ArrayList<>();
 
     /**
      * Creates a solar system
@@ -68,7 +68,7 @@ public class SolarSystem extends UniverseEntity{
      *
      * @return location of solar system
      */
-    public int[] getLocation() {
+    private int[] getLocation() {
         return location;
     }
 

@@ -27,18 +27,18 @@ public enum MarketGoodType {
     ROBOTS("Robots", 5000, 100, -150, TechLevel.POSTINDUSTRIAL, TechLevel.EARLYINDUSTRIAL,
             TechLevel.HITECH, 9, null, null);
 
-    private String name;
-    private TechLevel minimumLevelToProduce;
-    private TechLevel minimumLevelToUse;
-    private TechLevel techTopProduction;
+    private final String name;
+    private final TechLevel minimumLevelToProduce;
+    private final TechLevel minimumLevelToUse;
+    private final TechLevel techTopProduction;
 
-    private Resources cheapResource;
-    private Resources expensiveResource;
+    private final Resources cheapResource;
+    private final Resources expensiveResource;
 
-    private int increasePerLevel;
-    private int basePrice;
-    private int variance;
-    private int index;
+    private final int increasePerLevel;
+    private final int basePrice;
+    private final int variance;
+    private final int index;
 
 
     MarketGoodType(String name, int bP, int var, int ipl, TechLevel multiply, TechLevel multiple,

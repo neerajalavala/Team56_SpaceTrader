@@ -20,8 +20,8 @@ public enum Resources {
     WARLIKE("Warlike", 12),
     NONE("None", 13);
 
-    private String name;
-    private int index;
+    private final String name;
+    private final int index;
 
     Resources(String s, int i){
         this.name = s;

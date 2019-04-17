@@ -12,7 +12,7 @@ public enum Difficulty {
     HARD("Hard"),
     IMPOSSIBLE("Impossible");
 
-    private String diff;
+    private final String diff;
 
     Difficulty(String s) {
         this.diff = s;

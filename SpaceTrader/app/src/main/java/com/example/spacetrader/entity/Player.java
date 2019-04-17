@@ -21,16 +21,16 @@ public class Player implements Serializable {
     private String Name;
 
     /** Number of pilot skill points */
-    private Integer Pilot;
+    private final Integer Pilot;
 
     /** Number of fighter skill points */
-    private Integer Fighter;
+    private final Integer Fighter;
 
     /** Number of trader skill points */
-    private Integer Trader;
+    private final Integer Trader;
 
     /** Number of engineer skill points */
-    private Integer Engineer;
+    private final Integer Engineer;
 
     /** number of credits player has */
     private Integer Credits;

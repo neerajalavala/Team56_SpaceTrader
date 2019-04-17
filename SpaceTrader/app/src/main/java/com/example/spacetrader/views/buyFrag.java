@@ -21,6 +21,7 @@ import com.example.spacetrader.entity.Planet;
 import com.example.spacetrader.viewmodels.GetPlayerViewModel;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -34,9 +35,9 @@ public class buyFrag extends Fragment {
 
     private CargoHold hold;
 
-    private String trade_good = "TRADE_GOOD";
+    private final String trade_good = "TRADE_GOOD";
 
-    private String player_data = "PLAYER_DATA";
+    private final String player_data = "PLAYER_DATA";
 
     /** an adapter for the recycler view */
     private MarketGoodAdapter adapter;
@@ -58,7 +59,7 @@ public class buyFrag extends Fragment {
 
         this.hold = player.getCargoHold();
 
-        this.market = curr_planet.getMarketPlace();
+        this.market = player.getCurrentMarketPlace();
 
         viewModel = ViewModelProviders.of(this).get(GetPlayerViewModel.class);
         this.player = viewModel.getPlayer();
@@ -112,7 +113,7 @@ public class buyFrag extends Fragment {
 
         super.onResume();
 
-        ArrayList<MarketGood> goods = market.getBuyableGoods();
+        List<MarketGood> goods = market.getBuyableGoods();
 
         adapter.setMarketGoodList(goods);
 

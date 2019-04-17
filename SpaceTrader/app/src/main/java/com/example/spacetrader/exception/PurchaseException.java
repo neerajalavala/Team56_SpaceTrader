@@ -5,7 +5,7 @@ package com.example.spacetrader.exception;
  * Represents exception in purchase
  */
 public class PurchaseException extends Exception {
-    private String message;
+    private final String message;
 
     /**
      *

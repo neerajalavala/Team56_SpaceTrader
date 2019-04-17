@@ -15,7 +15,7 @@ import com.example.spacetrader.model.PlayerInteractor;
  */
 public class GetPlayerViewModel extends AndroidViewModel {
 
-    private PlayerInteractor interactor = Model.getInstance().getPlayerInteractor();
+    private final PlayerInteractor interactor = Model.getInstance().getPlayerInteractor();
 
     /**
      * Gets player view model

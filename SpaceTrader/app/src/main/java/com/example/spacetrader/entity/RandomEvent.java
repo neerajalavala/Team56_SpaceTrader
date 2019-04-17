@@ -10,7 +10,7 @@ public enum RandomEvent {
     PIRATE("Pirate"),
     CREDITS("Credits");
 
-    private String diff;
+    private final String diff;
 
     RandomEvent(String s) {
         this.diff = s;

@@ -17,9 +17,9 @@ public class CargoHold implements Serializable {
 
     private final int playerID;
 
-    private Integer capacity;
+    private final Integer capacity;
 
-    private Map<String, MarketGood> hold = new HashMap<>();
+    private final Map<String, MarketGood> hold = new HashMap<>();
 
     /**
      * CargoHold constructor

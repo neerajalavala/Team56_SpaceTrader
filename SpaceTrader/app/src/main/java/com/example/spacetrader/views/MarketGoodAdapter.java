@@ -26,7 +26,7 @@ public class MarketGoodAdapter extends
     /** a listener for a touch event on the MarketGood */
     private MarketGoodAdapter.OnMarketGoodClickListener listener;
 
-    private boolean buying = false;
+    private final boolean buying = false;
 
     @NonNull
     @Override
@@ -81,12 +81,12 @@ public class MarketGoodAdapter extends
      * This is a holder for the widgets associated with a single entry in the list of MarketGoods
      */
     class MarketGoodViewHolder extends RecyclerView.ViewHolder {
-        private TextView MarketGoodName;
-        private TextView Price;
-        private Button Quantity_btn;
-        private Button Max_btn;
+        private final TextView MarketGoodName;
+        private final TextView Price;
+        private final Button Quantity_btn;
+        private final Button Max_btn;
 
-        public MarketGoodViewHolder(@NonNull View itemView) {
+        MarketGoodViewHolder(@NonNull View itemView) {
             super(itemView);
             MarketGoodName = itemView.findViewById(R.id.item_val);
             Price = itemView.findViewById(R.id.price_val);

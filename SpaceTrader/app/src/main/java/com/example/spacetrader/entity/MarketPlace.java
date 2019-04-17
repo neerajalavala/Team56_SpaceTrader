@@ -12,7 +12,7 @@ import java.util.Map;
  * Represents a marketplace
  */
 public class MarketPlace implements Serializable {
-    private Map<String, MarketGood> marketGoods = new HashMap<>();
+    private final Map<String, MarketGood> marketGoods = new HashMap<>();
 
     /**
      * Creates a marketplace

@@ -20,7 +20,7 @@ import com.example.spacetrader.entity.Player;
 public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerViewHolder> {
 
     /** a copy of the list of players in the model */
-    private List<Player> playerList = new ArrayList<>();
+    private final List<Player> playerList = new ArrayList<>();
 
     /** a listener for a touch event on the player */
     private OnPlayerClickListener listener;
@@ -79,20 +79,20 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerView
      * This is a holder for the widgets associated with a single entry in the list of players
      */
     class PlayerViewHolder extends RecyclerView.ViewHolder {
-        private TextView playerName;
-        private TextView difficulty
+        private final TextView playerName;
+        private final TextView difficulty
                 ;
-        private TextView pilot;
-        private TextView fighter;
-        private TextView trader;
-        private TextView engineer;
+        private final TextView pilot;
+        private final TextView fighter;
+        private final TextView trader;
+        private final TextView engineer;
 
-        private TextView credits;
-        private TextView shipType;
+        private final TextView credits;
+        private final TextView shipType;
 
 
 
-        public PlayerViewHolder(@NonNull View itemView) {
+        PlayerViewHolder(@NonNull View itemView) {
             super(itemView);
             playerName = itemView.findViewById(R.id.player_name);
             difficulty = itemView.findViewById(R.id.diff_value);

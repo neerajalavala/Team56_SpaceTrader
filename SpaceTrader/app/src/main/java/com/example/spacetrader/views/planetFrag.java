@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.example.spacetrader.R;
 import com.example.spacetrader.entity.Player;
 import com.example.spacetrader.entity.Planet;
-import com.example.spacetrader.entity.SolarSystem;
 import com.example.spacetrader.entity.Universe;
 import com.example.spacetrader.viewmodels.GetPlayerViewModel;
 
@@ -35,7 +34,7 @@ public class planetFrag extends Fragment {
     private TextView fuel;
 
 
-    private String player_data = "PLAYER_DATA";
+    private final String player_data = "PLAYER_DATA";
 
     @Override
     public void onAttach(Context context) {
@@ -57,7 +56,7 @@ public class planetFrag extends Fragment {
 
     }
 
-    Context c;
+    private Context c;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent,
                              Bundle savedInstanceState) {

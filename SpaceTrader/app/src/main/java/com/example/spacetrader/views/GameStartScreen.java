@@ -20,7 +20,7 @@ import java.util.Objects;
  */
 public class GameStartScreen extends AppCompatActivity {
 
-    private String new_market = "UPDATED_MARKET";
+    private final String new_market = "UPDATED_MARKET";
 
     private Player player;
 

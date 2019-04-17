@@ -5,7 +5,7 @@ import com.example.spacetrader.entity.Player;
 /**
  * Documents database functions
  */
-public interface DatabaseInteractor {
+interface DatabaseInteractor {
     /**
      * Uploads player data to the database
      *

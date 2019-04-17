@@ -12,7 +12,7 @@ import com.example.spacetrader.model.PlayerInteractor;
  * View model supporting adding and updating an individual player
  */
 public class CreatePlayerViewModel  extends AndroidViewModel {
-    private PlayerInteractor interactor = Model.getInstance().getPlayerInteractor();
+    private final PlayerInteractor interactor = Model.getInstance().getPlayerInteractor();
 
     /**
      * Creates view model for player

@@ -14,12 +14,12 @@ public class Universe implements Serializable {
 
     private final int shipID = 0;
 
-    private String[] solarSystemNames = {
+    private final String[] solarSystemNames = {
             "System A","System B","System C","System D","System E","System F","System G","System H",
             "System I","System J"
     };
 
-    private SolarSystem[] solarSystems = new SolarSystem[solarSystemNames.length];
+    private final SolarSystem[] solarSystems = new SolarSystem[solarSystemNames.length];
 
     private Planet currentPlayerPlanet;
     private SolarSystem currentPlayerSystem;

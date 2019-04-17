@@ -18,7 +18,7 @@ import com.example.spacetrader.viewmodels.GetPlayerViewModel;
 public class ViewAllPlayersActivity extends AppCompatActivity {
 
     /** a key for passing data */
-    public static final String PLAYER_DATA = "PLAYER_DATA";
+    private static final String PLAYER_DATA = "PLAYER_DATA";
     /** an int for the request code */
     private static final int EDIT_REQUEST = 5;
     /** our data model */
