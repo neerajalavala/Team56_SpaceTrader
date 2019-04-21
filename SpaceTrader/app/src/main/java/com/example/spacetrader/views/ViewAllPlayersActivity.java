@@ -2,11 +2,10 @@ package com.example.spacetrader.views;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 
 import com.example.spacetrader.R;
 import com.example.spacetrader.entity.Player;
@@ -45,7 +44,7 @@ public class ViewAllPlayersActivity extends AppCompatActivity {
         //grab our view model instance
         viewModel = ViewModelProviders.of(this).get(GetPlayerViewModel.class);
 
-        Log.d("APP", viewModel.getPlayer().toString());
+//        Log.d("APP", viewModel.getPlayer().toString());
 
         setTitle("Players");
 

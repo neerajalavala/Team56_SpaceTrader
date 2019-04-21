@@ -7,9 +7,17 @@ import java.io.Serializable;
  */
 class UniverseEntity implements Serializable {
 
-    private final int EntityID;
+    public void setEntityID(int entityID) {
+        EntityID = entityID;
+    }
 
-    private final String name;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    private int EntityID;
+
+    private String name;
 
     /**
      * Creates universe entity
@@ -21,6 +29,8 @@ class UniverseEntity implements Serializable {
         this.EntityID = id;
         this.name = name;
     }
+
+    public UniverseEntity() {}
 
     /**
      *

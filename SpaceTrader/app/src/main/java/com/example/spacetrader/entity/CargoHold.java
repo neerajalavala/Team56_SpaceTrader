@@ -15,11 +15,25 @@ import java.util.Map;
 public class CargoHold implements Serializable {
     private Integer count;
 
-    private final int playerID;
+    private int playerID;
 
-    private final Integer capacity;
+    private Integer capacity;
 
     private final Map<String, MarketGood> hold = new HashMap<>();
+
+    public CargoHold() {}
+
+    public void setCount(Integer count) {
+        this.count = count;
+    }
+
+    public void setPlayerID(int playerID) {
+        this.playerID = playerID;
+    }
+
+    public void setCapacity(Integer capacity) {
+        this.capacity = capacity;
+    }
 
     /**
      * CargoHold constructor

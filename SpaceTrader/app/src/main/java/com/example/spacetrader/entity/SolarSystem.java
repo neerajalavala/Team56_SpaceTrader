@@ -8,13 +8,29 @@ import java.util.List;
  */
 public class SolarSystem extends UniverseEntity{
 
-    private final int EntityID;
+    private int EntityID;
 
     private final int[] location = new int[2];
 
-    private final String name;
+    public void setEntityID(int entityID) {
+        EntityID = entityID;
+    }
 
-    private final List<Planet> PlanetList = new ArrayList<>();
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Planet> getPlanetList() {
+        return PlanetList;
+    }
+
+    private String name;
+
+    private List<Planet> PlanetList;
+
+    public void setPlanetList(List<Planet> planetList) {
+        PlanetList = planetList;
+    }
 
     /**
      * Creates a solar system
@@ -27,6 +43,7 @@ public class SolarSystem extends UniverseEntity{
     public SolarSystem(int id, String name, int xLocation, int yLocation){
         super(id, name);
 
+        PlanetList = new ArrayList<>();
         for (int i =0; i < 3; i++) {
             Planet plan = new Planet( "Planet " + i, id);
             PlanetList.add(plan);
@@ -37,9 +54,9 @@ public class SolarSystem extends UniverseEntity{
 
         this.EntityID = id;
         this.name = name;
-
-
     }
+
+    public SolarSystem() {}
 
     @Override
     public String getName() {

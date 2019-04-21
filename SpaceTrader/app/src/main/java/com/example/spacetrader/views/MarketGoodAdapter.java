@@ -5,9 +5,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import android.widget.TextView;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.spacetrader.R;
 import com.example.spacetrader.entity.MarketGood;
@@ -50,7 +49,7 @@ public class MarketGoodAdapter extends
 
 //        Log.d("APP", "Binding: " + position + " " + MarketGoodList.get(position));
 
-        holder.MarketGoodName.setText(MarketGood.getType().toString());
+        holder.MarketGoodName.setText(MarketGood.getMarketGoodType().toString());
 
         Integer price = MarketGood.getPrice();
         holder.Price.setText(price.toString());

@@ -11,15 +11,31 @@ import java.util.Random;
  */
 public class Planet implements Serializable {
 
-    private final String name;
+    private String name;
 
-    private final Resources resources;
+    private Resources resources;
 
-    private final TechLevel techLevel;
+    private TechLevel techLevel;
 
     private MarketPlace marketPlace;
 
-    private final int solar_id;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setResources(Resources resources) {
+        this.resources = resources;
+    }
+
+    public void setTechLevel(TechLevel techLevel) {
+        this.techLevel = techLevel;
+    }
+
+    public void setSolar_id(int solar_id) {
+        this.solar_id = solar_id;
+    }
+
+    private int solar_id;
 
     /**
      * Creates a planet
@@ -45,6 +61,8 @@ public class Planet implements Serializable {
 
         this.marketPlace = new MarketPlace(this.techLevel, this.resources);
     }
+
+    public Planet() {}
 
     /**
      *

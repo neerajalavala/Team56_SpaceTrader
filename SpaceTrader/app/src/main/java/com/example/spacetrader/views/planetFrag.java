@@ -2,23 +2,21 @@ package com.example.spacetrader.views;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
-import android.support.v4.app.Fragment;
-import android.view.View;
-import android.view.LayoutInflater;
-import android.view.ViewGroup;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.spacetrader.R;
-import com.example.spacetrader.entity.Player;
 import com.example.spacetrader.entity.Planet;
+import com.example.spacetrader.entity.Player;
 import com.example.spacetrader.entity.Universe;
+import com.example.spacetrader.persistence.FirebaseInteractor;
 import com.example.spacetrader.viewmodels.GetPlayerViewModel;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.util.Objects;
 
 
@@ -111,14 +109,17 @@ public class planetFrag extends Fragment {
 //            FirebaseApp.initializeApp(getContext());
 //            Serializer serializer = new Serializer("SpaceTrader.ser", 1024 * 10000);
 //            serializer.serialize(player);
-            try {
+            /*try {
                 FileOutputStream fos = c.openFileOutput("SpaceTrader.ser",
                         Context.MODE_PRIVATE);
                 ObjectOutputStream os = new ObjectOutputStream(fos);
                 os.writeObject(player);
                 os.close();
                 fos.close();
-            } catch (IOException e) {e.printStackTrace();}
+            } catch (IOException e) {e.printStackTrace();}*/
+
+            FirebaseInteractor firebaseInteractor = new FirebaseInteractor("SpaceTrader.ser");
+            firebaseInteractor.upload(player);
         });
     }
 

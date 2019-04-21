@@ -12,7 +12,7 @@ import java.util.Map;
  * Represents a marketplace
  */
 public class MarketPlace implements Serializable {
-    private final Map<String, MarketGood> marketGoods = new HashMap<>();
+    private Map<String, MarketGood> marketGoods = new HashMap<>();
 
     /**
      * Creates a marketplace
@@ -36,6 +36,8 @@ public class MarketPlace implements Serializable {
         }
     }
 
+    public MarketPlace() {}
+
     /**
      * Decrements quantity of a good when bought
      *
@@ -51,6 +53,10 @@ public class MarketPlace implements Serializable {
             v.subQuantity(quantity);
             return v;
         });
+    }
+
+    public Map<String, MarketGood> getMarketGoods() {
+        return marketGoods;
     }
 
     /**
@@ -97,5 +103,9 @@ public class MarketPlace implements Serializable {
 //            marketGood.setPrice();
 //        }
         return marketGood.getPrice();
+    }
+
+    public void setMarketGoods(Map<String, MarketGood> marketGoods) {
+        this.marketGoods = marketGoods;
     }
 }

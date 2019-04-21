@@ -18,6 +18,10 @@ public enum Difficulty {
         this.diff = s;
     }
 
+    public String getDiff() {
+        return diff;
+    }
+
     @NonNull
     @Override
     public String toString() {

@@ -46,4 +46,8 @@ public enum ShipType {
     public String toString() {
         return this.ship;
     }
+
+    public String getShip() {
+        return ship;
+    }
 }

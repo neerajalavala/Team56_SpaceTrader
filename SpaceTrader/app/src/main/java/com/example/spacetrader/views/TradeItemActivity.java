@@ -13,8 +13,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.spacetrader.R;
-import com.example.spacetrader.entity.MarketGood;
 import com.example.spacetrader.entity.CargoHold;
+import com.example.spacetrader.entity.MarketGood;
 import com.example.spacetrader.entity.Player;
 import com.example.spacetrader.entity.Resources;
 import com.example.spacetrader.entity.TechLevel;
@@ -70,7 +70,7 @@ public class TradeItemActivity extends AppCompatActivity {
 
 
         /* setting text box values */
-        marketGoodName.setText(good.getType().toString());
+        marketGoodName.setText(good.getMarketGoodType().toString());
 
         Integer price = good.getPrice();
         price1.setText(price.toString());
@@ -80,11 +80,11 @@ public class TradeItemActivity extends AppCompatActivity {
 
         if (good.getTechLevel() == TechLevel.NONE && good.getResources() == Resources.NONE) {
             tradeButton.setText("Sell");
-            setTitle("Sell " + good.getType().toString());
+            setTitle("Sell " + good.getMarketGoodType().toString());
             buying = false;
         } else {
             tradeButton.setText("Buy");
-            setTitle("Buy " + good.getType().toString());
+            setTitle("Buy " + good.getMarketGoodType().toString());
             buying = true;
         }
 

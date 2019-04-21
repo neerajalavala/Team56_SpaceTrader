@@ -5,21 +5,21 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.view.View;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
-import android.os.Bundle;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Button;
 
 import com.example.spacetrader.R;
-import com.example.spacetrader.entity.Player;
 import com.example.spacetrader.entity.Planet;
+import com.example.spacetrader.entity.Player;
 import com.example.spacetrader.entity.RandomEvent;
 import com.example.spacetrader.entity.SolarSystem;
 import com.example.spacetrader.entity.Universe;
@@ -84,7 +84,7 @@ public class mapFrag extends Fragment {
 
         this.curr_planet = player.getCurrentPlanet();
 
-        SolarSystem[] solar_systems = game.getSolarSystems();
+        List<SolarSystem> solar_systems = game.getSolarSystems();
 
         this.fuel = player.getFuel();
 

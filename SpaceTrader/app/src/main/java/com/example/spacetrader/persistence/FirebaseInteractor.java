@@ -1,13 +1,17 @@
 package com.example.spacetrader.persistence;
 
 import com.example.spacetrader.entity.Player;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 /**
  * Documents Firebase functions
  */
 public class FirebaseInteractor implements DatabaseInteractor {
+
+    private DocumentReference playerReference;
 
     /**
      * Make a new FirebaseInteractor
@@ -15,17 +19,16 @@ public class FirebaseInteractor implements DatabaseInteractor {
      * @param referenceName the name of collection where the player is located
      */
     public FirebaseInteractor(String referenceName) {
-        StorageReference playerReference =
-                FirebaseStorage.getInstance().getReference().child(referenceName);
+        playerReference = FirebaseFirestore.getInstance().collection(referenceName).document("player");
     }
 
     @Override
-    public Player download() {
-        return null;
+    public Task<DocumentSnapshot> download() {
+        return playerReference.get();
     }
 
     @Override
     public void upload(Player player) {
-
+        playerReference.set(player);
     }
 }

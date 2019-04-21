@@ -4,6 +4,7 @@ import com.example.spacetrader.exception.PurchaseException;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -14,15 +15,38 @@ public class Universe implements Serializable {
 
     private final int shipID = 0;
 
-    private final String[] solarSystemNames = {
-            "System A","System B","System C","System D","System E","System F","System G","System H",
-            "System I","System J"
-    };
+    public void setSolarSystemNames(List<String> solarSystemNames) {
+        this.solarSystemNames = solarSystemNames;
+    }
 
-    private final SolarSystem[] solarSystems = new SolarSystem[solarSystemNames.length];
+    public void setSolarSystems(List<SolarSystem> solarSystems) {
+        this.solarSystems = solarSystems;
+    }
+
+    public void setCurrentPlayerPlanet(Planet currentPlayerPlanet) {
+        this.currentPlayerPlanet = currentPlayerPlanet;
+    }
+
+    public void setCurrentPlayerSystem(SolarSystem currentPlayerSystem) {
+        this.currentPlayerSystem = currentPlayerSystem;
+    }
+
+    private List<String> solarSystemNames = Arrays.asList("System A","System B","System C",
+            "System D","System E","System F","System G","System H",
+            "System I","System J");
+
+    private List<SolarSystem> solarSystems = new ArrayList<>();
 
     private Planet currentPlayerPlanet;
     private SolarSystem currentPlayerSystem;
+
+    public int getShipID() {
+        return shipID;
+    }
+
+    public List<String> getSolarSystemNames() {
+        return solarSystemNames;
+    }
 
     /**
      * Creates a universe
@@ -31,15 +55,15 @@ public class Universe implements Serializable {
      */
     public Universe(int id){
 
-        for (int i = 0; i < solarSystemNames.length; i++) {
+        for (int i = 0; i < solarSystemNames.size(); i++) {
             int[] yLocation = {20, 40, 60, 80, 100, 120, 140, 160, 180, 200};
             int[] xLocation = {30, 50, 70, 90, 110, 130, 150, 170, 190, 210};
             /*
              * count for creating unique identities for each entity in universe
              */
             Integer count = 1;
-            solarSystems[i] = new SolarSystem(count, solarSystemNames[i], xLocation[i],
-                    yLocation[i]);
+            solarSystems.add(new SolarSystem(count, solarSystemNames.get(i), xLocation[i],
+                    yLocation[i]));
 
             /* maps id to entity */
             //entities.put(count, solarSystems[i]);
@@ -48,16 +72,18 @@ public class Universe implements Serializable {
             count++;
         }
 
-        this.currentPlayerPlanet = solarSystems[0].getPlanet(0);
-        this.currentPlayerSystem = solarSystems[0];
+        this.currentPlayerPlanet = solarSystems.get(0).getPlanet(0);
+        this.currentPlayerSystem = solarSystems.get(0);
     }
+
+    public Universe() {}
 
 
     /**
      *
      * @return array of universe's solar systems
      */
-    public SolarSystem[] getSolarSystems(){
+    public List<SolarSystem> getSolarSystems(){
         return solarSystems;
     }
 

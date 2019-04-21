@@ -23,6 +23,14 @@ public enum Resources {
     private final String name;
     private final int index;
 
+    public String getName() {
+        return name;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
     Resources(String s, int i){
         this.name = s;
         this.index = i;

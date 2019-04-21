@@ -10,10 +10,10 @@ import java.util.Random;
 public class MarketGood implements Serializable {
     private int quantity;
 
-    private final MarketGoodType marketGoodType;
+    private MarketGoodType marketGoodType;
 
-    private final TechLevel techLevel;
-    private final Resources resources;
+    private TechLevel techLevel;
+    private Resources resources;
 
     private int price_count;
 
@@ -51,37 +51,32 @@ public class MarketGood implements Serializable {
                     - marketGoodType.getMinimumLevelToProduce().index());
         }
         setPrice();
-//        /** start price calculation */
-//
-//        double cheapResMultiply = 1.0;
-//        int expResMultiply = 1;
-//
-//        int varCoinFlip = -1;
-//
-//        if (new Random().nextInt() > 0) {
-//            varCoinFlip = 1;
-//        }
-//
-//        double variance = ((double) new Random().nextInt(marketGoodType.getVariance()) / 100.0);
-//
-//        if (marketGoodType.getCheapResource().index() == resources.index()) {
-//            cheapResMultiply = 0.5;
-//        } else if (marketGoodType.getExpensiveResource().index() == resources.index()) {
-//            expResMultiply = 3;
-//        }
-//
-//        int price_calc = ((int)(marketGoodType.getBasePrice() * cheapResMultiply *
-// expResMultiply))
-//                + (marketGoodType.getIncreasePerLevel() * (techLevel.index() -
-// marketGoodType.getMinimumLevelToProduce().index()))
-//                + (int)(varCoinFlip * variance * marketGoodType.getBasePrice());
-//
-//        if (price_calc <= 0) {
-//            price_calc = marketGoodType.getBasePrice() / 2;
-//        }
-//        this.price = price_calc;
-//        this.price_count = 1;
+    }
 
+    public MarketGood() {}
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setMarketGoodType(MarketGoodType marketGoodType) {
+        this.marketGoodType = marketGoodType;
+    }
+
+    public void setTechLevel(TechLevel techLevel) {
+        this.techLevel = techLevel;
+    }
+
+    public void setResources(Resources resources) {
+        this.resources = resources;
+    }
+
+    public void setPrice_count(int price_count) {
+        this.price_count = price_count;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     /**
@@ -128,7 +123,7 @@ public class MarketGood implements Serializable {
      *
      * @return type of marketgood
      */
-    public MarketGoodType getType() {
+    public MarketGoodType getMarketGoodType() {
         return marketGoodType;
     }
 

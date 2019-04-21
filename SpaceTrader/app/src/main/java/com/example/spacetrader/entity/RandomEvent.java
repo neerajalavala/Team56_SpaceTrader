@@ -21,4 +21,8 @@ public enum RandomEvent {
     public String toString() {
         return this.diff;
     }
+
+    public String getDiff() {
+        return diff;
+    }
 }

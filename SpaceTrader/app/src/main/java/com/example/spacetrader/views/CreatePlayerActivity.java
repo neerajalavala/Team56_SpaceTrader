@@ -1,15 +1,11 @@
 package com.example.spacetrader.views;
 
+import android.app.AlertDialog;
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-//import android.util.Log;
 import android.view.View;
-
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -18,16 +14,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.spacetrader.R;
-
 import com.example.spacetrader.entity.Difficulty;
 import com.example.spacetrader.entity.Player;
-
 import com.example.spacetrader.exception.PlayerCreationException;
+import com.example.spacetrader.persistence.FirebaseInteractor;
 import com.example.spacetrader.viewmodels.CreatePlayerViewModel;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+//import android.util.Log;
 
 /**
  * This class acts as the code behind for creating a new player
@@ -165,15 +158,17 @@ public class CreatePlayerActivity extends AppCompatActivity {
             Player player = Player.createPlayer(nameField.getText().toString(), pilot, fighter,
                     trader, engineer, diff);
 
-            try {
-                FileOutputStream fos = this.openFileOutput("SpaceTrader.ser",
-                        Context.MODE_PRIVATE);
-                ObjectOutputStream os = new ObjectOutputStream(fos);
-                os.writeObject(player);
-                os.close();
-                fos.close();
-            } catch (IOException e) {e.printStackTrace();}
+//            try {
+//                FileOutputStream fos = this.openFileOutput("SpaceTrader.ser",
+//                        Context.MODE_PRIVATE);
+//                ObjectOutputStream os = new ObjectOutputStream(fos);
+//                os.writeObject(player);
+//                os.close();
+//                fos.close();
+//            } catch (IOException e) {e.printStackTrace();}
             viewModel.addPlayer(player);
+            FirebaseInteractor firebaseInteractor = new FirebaseInteractor("SpaceTrader.ser");
+            firebaseInteractor.upload(player);
 
             finish();
         } catch (PlayerCreationException p) {

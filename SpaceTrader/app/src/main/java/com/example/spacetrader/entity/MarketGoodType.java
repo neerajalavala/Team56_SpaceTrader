@@ -56,6 +56,14 @@ public enum MarketGoodType {
         this.expensiveResource = er;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
     /**
      * Checks if can buy a type based on tech level
      *

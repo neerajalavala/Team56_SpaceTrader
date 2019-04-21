@@ -41,6 +41,7 @@ dependencies {
     // optional - Test helpers for LiveData
     implementation 'com.google.firebase:firebase-storage:16.1.0'
     implementation 'com.google.firebase:firebase-auth:16.2.1'
+    implementation 'com.google.firebase:firebase-firestore:17.1.0'
     testImplementation "android.arch.core:core-testing:$lifecycle_version"
     implementation 'com.android.support:design:28.0.0'
     implementation 'android.arch.lifecycle:extensions:1.1.0'

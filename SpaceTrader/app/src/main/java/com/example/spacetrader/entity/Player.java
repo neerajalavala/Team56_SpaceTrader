@@ -21,16 +21,28 @@ public class Player implements Serializable {
     private String Name;
 
     /** Number of pilot skill points */
-    private final Integer Pilot;
+    private Integer Pilot;
 
     /** Number of fighter skill points */
-    private final Integer Fighter;
+    private Integer Fighter;
 
     /** Number of trader skill points */
-    private final Integer Trader;
+    private Integer Trader;
+
+    public static Integer getPlayer_ids() {
+        return player_ids;
+    }
+
+    public static Integer getSkillPtCap() {
+        return skillPtCap;
+    }
+
+    public ShipType getShip_type() {
+        return Ship_type;
+    }
 
     /** Number of engineer skill points */
-    private final Integer Engineer;
+    private Integer Engineer;
 
     /** number of credits player has */
     private Integer Credits;
@@ -72,6 +84,8 @@ public class Player implements Serializable {
 
         cargoHold = new CargoHold(Ship_type.getCapacity(), ID);
     }
+
+    public Player() {}
 
     /**
      * Method to create a player
@@ -244,6 +258,30 @@ public class Player implements Serializable {
      */
     public void setName(String name) {
         this.Name = name;
+    }
+
+    public static void setPlayer_ids(Integer player_ids) {
+        Player.player_ids = player_ids;
+    }
+
+    public void setPilot(Integer pilot) {
+        Pilot = pilot;
+    }
+
+    public void setFighter(Integer fighter) {
+        Fighter = fighter;
+    }
+
+    public void setTrader(Integer trader) {
+        Trader = trader;
+    }
+
+    public void setEngineer(Integer engineer) {
+        Engineer = engineer;
+    }
+
+    public void setShip_type(ShipType ship_type) {
+        Ship_type = ship_type;
     }
 
     /**
