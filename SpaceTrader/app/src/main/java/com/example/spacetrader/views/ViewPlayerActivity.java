@@ -79,7 +79,7 @@ public class ViewPlayerActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ViewPlayerActivity.this, GameStartScreen.class);
-                intent.putExtra(PLAYER_DATA, player);
+                //intent.putExtra(PLAYER_DATA, player);
                 startActivityForResult(intent, EDIT_REQUEST);
             }
         });

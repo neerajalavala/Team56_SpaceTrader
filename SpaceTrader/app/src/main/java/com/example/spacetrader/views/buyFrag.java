@@ -1,26 +1,25 @@
 package com.example.spacetrader.views;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
-import android.os.Bundle;
-import android.content.Context;
 
 import com.example.spacetrader.R;
+import com.example.spacetrader.entity.CargoHold;
 import com.example.spacetrader.entity.MarketGood;
 import com.example.spacetrader.entity.MarketPlace;
-import com.example.spacetrader.entity.CargoHold;
-import com.example.spacetrader.entity.Player;
 import com.example.spacetrader.entity.Planet;
+import com.example.spacetrader.entity.Player;
 import com.example.spacetrader.viewmodels.GetPlayerViewModel;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -126,7 +125,7 @@ public class buyFrag extends Fragment {
             public void onMarketGoodClicked(MarketGood good) {
                 Intent intent = new Intent(getActivity(), TradeItemActivity.class);
                 intent.putExtra(trade_good, good);
-                intent.putExtra(player_data, player);
+                //intent.putExtra(player_data, player);
                 startActivityForResult(intent, 55);
             }
         });

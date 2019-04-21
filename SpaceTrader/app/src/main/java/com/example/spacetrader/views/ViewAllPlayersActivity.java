@@ -60,7 +60,7 @@ public class ViewAllPlayersActivity extends AppCompatActivity {
             @Override
             public void onPlayerClicked(Player player) {
                 Intent intent = new Intent(ViewAllPlayersActivity.this, ViewPlayerActivity.class);
-                intent.putExtra(PLAYER_DATA, player);
+                //intent.putExtra(PLAYER_DATA, player);
                 startActivityForResult(intent, EDIT_REQUEST);
             }
         });

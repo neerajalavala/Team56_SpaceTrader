@@ -12,6 +12,16 @@ public class SolarSystem extends UniverseEntity{
 
     private final int[] location = new int[2];
 
+    private Position position;
+
+    public Position getPosition() {
+        return position;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
+    }
+
     public void setEntityID(int entityID) {
         EntityID = entityID;
     }
@@ -48,6 +58,8 @@ public class SolarSystem extends UniverseEntity{
             Planet plan = new Planet( "Planet " + i, id);
             PlanetList.add(plan);
         }
+
+        this.position = new Position(xLocation, yLocation);
 
         this.location[0] = xLocation;
         this.location[1] = yLocation;
@@ -114,11 +126,11 @@ public class SolarSystem extends UniverseEntity{
      * @return distance to another solar system
      */
     public int distanceTo(SolarSystem s) {
-        int xLocation1 = location[0];
-        int yLocation1 = location[1];
+        int xLocation1 = position.getX(); //location[0];
+        int yLocation1 = position.getY(); //location[1];
 
-        int xLocation2 = s.getLocation()[0];
-        int yLocation2 = s.getLocation()[1];
+        int xLocation2 = s.getPosition().getX(); //s.getLocation()[0];
+        int yLocation2 = s.getPosition().getY(); //s.getLocation()[1];
 
         return (int) Math.sqrt(Math.pow((xLocation1 - xLocation2), 2) +
                 Math.pow((yLocation1 - yLocation2), 2));
