@@ -1,10 +1,12 @@
 package com.example.spacetrader.entity;
 
 
+import java.io.Serializable;
+
 /**
  * Represents possible random events
  */
-public enum RandomEvent {
+public enum RandomEvent implements Serializable {
     COPS("Cops"),
     TRADER("Trader"),
     PIRATE("Pirate"),

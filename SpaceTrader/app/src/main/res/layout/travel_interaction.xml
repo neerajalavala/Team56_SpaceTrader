@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:barrierAllowsGoneWidgets="false"
+    tools:context="com.example.spacetrader.views.V">
+
+    <TextView
+        android:id="@+id/inter_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="140dp"
+        android:layout_marginTop="20dp"
+        android:paddingRight="0dp"
+        android:text="Interaction"
+        android:textSize="24sp" />
+
+    <ImageView
+        android:id="@+id/ply_ship"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="60dp"
+        app:srcCompat="@mipmap/beetle" />
+
+    <ImageView
+        android:id="@+id/nme_ship"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="240dp"
+        android:layout_marginTop="60dp"
+        app:srcCompat="@mipmap/beetle" />
+
+    <TextView
+        android:id="@+id/e_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="240dp"
+        android:layout_marginTop="140dp"
+        android:text="Enemy Ship" />
+
+    <TextView
+        android:id="@+id/p_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="140dp"
+        android:text="Player Ship" />
+
+    <TextView
+        android:id="@+id/h1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="170dp"
+        android:text="P Hlth:" />
+
+    <TextView
+        android:id="@+id/s1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="190dp"
+        android:text="P Shld:" />
+
+    <TextView
+        android:id="@+id/h2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="240dp"
+        android:layout_marginTop="170dp"
+        android:text="E Hlth:" />
+
+    <TextView
+        android:id="@+id/s2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="240dp"
+        android:layout_marginTop="190dp"
+        android:text="E shld:" />
+
+    <TextView
+        android:id="@+id/h1_val"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="170dp"
+        android:text="#/100" />
+
+    <TextView
+        android:id="@+id/s1_val"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="190dp"
+        android:text="#/100" />
+
+    <TextView
+        android:id="@+id/h2_val"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="290dp"
+        android:layout_marginTop="170dp"
+        android:text="#/100" />
+
+    <TextView
+        android:id="@+id/s2_val"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="290dp"
+        android:layout_marginTop="190dp"
+        android:text="#/100" />
+
+    <Button
+        android:id="@+id/ignore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="300dp"
+        android:text="Ignore"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/flee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="300dp"
+        android:text="Flee"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/attack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="300dp"
+        android:text="Attack"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/trade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="190dp"
+        android:layout_marginTop="300dp"
+        android:text="Trade"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/bribe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="280dp"
+        android:layout_marginTop="300dp"
+        android:text="Bribe"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/inspect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="350dp"
+        android:text="Submit for inspection"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/give_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="280dp"
+        android:layout_marginTop="300dp"
+        android:text="Give Up"
+        android:visibility="gone" />
+</android.support.design.widget.CoordinatorLayout>

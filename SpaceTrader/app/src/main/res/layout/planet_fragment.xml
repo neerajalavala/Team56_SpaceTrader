@@ -121,12 +121,36 @@
             android:text="Repair" />
 
         <Button
+            android:id="@+id/shield_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="45dp"
+            android:layout_marginTop="370dp"
+            android:text="Buy Shields" />
+
+        <Button
+            android:id="@+id/weapon_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="170dp"
+            android:layout_marginTop="370dp"
+            android:text="Buy Extra Weapons" />
+
+        <Button
             android:id="@+id/save_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="150dp"
-            android:layout_marginTop="400dp"
+            android:layout_marginLeft="45dp"
+            android:layout_marginTop="480dp"
             android:text="Save Game" />
+
+        <ImageView
+            android:id="@+id/ship_pic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="180dp"
+            android:src="@mipmap/beetle" />
 
     </RelativeLayout>
 

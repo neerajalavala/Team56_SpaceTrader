@@ -27,6 +27,7 @@ public class MarketGoodAdapter extends
 
     private final boolean buying = false;
 
+
     @NonNull
     @Override
     public MarketGoodAdapter.MarketGoodViewHolder onCreateViewHolder(@NonNull ViewGroup parent,
@@ -83,14 +84,12 @@ public class MarketGoodAdapter extends
         private final TextView MarketGoodName;
         private final TextView Price;
         private final Button Quantity_btn;
-        private final Button Max_btn;
 
         MarketGoodViewHolder(@NonNull View itemView) {
             super(itemView);
             MarketGoodName = itemView.findViewById(R.id.item_val);
             Price = itemView.findViewById(R.id.price_val);
             Quantity_btn = itemView.findViewById(R.id.quan_button);
-            Max_btn = itemView.findViewById(R.id.max_button);
 
             Quantity_btn.setOnClickListener(new View.OnClickListener() {
 
@@ -100,19 +99,6 @@ public class MarketGoodAdapter extends
 
                     if (listener != null && position != RecyclerView.NO_POSITION) {
                         listener.onMarketGoodClicked(MarketGoodList.get(position));
-                    }
-                }
-            });
-
-            Max_btn.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View view) {
-                    int position = getAdapterPosition();
-
-                    if (listener != null && position != RecyclerView.NO_POSITION) {
-                        MarketGood good = MarketGoodList.get(position);
-
                     }
                 }
             });

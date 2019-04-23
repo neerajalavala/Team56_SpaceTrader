@@ -50,6 +50,12 @@ public class Player implements Serializable {
     /**player ship information*/
     private ShipType Ship_type = ShipType.GNAT;
     private int fuel = Ship_type.getMaxFuel();
+
+    private Integer health = Ship_type.getMax_health();
+
+    private boolean has_shield = false;
+    private boolean has_weapons = false;
+
     private CargoHold cargoHold;
 
     private Universe game;
@@ -150,6 +156,23 @@ public class Player implements Serializable {
             subCredits(50);
         }
     }
+
+    /**
+     * Repairs player ship
+     */
+    public void repair() {
+        while (Credits - 25 >= 0 &&  health < Ship_type.getMax_health()) {
+            if (health + 10 < Ship_type.getMax_health()) {
+                health += 10;
+            } else {
+                health = Ship_type.getMax_health();
+            }
+
+            subCredits(25);
+        }
+    }
+
+
 
     /**
      *
@@ -313,6 +336,8 @@ public class Player implements Serializable {
      */
     public void setShipType(ShipType type) {
         this.Ship_type = type;
+        this.health = Ship_type.getMax_health();
+
      }
 
     /**
@@ -372,6 +397,31 @@ public class Player implements Serializable {
      */
     public void setFuel(int q) {
         this.fuel = q;
+    }
+
+
+    public Integer get_health() {
+        return health;
+    }
+
+    public boolean getHas_shield() {
+        return has_shield;
+    }
+
+    public boolean getHas_weapons() {
+        return has_weapons;
+    }
+
+    public void setHas_shield(boolean has_shield) {
+        this.has_shield = has_shield;
+    }
+
+    public void set_health(Integer health) {
+        this.health = health;
+    }
+
+    public void setHas_weapons(boolean has_weapons) {
+        this.has_weapons = has_weapons;
     }
 
     /**

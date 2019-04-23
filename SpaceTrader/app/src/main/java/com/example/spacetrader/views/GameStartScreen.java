@@ -41,8 +41,6 @@ public class GameStartScreen extends AppCompatActivity {
         transaction.add(R.id.placeholder_planet, pFrag, "planet");
         transaction.commit();
 
-        FrameLayout placeholder = findViewById(R.id.placeholder_planet);
-
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(

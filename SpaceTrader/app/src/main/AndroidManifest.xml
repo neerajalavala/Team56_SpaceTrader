@@ -23,8 +23,20 @@
         <activity android:name="com.example.spacetrader.views.CreatePlayerActivity" />
 
         <activity
+            android:name="com.example.spacetrader.views.SpaceTradeItem"
+            android:parentActivityName="com.example.spacetrader.views.SpaceTrade" />
+
+        <activity
+            android:name="com.example.spacetrader.views.SpaceTrade"
+            android:parentActivityName="com.example.spacetrader.views.EventActivity" />
+
+        <activity
             android:name="com.example.spacetrader.views.TradeItemActivity"
-            android:parentActivityName="com.example.spacetrader.views.TradeScreenBuy" />
+            android:parentActivityName="com.example.spacetrader.views.GameStartScreen" />
+
+        <activity
+            android:name="com.example.spacetrader.views.EventActivity"
+            android:parentActivityName="com.example.spacetrader.views.GameStartScreen" />
 
         <activity
             android:name="com.example.spacetrader.views.GameStartScreen"

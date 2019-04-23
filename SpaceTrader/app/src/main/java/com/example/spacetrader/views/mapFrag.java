@@ -171,38 +171,29 @@ public class mapFrag extends Fragment {
         travelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                player.travelTo(nextSystem, nextPlanet, turnNum);
-
-
-                RandomEvent event;
-                for (int i = 0; i < turnNum; i++) {
-                    event = game.getRandomEvent();
-
-                    String event_name = "";
-                    if (event == RandomEvent.CREDITS) {
-                        event_name = "Found Credits!";
-                    } else if (event == RandomEvent.TRADER) {
-                        event_name = "Trader Ship Appeared!";
-                    } else if (event == RandomEvent.PIRATE) {
-                        event_name = "Pirate Attack!";
-                    } else if (event == RandomEvent.COPS) {
-                        event_name = "The Cops!";
-                    }
-
+                if (turnNum > fuel) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(event_name)
+                    builder.setMessage("Not enough fuel")
                             .setCancelable(false)
-                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int id) {
-                                    //do things
-                                }
+                            .setPositiveButton("OK", (dialog, id) -> {
+                                //do things
                             });
                     AlertDialog alert = builder.create();
                     alert.show();
-                }
+                } else {
+                    RandomEvent e;
+                    for (int i = 0; i < turnNum; i++) {
+                        e = game.getRandomEvent();
+                        Intent intent = new Intent(getActivity(), EventActivity.class);
+                        intent.putExtra("E_TYPE", e);
+                        startActivity(intent);
+                    }
 
-                updateUI();
+
+                    player.travelTo(nextSystem, nextPlanet, turnNum);
+
+                    updateUI();
+                }
             }
         });
 

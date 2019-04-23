@@ -124,7 +124,7 @@ public class Universe implements Serializable {
         Random rand = new Random();
         int eventNum = rand.nextInt(11);
 
-        if (eventNum <= 5) {
+        if (eventNum <= 3) {
             return RandomEvent.CREDITS;
         } else if (eventNum <= 7) {
             return RandomEvent.TRADER;
